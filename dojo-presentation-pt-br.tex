@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[brazil]{babel}
-
+\usepackage[labelformat=empty]{caption}
 \usetheme{JuanLesPins}
 
 \title{
@@ -12,21 +12,40 @@
       }
 
 \begin{document}
-
 \maketitle
-
 \section{Introdução}
+
 \begin{frame}
-  \frametitle{Mas o que é dojo?}
+\frametitle{Mas o que é dojo?}
+\framesubtitle{}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.5]{jack.jpg}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dojo é:}
+\framesubtitle{}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.35]{puxo.jpg}
+\caption{  O \textbf{treinamento} de um programador.}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dojo é:}
   \framesubtitle{}
-
-  Você já viu algum programador \textbf{treinando}? \\~\\
-
   A alma de um dojo de programação é essa:
   \begin{itemize}
     \item Escrever o \textbf{melhor} código que você puder;
-    \item \textbf{Sem compromisso} de finalizar;
-    \item Trocar \textbf{experiências} com outros programadores.
+    \item \textbf{Não ter compromisso} de finalizar;
+    \item Trocar \textbf{experiências} com outros programadores;
+    \item Ter contato com \textbf{novas tecnologias}.
   \end{itemize}
 \end{frame}
 
@@ -39,7 +58,7 @@
     \item \textbf{Pares} programam enquanto os demais prestam atenção na solução sendo implementada;
       \begin{itemize}
         \item \textbf{Rotação}: O par é trocado a cada poucos minutos;
-        \item \textbf{Testes}: Queremos código de qualidade, então fazemos TDD (Test Driven Development);
+        \item \textbf{Testes}: Queremos código de qualidade, então fazemos TDD (Test-Driven Development);
         \item \textbf{Não} há obrigação de \textbf{finalizar} o desafio.
       \end{itemize}
     \item Depois que encerramos, conversamos sobre como foi tudo e como podemos \textbf{melhorar}.
@@ -53,8 +72,17 @@
   \begin{itemize}
     \item Internacionalização com RoR (Ruby on Rails);
     \item Criação de modelos sem ActiveRecord no RoR;
-    \item TODO: olhar código do kalibro entities e ver uns temas...
+    \item Lançamento de uma gema do Ruby;
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.25]{gema.jpg}
+\caption{Lançamento de uma gema}
+\end{center}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -83,7 +111,11 @@
   \frametitle{Escolha do desafio}
   \framesubtitle{Desenvolvimento de gems para Ruby}
 
-  TODO
+  Basicamente, uma gema é um pacote que encapsula uma funcionalidade. \\~\\
+  O Mezuro utiliza várias gemas que dão suporte à sua implementação desde testes até cadastramento de usuários, como por exemplo o devise, factoryGirl, rspec e o kalibro\_entities.\\~\\ 
+  Em especial, o Kalibro é uma ferramenta utilizada pelo Mezuro para calcular métricas. Atualmente, nossa equipe está desenvolvendo uma gema para ela. \\~\\
+  Então, vamos implementar uma das entidades do kalibro\_entities?
+  
 \end{frame}
 
 \begin{frame}
@@ -92,7 +124,7 @@
 
 \section{Atividade}
 \begin{frame}
-  \LARGE{\textbf{Hora de programar então}}
+  \LARGE{\textbf{Hora de programar então!!!!!!}}
 \end{frame}
 
 \section{Retrospectiva}
