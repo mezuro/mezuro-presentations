@@ -1,0 +1,350 @@
+\documentclass{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[brazil]{babel}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usetheme{JuanLesPins}
+
+\title{
+       \textbf{Mezuro} \\
+      }
+\subtitle{
+		\textbf{CCSL - IME - USP}
+		}
+\author{
+        Diego Araújo \\
+        Carlos Morais \\
+        Fellipe Souto \\
+        Guilherme Rojas \\
+        João da Silva \\
+        Rafael Manzo \\
+        Renan Fichberg
+       }
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+
+\begin{frame}
+  \frametitle{A história do projeto}
+  \framesubtitle{}
+  
+  \begin{itemize}
+    \item Nasceu no Instituto de Matemática e Estatística como projeto de doutorado do atual professor da UNB Paulo Meirelles
+    \item Teve como forte colaborador o atual mestre Carlos Morais através do projeto Kalibro
+    \item É apoiado e mantido pelo Centro de Competência em Software Livre(IME/USP) e financiado pela QualiPSo (Quality Plataform for Open Source) da European Comission
+    \item Atualmente conta com a colaboração de sete alunos do IME/USP
+ 
+  \end{itemize}
+
+\end{frame}
+
+\section{Motivação}
+\begin{frame}
+
+  \frametitle{Métricas de Software}
+  
+  You cannot control what you cannot measure.\footnote{Tom DeMarco. Controlling software projects. management, measurement and estimation. ISBN, 10(0131717111):0–13.}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exemplos de métricas de software}
+  \framesubtitle{Tamanho}
+
+  \begin{figure}
+        \begin{subfigure}[b]{0.3\textwidth}
+      \includegraphics[width=\textwidth]{images/size.png}
+                \caption*{Tamanho das entidades}
+                
+        \end{subfigure}\qquad\qquad\qquad\qquad\qquad%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+      \includegraphics[width=\textwidth]{images/cohesion.png}
+                \caption*{Nível de responsabilidade}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+      
+      \includegraphics[width=\textwidth]{images/coupling.png}
+                \caption*{Acoplamento}
+                
+        \end{subfigure}
+        \caption{Métricas de software}\label{fig:animals}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Métricas de software}
+  \framesubtitle{Problemas atuais}
+  
+  \begin{itemize}
+    \item Não há parâmetros de comparação consolidados;
+    \item Existem estudos, mas poucos dados empíricos;
+    \item Ainda é dada pouca importância ao monitoramento de código.
+  \end{itemize}
+\end{frame}
+
+\section{Solução}
+  
+\begin{frame}
+  \frametitle{Proposta}
+  \framesubtitle{}
+  
+  Encontrar conjuntos de métricas e interpretações, mantendo sua evolução no tempo, de acordo com situações específicas, através de:
+  \begin{itemize}
+    \item Ferramentas base para coleta das métricas\footnote{Analizo, Checkstyle, CVSAnaly etc.};
+    \item Gerenciador de configurações e análise do resultado da coleta\footnote{Kalibro};
+    \item Interface web para interação com a comunidade\footnote{Mezuro}.
+  \end{itemize}
+  
+
+\end{frame}
+
+  \subsection{Kalibro}
+  
+  \begin{frame}
+    \frametitle{Kalibro}
+    \framesubtitle{O que é?}
+    
+    \begin{figure}
+      \begin{flushleft}
+        \includegraphics[width=3cm, height=1.125cm]{images/logo-kalibro.png}
+        \label{fig:logo-kalibro}
+      \end{flushleft}
+    \end{figure}
+    
+    Software responsável pela coleta e análise de repositórios de acordo com métricas pré-definidas.
+    \begin{itemize}
+      \item Suporte a diversos controladores de versão, desde CVS até Bazaar;
+      \item Aceita códigos-fonte em diversas linguagens (C, C++, Java e Python);
+      \item Permite a criação de conjuntos de métricas personalizadas.
+      \item Possibilita a classificação de resultados obtidos pela análise.
+    \end{itemize}
+  \end{frame}
+  
+  \subsection{Mezuro}
+  
+  \begin{frame}
+    \frametitle{Mezuro}
+    \framesubtitle{O que é?}
+    
+    \begin{figure}
+      \begin{flushleft}
+        \includegraphics{images/logo-mezuro.png}
+        \label{fig:logo-mezuro}
+      \end{flushleft}
+    \end{figure}
+    
+    \begin{itemize}
+      \item Plugin para o Noosfero\footnote{Rede social livre desenvolvida pela Colivre: \url{http://noosfero.org/}}
+      \item Rede de desenvolvedores de software;
+      \item Visualização fácil dos resultados da análise e criação de novas configurações de métricas na Kalibro.
+    \end{itemize}
+  
+  \end{frame}
+  
+  \subsubsection{Demonstração}
+  
+    \begin{frame}
+      \frametitle{Página inicial}
+      \framesubtitle{}
+      
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/00-home.png}
+          \label{fig:home}
+        \end{center}
+      \end{figure}
+    
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Lista de Comunidades}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/01-community-list.png}
+          \label{fig:}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Criação de Comunidades}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/02-community-creation.png}
+          \label{fig:}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Comunidade Criada}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/03-community-created.png}
+          \label{fig:}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Painel de Controle de Comunidades}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/04-community-control-panel.png}
+          \label{fig:community-control-panel}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Criação de Projetos}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/05-project-creation.png}
+          \label{fig:project-creation}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Projeto Criado}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/06-project-created.png}
+          \label{fig:project-created}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Criação de Repositório}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/07-repository-creation.png}
+          \label{fig:repository-creation}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Processamento}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/08-processing.png}
+          \label{fig:processing}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Estatísticas do Processamento}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/08-processing-stats.png}
+          \label{fig:processing-stats}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Resultados do Processamento}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/09-processing-results.png}
+          \label{fig:processing-results}
+        \end{center}
+      \end{figure}
+    \end{frame}
+    
+    \begin{frame}
+      \frametitle{Gráfico de Resultados do Processamento}
+      \framesubtitle{}
+    
+      \begin{figure}
+        \begin{center}
+          \includegraphics[width=11cm, height=6cm]{images/10-processing-results-graphic.png}
+          \label{fig:processing-results-graphic}
+        \end{center}
+      \end{figure}
+    \end{frame}
+  
+  \begin{frame}
+    \frametitle{Conclusão}
+    \framesubtitle{}
+    
+    \begin{itemize}
+      \item Use-me: \url{http://mezuro.org};
+      \item Clone-me: \url{https://github.com/mezuro/noosfero}.
+    \end{itemize}
+  \end{frame}
+  
+  \begin{frame}
+    \frametitle{Próximos passos}
+    \framesubtitle{Mezuro Standalone}
+  
+    \begin{itemize}
+      \item Independente de outras plataformas;
+      \item Ruby on Rails 4 + Ruby 2.0.
+    \end{itemize}
+    
+    Clone-me: \url{https://github.com/mezuro/mezuro-standalone}.
+  \end{frame}
+  
+    \begin{frame}
+    \frametitle{Próximos passos}
+    \framesubtitle{Kalibro}
+  
+    \begin{itemize}
+      \item Gem para comunicação com a Kalibro;
+      \item Análise histórica de repositórios.
+    \end{itemize}
+    
+    Clone-me: \url{http://gitorious.org/kalibro/kalibro}.
+  \end{frame}
+  
+  \section{Conclusão}
+
+  \begin{frame}
+    \frametitle{Agradecimentos}
+    \framesubtitle{}
+  
+    \begin{itemize}
+      \item Centro de Competência em Software Livre;
+      \item Paulo Meirelles;
+      \item Carlos Morais;
+      \item João da Silva;
+      \item Comunidade Noosfero.
+    \end{itemize}
+  \end{frame}
+
+\end{document}
