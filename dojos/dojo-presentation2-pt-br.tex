@@ -4,6 +4,7 @@
 \usepackage{lmodern}
 \usepackage[brazil]{babel}
 \usepackage[labelformat=empty]{caption}
+\usepackage{multicol}
 \usetheme{JuanLesPins}
 
 \title{
@@ -82,6 +83,11 @@
 \begin{frame}
   \frametitle{Escolha do desafio}
   \framesubtitle{1. Internacionalização}
+  \begin{figure}[htb]
+    \begin{center}
+      \includegraphics[scale=0.18]{small-globe.png}
+    \end{center}
+  \end{figure}
 
   Uma mesma aplicação pode ser acessada por pessoas com \textbf{diferentes preferências de idioma} além do inglês. \\~\\
 
@@ -98,6 +104,22 @@
 
   E se você \textbf{não} quiser um \textbf{banco de dados}, mas quer todas as outras coisas legais que um modelo do Rails tem? \\~\\
 
+  \begin{multicols}{2}
+    \begin{figure}[htb]
+      \begin{center}
+        \includegraphics[scale=0.1]{no-database.png}
+      \end{center}
+    \end{figure}
+
+    \columnbreak
+
+    \begin{figure}[htb]
+      \begin{center}
+        \includegraphics[scale=0.2]{rails.png}
+      \end{center}
+    \end{figure}
+  \end{multicols}
+
   No Mezuro demos um jeito nisso! Quer ver o que fizemos e dar sugestões?
 \end{frame}
 
@@ -105,10 +127,23 @@
   \frametitle{Escolha do desafio}
   \framesubtitle{3. Desenvolvimento de gems para Ruby}
 
-  Basicamente, uma gema é um pacote que encapsula uma funcionalidade. \\~\\
+  \begin{multicols}{2}
+    \begin{figure}[htb]
+      \begin{center}
+        \includegraphics[scale=0.1]{ruby-gem.jpg}
+      \end{center}
+    \end{figure}
+
+    \columnbreak
+    
+    Basicamente, uma gema é um pacote que encapsula uma funcionalidade. \\~\\
+  \end{multicols}
+
   O Mezuro utiliza várias gemas que dão suporte à sua implementação desde testes até cadastramento de usuários, como por exemplo o devise, factoryGirl, rspec e o kalibro\_entities.\\~\\
+  
   Em especial, o Kalibro é uma ferramenta utilizada pelo Mezuro para calcular métricas. Atualmente, nossa equipe está desenvolvendo uma gema para ela. \\~\\
-  Então, vamos implementar uma das entidades do kalibro\_entities?
+  
+  Então, vamos implementar uma das entidades do kalibro\_gem?
 
 \end{frame}
 
@@ -117,6 +152,12 @@
   \framesubtitle{4. Criação de gráficos em ruby com gruff}
   
   No Mezuro, utilizamos o \textbf{gruff} para plotar os gráficos.
+
+  \begin{figure}[htb]
+    \begin{center}
+      \includegraphics[scale=0.15]{graph.png}
+    \end{center}
+  \end{figure}
   
   Ele é uma gema que fornece suporte à criação de diversos tipos de gráficos. \\~\\
   Podemos aprender a gerar número aleatórios em Ruby para criar os dados ou podemos gerar gŕaficos para o Mezuro! \\~\\
@@ -127,6 +168,31 @@
 \begin{frame}
 	\frametitle{Escolha do desafio}
   \framesubtitle{5. CoffeeScript \& Ajax}
+
+  \begin{multicols}{3}
+    \begin{figure}[htb]
+      \begin{center}
+        \includegraphics[scale=0.04]{coffee.jpg}
+      \end{center}
+    \end{figure}
+
+    \columnbreak
+
+    \begin{figure}[htb]
+      \begin{center}
+        \includegraphics[scale=0.13]{script.png}
+      \end{center}
+    \end{figure}
+
+    \columnbreak
+
+    \begin{figure}[htb]
+      \begin{center}
+        \includegraphics[scale=0.08]{ajax.png}
+      \end{center}
+    \end{figure}
+
+  \end{multicols}
   
   \textbf{CoffeeScript} é uma linguagem que facilita o uso do \textbf{JavaScript}, que é a linguagem utilizada para deixar páginas web dinâmicas. \\~\\
   Já o \textbf{Ajax} é uma ferramenta para carregamento assíncrono de página. \\~\\
@@ -138,12 +204,17 @@
 \begin{frame}
 	\frametitle{Escolha do desafio}
   \framesubtitle{6. Testes automatizados}
+
+  \begin{figure}[htb]
+    \begin{center}
+      \includegraphics[scale=0.2]{automation.jpg}
+    \end{center}
+  \end{figure}
   
   Testes automatizados servem para detectar  rapidamente  defeitos,  ajudar  no  controle de  qualidade  do  código  e  fornecem   uma  documentação  simples  das  funcionalidades  do sistema. \\~\\
   No Mezuro, utilizamos o \textbf{Cucumber} e o \textbf{Rspec} para fazer a cobertura dos testes de aceitação e unidade, respectivamente. \\~\\
   
   E aí, vamos aprender a fazer testes automatizados para o nosso programa?
- 
 
 \end{frame}
 
