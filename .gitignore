@@ -9,3 +9,5 @@
 *.snm
 *.fls
 *.synctex.gz
+*.bbl
+*.blg
