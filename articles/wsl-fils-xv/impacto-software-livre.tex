@@ -3,7 +3,10 @@
 \usepackage{sbc-template}
 \usepackage{graphicx,url}
 \usepackage[brazil]{babel}   
-\usepackage[latin1]{inputenc}  
+\usepackage[latin1]{inputenc}
+
+\usepackage{hyperref}
+\usepackage{tabularx}
      
 \sloppy
 
@@ -39,18 +42,111 @@
 \section{Introdução} \label{sec:introducao}
 Reúso de software é um solução que surgiu em 1968 como solução para a crise de software \cite{nr68}. Desde então este têm sido um tópico reocorrente entre toda a comunidade de computação, culminando em 1992 por Krueger em uma compilação de toda a pesquisa feita, critérios de classificação para metodologias de reúso e análise de sua eficácia \cite{k92}.
 
-Nas últimas duas décadas o reúso por meio de bibliotecas externas, ou caixa preta \cite{hdghi11}, se consolidou em linguagens de programação modernas como Ruby (através da plataforma rubygems.org) e Java (por meio do empacotamento de bibliotecas reutilizáveis em arquivos jar).
+Nas últimas duas décadas o reúso por meio de bibliotecas externas, ou caixa-preta \cite{hdghi11}, se consolidou em linguagens de programação modernas como Ruby (através da plataforma \url{http://rubygems.org}) e Java (por meio do empacotamento de bibliotecas reutilizáveis em arquivos jar).
 
-Porém a reutilização de softwares funcionais inteiros ainda é uma questão em aberto.
+Porém a reutilização de softwares funcionais inteiros ainda é uma questão em aberto, uma vez que exige reescrever partes do software ou que partes relevantes deste tenham as devidas abstrações que permitam a extensão de suas funcionalidades.
+
+  \subsection{Definição de reúso de software}
+  Consiste de utilizar artefatos de um software já existente durante a construção de um novo sistema de software \cite{k92}.
+
+  Estes artefatos podem ser desde trechos de código copiados que são chamados durante a execução do programa, passando por bibliotecas caixa-preta, até abstrações fornecidas por softwares como arquitetura de plugins.
+
+  \subsection{Critérios de classificação}
+  Conforme descrito por Kruger há quatro critérios básicos relevantes quando se classificando o reúso de software:
+
+  \begin{itemize}
+    \item \textbf{Abstração}: a interface fornecida pelo software para que possa ser reutilizado;
+    \item \textbf{Seleção}: forma de localizar, entender, comparar e escolher o que reaproveitar;
+    \item \textbf{Especialização}: personalização do trecho a ser reaproveitado por meio de paâmetros;
+    \item \textbf{Integração}: interface fornecida pelo software que esconde detalhes internos deste.
+  \end{itemize}
 
 \section{Decisão ao se iniciar um novo projeto} \label{sec:decisao}
+Então sempre que surje um novo projeto de software surge a pergunta sobre adotar um software já existente, que abranja alguns dos requisitos e possa ser extendido com algum custo para os demais, ou escrever um novo software e arcar com os diversos riscos que isto envolve.
+
+A seguir vamos tentar brevemente levantar vantagens e desvantagens para cada uma destas duas possibilidades para que possamos após durante o relato de caso (\ref{sec:projeto-mezuro}) retomar estes pontos e analisar cada decisão tomada durante a vida do projeto a ser descruto.
+
+  \newpage
   \subsection{Projeto existente como base} \label{subsec:projeto-existente}
+  \begin{table}[ht]
+    \centering
+    \caption{Lista de vantagens e desvantagens para adoção de um software já existente em ordem do mais difícil de se lidar para o menos}
+    \label{tab:projeto-existente}
+
+    \begin{tabularx}{\textwidth}{| X | X | X |}
+      \hline
+      \textbf{Característica} & \textbf{Vantagem} & \textbf{Desvantagem} \\ \hline
+      Terceiros são responsáveis por boa parte do código & 
+        Custo de manutenção reduzido &
+        Estar a mercê de terceiros que podem abandonar o projeto ou reescrevê-lo \\ \hline
+      Tempo de desenvolvimento &
+        Com boa abstração ele é reduzido drásticamente &
+        Sem uma boa abstração, o tempo gasto para entender o software pode ultrapassar o necessário para desenvolver um novo software ou até impedir por completo o desenvolvimento \\ \hline
+      Credibilidade &
+        Ter seu software associado a um segundo já consolidado na comunidade inspira maior confianção nos usuários &
+        Por outro lado, problemas no software escolhido para ser reaproveitado, mesmo que não afetem sua extensão, trarão má publicidade para seu software\\ \hline
+      Confiabilidade &
+        Estar baseado num software confiável claramente trará confiabilidade para seu software &
+        Se o software base apenas aparentar ser confiável, no futuro seu software apresentará os mesmos problemas\\ \hline
+    \end{tabularx}
+  \end{table}
+
+  Então, da tabela \ref{tab:projeto-existente} podemos ver que a diferença entre uma característica se tornar uma vantagem ou uma desvantagem consiste basicamente do tamanho do conhecimento prévio que você tem sobre o software no qual pretende se basear.
+
+  Os três primeiros itens da tabela são especialmente complicados por dependerem de profundo conhecimento do software e das pesoas envolvidas em seu desenvolvimento.
+
+  Isto é, a responsabilidade de terceiros por parte do código depende exclusivamente destas pessoas e suas opiniões. O melhor que pode ser feito neste caso é procurar conhecer a reputação destas. Da mesma forma, a qualidade de abstrações e a credibilidade, como segurança, de um software vão depender de conhecimento de seu código fonte mais do que tudo.
 
   \subsection{Projeto totalmente novo} \label{subsec:projeto-novo}
+  A grande vantagem nessa opção se resume em liberdade. Abrangindo escolha de tecnologias, padrões adotados, metodologia, filosofia e todos os aspectos envolvidos no desenvolvimento de um software.
+
+  Ou seja, é um grande poder. E, como se popularizou dizer, com grandes poderes vêm grandes responsabilidades. Então, todas estas decisões devem ser tomadas por pessoas qualificadas, experientes e conhecedoras do que tem se passado na comunidade.
+
+  \subsection{Qual opção escolher}
+  Embora gostaríamos de apresentar uma resposta exata para a pergunta, a resposta que não existe resposta exata. Ela é subjetiva e depende de conhecimento profundo de muitas variáveis que, muitas vezes, não importa o tempo investido não será possível conhecê-las. Como é o caso de tentar prever o comportamento de um ser humano perante um projeto de software pelo o qual este é responsável.
+
+  Decidir por criar um software totalmente novo desde o início é uma decisão que deve ser tomada se não houverem opções de softwares parecidos existentes disponíveis ou se um especialista estiver disponível para liderar o desenvolvimento e afirmar que esta é a melhor escolha.
+
+  Uma boa estratégia de escolha de sftware base é pesquisar rapidamente sobre candidatos que atendam boa parte dos requisitos do software a ser desenvolvido, procurar conhecer a eles e às pessoas envolvidas em seu desenvolvimento e, por fim, entender que tipos de abstrações estes possuem. Se existir um candidato satisfatório, apresente-o à sua equipe, ouça o que têm a dizer e com seu apoio adote-o. A cada ciclo de desenvolvimento, juntos procurem levantar no que o software base tem sido fundamental e no que ele tem atrasado, ou até impedido, o desenvolvimento. Caso seja atingido um ponto onde não é mais possível continuar com o software base, do ponto de vista técnico, isto não será um problema, pois seu time terá acumulado a experiência necessária para desenvolver um software novo.
+
+  Esta estratégia é falha do ponto de vista do tempo necessário. Mas ela foi recomendada, por que escolhendo desde o inicio desenvolver um software novo sem conhecimento prévio suficiente da área é um risco grande comparado a adoção de um software que reúne o conhecimento de toda uma comunidade qualificada.
 
 \section{Projeto Mezuro} \label{sec:projeto-mezuro}
+Em produção em \url{http://mezuro.org}, o projeto Mezuro visa ser uma interfaceque permita de forma flexível a extração e análise de métricas estáticas de código fonte. Deixando que o próprio usuário defina qual conjunto de métricas deseja utilizar, permitindo que faça cálculos utilizando estes valores e mantando resultados históricos para comparação futura.
+
+Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas devem ser empregadas na análise da qualidade de um código fonte e quais são os valores destas que definem sua qualidade.
+
   \subsection{História} \label{subsec:historia}
+  O projeto surgiu em 2010 dentro da disciplina de Laboratório de Programação Extrema oferecida no Instituto de Matemática e Estatística da Universidade de São Paulo (IME - USP), por um time de cinco alunos. Estes decidiram por criar um software novo, englobando desde autenticação de usuários até a extração e análise de metricas cde código fonte, fazendo uso do arcabouço Ruby on Rails que na época começava a ganhar muita força dentro da comunidade com sua segunda versão. Seu código fonte pode ser encontrado em \url{https://github.com/mezuro/mezuro-sketch}.
+
+  Esta versão falhou no quesito de viabilidade. O arcabouço adotado ainda não era a maduro como a versão atual, então o time passou boa parte do tempo no desenvolvimento de funcionalidades que eram fundamentais, mas que não faziam parte do diferencial do software, como o cadastro e gerenciamento de usuários.
+
+  Mas a semente e as lições ficaram e, posteriormente, com o advento do projeto Kalibro \cite{of13} como um serviço para extração e análise de métricas estáticas de código fonte, o projeto Mezuro ressurgiu agora como a interface para este serviço.
+
+  Para lidar com os impedimentos encontrados durante o desenvolvimento, foi adotada a plataforma de software livre Noosfero\footnote{\url{http://noosfero.org}}, também feita sobre Ruby on Rails, que traz a confiabilidade e credibilidade de um software nos repositórios oficiais do Linux Debian junto com uma arquitetura de plugins interessante para se extender suas funcionalidades.
+
+  Até julho de 2013 o desenvolvimento se deu com base nesta plataforma. Porém, ela era desistimulante para o time essencialmente em decorrência de as tecnologias que ela força o uso são bastante antigas isto implicou em uma série de situações desagradáveis para o time que limitavam muito sua capacitade de inovar e entregar um software de qualidade:
+
+  \begin{itemize}
+    \item arcabouço de testes é ultrapassado e com suporte limitado a plugins;
+    \item incompatível com as bibliotecas Ruby mais recentes;
+    \item incompatível com plugins mais recentes JavaScript;
+    \item baixa performance em produção.
+  \end{itemize}
+
+  Além disso, muitas funcionalidades do Noosfero como comunidades, calendário, amizade entre usuários e outras não eram interessantes para o Mezuro e apenas adicionavam mais complexidade ao usuario do sistema.
+
+  Com todos estes problemas e sem ter alcançado uma versão de produção em quase dois anos de desenvolvimento, o time então resolveu abandonar esta versão.
+
   \subsection{Estado atual} \label{subsec:estado-atual}
+  Neste contexto o time se sentiu confiante, tanto no sentido de conhecimento técnico como conhecimento dos requisitos do software, para então dar uma nova chance a desenvolver um software independente ainda utlizando o arcabouço Ruby on Rails agora em sua quarta e versão.
+
+  Para dimuir ainda mais a complexidade no Mezuro toda a comunicação com o serviço Kalibro foi extraído para uma biblioteca de Ruby denominada kalibro\_gem\footnote{\url{http://rubygems.org/gems/kalibro_gem}}.
+
+  Da mesma forma, para possibilitar que a equipe focasse nas funcionalidades específicas do software o máximo de bibliotecas caixa-preta disponíveis em Ruby foi empregada.
+
+  Tudo isso, após seis meses de trabalho, culminou na primeira versão realmente utilizável do software.
+
   \subsection{Lições aprendidas} \label{subsec:licoes-aprendidas}
 
 \section{Conclusão} \label{sec:conclusao}
