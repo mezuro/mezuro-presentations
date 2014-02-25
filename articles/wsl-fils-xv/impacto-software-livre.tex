@@ -11,7 +11,7 @@
 
 \author{Rafael R. Manzo\inst{1}, Diego de A. M. Camarinha\inst{1},\\
         Guilherme H. R. V. de Lima\inst{1}, Fellipe S. Sampaio\inst{1},\\
-        Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}, Fabio Kon\inst{1}}
+        Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}}
 
 
 \address{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
@@ -19,7 +19,7 @@
 \nextinstitute
   Faculdade de Engenharia -- UnB Gama (FGA)\\
   Gama -- DF -- Brasil 
-  \email{\{manzo,kon\}@ime.usp.br,\{diego.camarinha,guilherme.henrique.lima\}@usp.br}
+  \email{manzo@ime.usp.br,\{diego.camarinha,guilherme.henrique.lima\}@usp.br}
   \email{\{renan.fichberg,fellipe.sampaio\}@usp.br,paulo@softwarelivre.org}
 }
 
@@ -32,11 +32,16 @@
 \end{abstract}
      
 \begin{resumo} 
-  Este artigo resumido trata sobre uma das decisões mais importantes no momento de se iniciar um novo projeto de software livre: adotar como base outro projeto já maduro; ou escrever um totalmente novo e independente. Serão discutidas brevemente as vantagens e desvantagens de cada opção. Para, por fim, apresentar uma experiência real de um projeto que teve início decidindo pela segunda opção, durante o início de seu desenvolvimento resolveu adotar a segunda opção, para recentemente novamente adotar a primeira opção.
+  Este artigo resumido trata sobre uma das decisões mais importantes no momento de se iniciar um novo projeto de software livre: adotar como base outro projeto já maduro; ou escrever um totalmente novo e independente. Serão discutidas brevemente as vantagens e desvantagens de cada opção. Para, por fim, apresentar uma experiência real de um projeto que teve início decidindo pela segunda opção, durante o início de seu desenvolvimento resolveu adotar a primeira opção, para recentemente novamente adotar a primeira opção.
 \end{resumo}
 
 
 \section{Introdução} \label{sec:introducao}
+Reúso de software é um solução que surgiu em 1968 como solução para a crise de software \cite{nr68}. Desde então este têm sido um tópico reocorrente entre toda a comunidade de computação, culminando em 1992 por Krueger em uma compilação de toda a pesquisa feita, critérios de classificação para metodologias de reúso e análise de sua eficácia \cite{k92}.
+
+Nas últimas duas décadas o reúso por meio de bibliotecas externas, ou caixa preta \cite{hdghi11}, se consolidou em linguagens de programação modernas como Ruby (através da plataforma rubygems.org) e Java (por meio do empacotamento de bibliotecas reutilizáveis em arquivos jar).
+
+Porém a reutilização de softwares funcionais inteiros ainda é uma questão em aberto.
 
 \section{Decisão ao se iniciar um novo projeto} \label{sec:decisao}
   \subsection{Projeto existente como base} \label{subsec:projeto-existente}
