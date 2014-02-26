@@ -31,7 +31,7 @@
 \maketitle
 
 \begin{abstract}
-  This resumed article approaches one of the most important decisions when starting a new free software project: to adopt and base the new project on a old and madure one or to create a whole new and independent one. The vantages and disavantages for each option will be discussed for, at last, present a real experience from a project that started by choosing the second option, during it's early development switched to the first one, to recently go back again to the second one.
+  This resumed article approaches one of the most important decisions when starting a new free software project: to adopt and base the new project on a old and mature one or to create a whole new and independent one. The vantages and disadvantages for each option will be discussed for, at last, present a real experience from a project that started by choosing the second option, during it's early development switched to the first one, to recently go back again to the second one.
 \end{abstract}
      
 \begin{resumo} 
@@ -93,12 +93,12 @@ A seguir vamos tentar brevemente apontar vantagens e desvantagens para cada uma 
 
   Da tabela \ref{tab:projeto-existente} podemos ver que a diferença entre uma característica se tornar uma vantagem ou uma desvantagem consiste basicamente do tamanho do conhecimento prévio que você tem sobre o software no qual pretende se basear.
 
-  Os três primeiros itens da tabela são especialmente complicados por dependerem de profundo conhecimento do software e das pesoas envolvidas em seu desenvolvimento.
+  Os três primeiros itens da tabela são especialmente complicados por dependerem de profundo conhecimento do software e das pessoas envolvidas em seu desenvolvimento.
 
   Isto é, a responsabilidade de terceiros por parte do código depende exclusivamente destas pessoas e suas opiniões. O melhor que pode ser feito neste caso é procurar conhecer a reputação delas. Da mesma forma, a qualidade de abstrações e a credibilidade, como segurança, de um software vão depender de conhecimento de seu código fonte mais do que tudo.
 
   \subsection{Projeto totalmente novo} \label{subsec:projeto-novo}
-  A grande vantagem nessa opção se resume em liberdade. Abrangindo escolha de tecnologias, padrões adotados, metodologia, filosofia e todos os aspectos envolvidos no desenvolvimento de um software.
+  A grande vantagem nessa opção se resume em liberdade. Abrangendo escolha de tecnologias, padrões adotados, metodologia, filosofia e todos os aspectos envolvidos no desenvolvimento de um software.
 
   Ou seja, é um grande poder. E, como se popularizou dizer, com grandes poderes vêm grandes responsabilidades. Então, todas estas decisões devem ser tomadas por pessoas qualificadas, experientes e conhecedoras do que tem se passado na comunidade.
 
@@ -112,7 +112,7 @@ A seguir vamos tentar brevemente apontar vantagens e desvantagens para cada uma 
   Esta estratégia é falha do ponto de vista do tempo necessário. Mas ela foi recomendada porque escolhendo desde o inicio desenvolver um software novo sem conhecimento prévio suficiente da área é um risco grande comparado a adoção de um software que reúne o conhecimento de toda uma comunidade qualificada.
 
 \section{Projeto Mezuro} \label{sec:projeto-mezuro}
-Em produção em \url{http://mezuro.org}, o projeto Mezuro visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte. O próprio usuário fica encarregado de definir qual conjunto de métricas deseja utilizar, permitindo que faça cálculos utilizando estes valores e mantando resultados históricos para comparação futura.
+Em produção em \url{http://mezuro.org}, o projeto Mezuro visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte. O próprio usuário fica encarregado de definir qual conjunto de métricas deseja utilizar, permitindo que faça cálculos utilizando estes valores e mantendo resultados históricos para comparação futura.
 
 Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas devem ser empregadas na análise da qualidade de um código fonte e quais são os valores destas que definem sua qualidade.
 
@@ -125,7 +125,7 @@ Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas d
 
   Para lidar com os impedimentos encontrados durante o desenvolvimento, foi adotada a plataforma de software livre Noosfero\footnote{\url{http://noosfero.org}}, também feita sobre Ruby on Rails, que traz a confiabilidade e credibilidade de um software nos repositórios oficiais do Linux Debian junto com uma arquitetura de plugins interessante para se extender suas funcionalidades.
 
-  Até julho de 2013 o desenvolvimento se deu com base nesta plataforma. Porém, ela era desistimulante para o time essencialmente em decorrência de as tecnologias que ela força o uso são bastante antigas. Isto implicou em uma série de situações desagradáveis para o time que limitavam muito sua capacitade de inovar e entregar um software de qualidade:
+  Até julho de 2013 o desenvolvimento se deu com base nesta plataforma. Porém, ela era desestimulante para o time essencialmente em decorrência de as tecnologias que ela força o uso são bastante antigas. Isto implicou em uma série de situações desagradáveis para o time que limitavam muito sua capacidade de inovar e entregar um software de qualidade:
 
   \begin{itemize}
     \item arcabouço de testes é ultrapassado e com suporte limitado a plugins;
@@ -136,16 +136,16 @@ Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas d
 
   Além disso, muitas funcionalidades do Noosfero como comunidades, calendário, amizade entre usuários e outras não eram interessantes para o Mezuro e apenas adicionavam mais complexidade ao usuário do sistema.
 
-  Com todos estes problemas e sem ter alcançado uma versão de produção em quase dois anos de desenvolvimento, o time então resolveu abandonar esta versão.
+  Com todos estes problemas e sem ter alcançado uma versão de produção em quase dois anos de desenvolvimento, o time então resolveu abandonar esta versão. O código fonte para esta versão pode ser encontrado em \url{https://github.com/mezuro/noosfero-plugin}.
 
   \subsection{Estado atual} \label{subsec:estado-atual}
-  Neste contexto o time se sentiu confiante, tanto no sentido de conhecimento técnico como conhecimento dos requisitos do software, para então dar uma nova chance a desenvolver um software independente ainda utlizando o arcabouço Ruby on Rails agora em sua quarta versão.
+  Neste contexto o time se sentiu confiante, tanto no sentido de conhecimento técnico como conhecimento dos requisitos do software, para então dar uma nova chance a desenvolver um software independente ainda utilizando o arcabouço Ruby on Rails agora em sua quarta versão.
 
   Para diminuir ainda mais a complexidade no Mezuro, toda a comunicação com o serviço Kalibro foi extraído para uma biblioteca de Ruby denominada kalibro\_gem\footnote{\url{http://rubygems.org/gems/kalibro_gem}}.
 
   Da mesma forma, para possibilitar que a equipe focasse nas funcionalidades específicas do software, o máximo de bibliotecas caixa-preta disponíveis em Ruby foi empregada.
 
-  Tudo isso, após seis meses de trabalho, culminou na primeira versão realmente utilizável do software.
+  Tudo isso, após seis meses de trabalho, culminou na primeira versão realmente utilizável do software. Seu código fonte pode ser encontrado em \url{https://github.com/mezuro/mezuro}.
 
   \subsection{Lições aprendidas} \label{subsec:licoes-aprendidas}
 
