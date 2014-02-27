@@ -2,23 +2,22 @@
 
 \usepackage{sbc-template}
 \usepackage{graphicx,url}
-\usepackage[brazil]{babel}   
-\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
 
-\usepackage{hyperref}
 \usepackage{tabularx}
      
 \sloppy
 
-\title{Como a AdoÁ„o de Projetos de Software Livre Como Base para Novos Projetos Afeta Seu Desenvolvimento}
+\title{Como a Ado√ß√£o de Projetos de Software Livre Como Base para Novos Projetos Afeta Seu Desenvolvimento}
 
 \author{Rafael R. Manzo\inst{1}, Diego de A. M. Camarinha\inst{1},\\
         Guilherme H. R. V. de Lima\inst{1}, Fellipe S. Sampaio\inst{1},\\
         Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}}
 
 
-\address{Instituto de Matem·tica e EstatÌstica -- Universidade de S„o Paulo (USP)\\
-  Rua do Mat„o, 1010 -- 05508-090 -- Cidade Universit·ria -- S„o Paulo -- SP -- Brasil
+\address{Instituto de Matem√°tica e Estat√≠stica -- Universidade de S√£o Paulo (USP)\\
+  Rua do Mat√£o, 1010 -- 05508-090 -- Cidade Universit√°ria -- S√£o Paulo -- SP -- Brasil
 \nextinstitute
   Faculdade de Engenharia -- UnB Gama (FGA)\\
   Gama -- DF -- Brasil 
@@ -35,121 +34,144 @@
 \end{abstract}
      
 \begin{resumo} 
-  Este artigo resumido trata sobre uma das decisıes mais importantes no momento de se iniciar um novo projeto de software livre: adotar como base outro projeto j· maduro ou escrever um totalmente novo e independente. Ser„o discutidas brevemente as vantagens e desvantagens de cada opÁ„o para, por fim, apresentar uma experiÍncia real de um projeto que teve inÌcio decidindo pela segunda opÁ„o, durante o inÌcio de seu desenvolvimento resolveu adotar a primeira opÁ„o, para recentemente novamente adotar a segunda opÁ„o.
+  Este artigo resumido trata sobre uma das decis√µes mais importantes no momento de se iniciar um novo projeto de software livre: adotar como base outro projeto j√° maduro ou escrever um totalmente novo e independente. Ser√£o discutidas brevemente as vantagens e desvantagens de cada op√ß√£o para, por fim, apresentar uma experi√™ncia real de um projeto que teve in√≠cio decidindo pela segunda op√ß√£o, durante o in√≠cio de seu desenvolvimento resolveu adotar a primeira op√ß√£o, para recentemente novamente adotar a segunda op√ß√£o.
 \end{resumo}
 
 
-\section{IntroduÁ„o} \label{sec:introducao}
-Re˙so de software È uma resposta que surgiu em 1968 como soluÁ„o para a crise de software \cite{nr68}. Desde ent„o este tÍm sido um tÛpico recorrente entre toda a comunidade de computaÁ„o, culminando em 1992, por Krueger, em uma compilaÁ„o de toda a pesquisa feita sobre critÈrios de classificaÁ„o para metodologias de re˙so e an·lise de sua efic·cia \cite{k92}.
+\section{Introdu√ß√£o} \label{sec:introducao}
+Re√∫so de software √© uma resposta que surgiu em 1968 como solu√ß√£o para a crise de software \cite{nr68}. Desde ent√£o este t√™m sido um t√≥pico recorrente entre toda a comunidade de computa√ß√£o, culminando em 1992, por Krueger, em uma compila√ß√£o de toda a pesquisa feita sobre crit√©rios de classifica√ß√£o para metodologias de re√∫so e an√°lise de sua efic√°cia \cite{k92}.
 
-Nas ˙ltimas duas dÈcadas o re˙so por meio de bibliotecas externas ou caixa-preta \cite{hdghi11}, consolidou-se em linguagens de programaÁ„o modernas como Ruby (atravÈs da plataforma \url{http://rubygems.org}) e Java (por meio do empacotamento de bibliotecas reutiliz·veis em arquivos jar).
+Nas √∫ltimas duas d√©cadas o re√∫so por meio de bibliotecas externas, ou caixa-preta \cite{hdghi11}, consolidou-se em linguagens de programa√ß√£o modernas como Ruby (atrav√©s da plataforma \url{http://rubygems.org}) e Java (por meio do empacotamento de bibliotecas reutiliz√°veis em arquivos jar).
 
-PorÈm, a reutilizaÁ„o de softwares funcionais inteiros ainda È uma quest„o em aberto, uma vez que exige reescrever partes do software ou que partes relevantes deste tenham as devidas abstraÁıes que permitam a extens„o de suas funcionalidades.
+Por√©m, a reutiliza√ß√£o de softwares funcionais inteiros ainda √© uma quest√£o em aberto, uma vez que exige reescrever partes do software ou que partes relevantes deste tenham as devidas abstra√ß√µes que permitam a extens√£o de suas funcionalidades.
 
-  \subsection{DefiniÁ„o de re˙so de software}
-  Consiste de utilizar artefatos de um software j· existente durante a construÁ„o de um novo sistema de software \cite{k92}.
+  \subsection{Defini√ß√£o de re√∫so de software} \label{subsec:definicaoreuso}
+  Consiste de utilizar artefatos de um software j√° existente durante a constru√ß√£o de um novo sistema de software \cite{k92}.
 
-  Estes artefatos podem ser desde trechos de cÛdigo copiados que s„o chamados durante a execuÁ„o do programa, passando por bibliotecas caixa-preta, atÈ abstraÁıes fornecidas por softwares como arquitetura de \textit{plugins}.
+  Estes artefatos podem ser desde trechos de c√≥digo copiados que s√£o chamados durante a execu√ß√£o do programa, passando por bibliotecas caixa-preta, at√© abstra√ß√µes fornecidas por softwares como arquitetura de \textit{plugins}.
 
-  \subsection{CritÈrios de classificaÁ„o}
-  Conforme descrito por Kruger, h· quatro critÈrios b·sicos relevantes quando se classificando o re˙so de software:
+  \subsection{Crit√©rios de classifica√ß√£o} \label{subsec:criteriosclassificacao}
+  Conforme descrito por Krueger, h√° quatro crit√©rios b√°sicos relevantes quando se classificando o re√∫so de software:
 
   \begin{itemize}
-    \item \textbf{AbstraÁ„o}: a interface fornecida pelo software para que possa ser reutilizado;
-    \item \textbf{SeleÁ„o}: forma de localizar, entender, comparar e escolher o que reaproveitar;
-    \item \textbf{EspecializaÁ„o}: personalizaÁ„o do trecho a ser reaproveitado por meio de par‚metros;
-    \item \textbf{IntegraÁ„o}: interface fornecida pelo software que esconde detalhes internos deste.
+    \item \textbf{Abstra√ß√£o}: a interface fornecida pelo software para que possa ser reutilizado;
+    \item \textbf{Sele√ß√£o}: forma de localizar, entender, comparar e escolher o que reaproveitar;
+    \item \textbf{Especializa√ß√£o}: personaliza√ß√£o do trecho a ser reaproveitado por meio de par√¢metros;
+    \item \textbf{Integra√ß√£o}: interface fornecida pelo software que esconde detalhes internos deste.
   \end{itemize}
 
-\section{Decis„o ao se iniciar um novo projeto} \label{sec:decisao}
-Sempre que se comeÁa um novo projeto de software surge a pergunta sobre adotar um software j· existente, que abranja alguns dos requisitos e possa ser extendido com algum custo para os demais, ou escrever um novo software e arcar com os diversos riscos que isto envolve.
+\section{Decis√£o ao se iniciar um novo projeto} \label{sec:decisao}
+Sempre que se come√ßa um novo projeto de software surge a pergunta sobre adotar um software j√° existente, que abranja alguns dos requisitos e possa ser extendido com algum custo para os demais, ou escrever um novo software e arcar com os diversos riscos que isto envolve.
 
-A seguir vamos tentar brevemente apontar vantagens e desvantagens para cada uma destas duas possibilidades afim de que possamos, apÛs o relato de caso (\ref{sec:projeto-mezuro}), retomar estes pontos e analisar cada decis„o tomada durante a vida do projeto a ser descrito.
+A seguir vamos tentar brevemente apontar vantagens e desvantagens para cada uma destas duas possibilidades afim de que possamos, ap√≥s o relato de caso (\ref{sec:projeto-mezuro}), retomar estes pontos e analisar cada decis√£o tomada durante a vida do projeto a ser descrito.
 
   \newpage
   \subsection{Projeto existente como base} \label{subsec:projeto-existente}
   \begin{table}[ht]
     \centering
-    \caption{Lista de vantagens e desvantagens para adoÁ„o de um software j· existente em ordem decrescente de dificuldade de resoluÁ„o}
+    \caption{Lista de vantagens e desvantagens para ado√ß√£o de um software j√° existente em ordem decrescente de dificuldade de resolu√ß√£o}
     \label{tab:projeto-existente}
 
     \begin{tabularx}{\textwidth}{| X | X | X |}
       \hline
-      \textbf{CaracterÌstica} & \textbf{Vantagem} & \textbf{Desvantagem} \\ \hline
-      Terceiros s„o respons·veis por boa parte do cÛdigo & 
-        Custo de manutenÁ„o reduzido &
-        Estar a mercÍ de terceiros que podem abandonar ou reescrever o projeto \\ \hline
+      \textbf{Caracter√≠stica} & \textbf{Vantagem} & \textbf{Desvantagem} \\ \hline
+      Terceiros s√£o respons√°veis por boa parte do c√≥digo & 
+        Custo de manuten√ß√£o reduzido &
+        Estar a merc√™ de terceiros que podem abandonar ou reescrever o projeto \\ \hline
       Tempo de desenvolvimento &
-        Com boa abstraÁ„o ele È reduzido drasticamente &
-        Sem boa abstraÁ„o, o tempo gasto para entender o software pode ultrapassar o necess·rio para desenvolver um novo ou atÈ impedir por completo o desenvolvimento \\ \hline
+        Com boa abstra√ß√£o ele √© reduzido drasticamente &
+        Sem boa abstra√ß√£o, o tempo gasto para entender o software pode ultrapassar o necess√°rio para desenvolver um novo ou at√© impedir por completo o desenvolvimento \\ \hline
       Credibilidade &
-        Ter seu software associado a um segundo j· consolidado na comunidade inspira maior confianÁa nos usu·rios &
-        Por outro lado, problemas no software escolhido para ser reaproveitado, mesmo que n„o afetem sua extens„o, trar„o m· publicidade para seu software\\ \hline
+        Ter seu software associado a um segundo j√° consolidado na comunidade inspira maior confian√ßa nos usu√°rios &
+        Por outro lado, problemas no software escolhido para ser reaproveitado, mesmo que n√£o afetem sua extens√£o, trar√£o m√° publicidade para seu software\\ \hline
       Confiabilidade &
-        Estar baseado em um software confi·vel claramente trar· confiabilidade para seu software &
-        Se o software base apenas aparentar ser confi·vel, no futuro seu software apresentar· os mesmos problemas\\ \hline
+        Estar baseado em um software confi√°vel claramente trar√° confiabilidade para seu software &
+        Se o software base apenas aparentar ser confi√°vel, no futuro seu software apresentar√° os mesmos problemas\\ \hline
     \end{tabularx}
   \end{table}
 
-  Da tabela \ref{tab:projeto-existente} podemos ver que a diferenÁa entre uma caracterÌstica se tornar uma vantagem ou uma desvantagem consiste basicamente do tamanho do conhecimento prÈvio que vocÍ tem sobre o software no qual pretende se basear.
+  Da tabela \ref{tab:projeto-existente} podemos ver que a diferen√ßa entre uma caracter√≠stica se tornar uma vantagem ou uma desvantagem consiste basicamente do tamanho do conhecimento pr√©vio que voc√™ tem sobre o software no qual pretende se basear.
 
-  Os trÍs primeiros itens da tabela s„o especialmente complicados por dependerem de profundo conhecimento do software e das pessoas envolvidas em seu desenvolvimento.
+  Os tr√™s primeiros itens da tabela s√£o especialmente complicados por dependerem de profundo conhecimento do software e das pessoas envolvidas em seu desenvolvimento.
 
-  Isto È, a responsabilidade de terceiros por parte do cÛdigo depende exclusivamente destas pessoas e suas opiniıes. O melhor que pode ser feito neste caso È procurar conhecer a reputaÁ„o delas. Da mesma forma, a qualidade de abstraÁıes e a credibilidade, como seguranÁa, de um software v„o depender de conhecimento de seu cÛdigo fonte mais do que tudo.
+  Isto √©, a responsabilidade de terceiros por parte do c√≥digo depende exclusivamente destas pessoas e suas opini√µes. O melhor que pode ser feito neste caso √© procurar conhecer a reputa√ß√£o delas. Da mesma forma, a qualidade de abstra√ß√µes e a credibilidade, como seguran√ßa, de um software v√£o depender de conhecimento de seu c√≥digo fonte mais do que tudo.
 
   \subsection{Projeto totalmente novo} \label{subsec:projeto-novo}
-  A grande vantagem nessa opÁ„o se resume em liberdade. Abrangendo escolha de tecnologias, padrıes adotados, metodologia, filosofia e todos os aspectos envolvidos no desenvolvimento de um software.
+  A grande vantagem nessa op√ß√£o se resume em liberdade. Abrangendo escolha de tecnologias, padr√µes adotados, metodologia, filosofia e todos os aspectos envolvidos no desenvolvimento de um software.
 
-  Ou seja, È um grande poder. E, como se popularizou dizer, com grandes poderes vÍm grandes responsabilidades. Ent„o, todas estas decisıes devem ser tomadas por pessoas qualificadas, experientes e conhecedoras do que tem se passado na comunidade.
+  Ou seja, √© um grande poder. E, como se popularizou dizer, com grandes poderes v√™m grandes responsabilidades. Ent√£o, todas estas decis√µes devem ser tomadas por pessoas qualificadas, experientes e conhecedoras do que tem se passado na comunidade.
 
-  \subsection{Qual opÁ„o escolher}
-  Embora quisÈssemos apresentar uma resposta exata para a pergunta, a verdade È que n„o existe resposta exata. Ela È subjetiva e depende de conhecimento profundo de muitas vari·veis que, muitas vezes, n„o importa o tempo investido, n„o ser· possÌvel conhecÍ-las. Um exemplo È o caso de tentar prever o comportamento de um ser humano perante um projeto de software pelo o qual este È respons·vel.
+  \subsection{Qual op√ß√£o escolher} \label{subsec:qualopcaoescolher}
+  Embora quis√©ssemos apresentar uma resposta exata para a pergunta, a verdade √© que n√£o existe resposta exata. Ela √© subjetiva e depende de conhecimento profundo de muitas vari√°veis que, muitas vezes, n√£o importa o tempo investido, n√£o ser√° poss√≠vel conhec√™-las. Um exemplo √© o caso de tentar prever o comportamento de um ser humano perante um projeto de software pelo o qual este √© respons√°vel.
 
-  Decidir por criar um software totalmente novo desde o inÌcio È uma decis„o que deve ser tomada se n„o houverem opÁıes de softwares parecidos existentes disponÌveis ou se um especialista estiver disponÌvel para liderar o desenvolvimento e afirmar que esta È a melhor escolha.
+  Decidir por criar um software totalmente novo desde o in√≠cio √© uma decis√£o que deve ser tomada se n√£o houverem op√ß√µes de softwares parecidos existentes dispon√≠veis ou se um especialista estiver dispon√≠vel para liderar o desenvolvimento e afirmar que esta √© a melhor escolha.
 
-  Uma boa estratÈgia de escolha de software base È pesquisar rapidamente sobre candidatos que atendam boa parte dos requisitos do software a ser desenvolvido, procurar conhecer a eles e ‡s pessoas envolvidas em seu desenvolvimento e, por fim, entender que tipos de abstraÁıes estes possuem. Se existir um candidato satisfatÛrio, apresente-o ‡ sua equipe, ouÁa o que tÍm a dizer e com seu apoio adote-o. A cada ciclo de desenvolvimento, juntos, procurem levantar no que o software base tem sido fundamental e no que ele tem atrasado, ou atÈ impedido, o desenvolvimento. Caso seja atingido um ponto onde n„o È mais possÌvel continuar com o software base, do ponto de vista tÈcnico, isto n„o ser· um problema, pois seu time ter· acumulado a experiÍncia necess·ria para desenvolver um software novo.
+  Uma boa estrat√©gia de escolha de software base √© pesquisar rapidamente sobre candidatos que atendam boa parte dos requisitos do software a ser desenvolvido, procurar conhecer a eles e √†s pessoas envolvidas em seu desenvolvimento e, por fim, entender que tipos de abstra√ß√µes estes possuem. Se existir um candidato satisfat√≥rio, apresente-o √† sua equipe, ou√ßa o que t√™m a dizer e com seu apoio adote-o. A cada ciclo de desenvolvimento, juntos, procurem levantar no que o software base tem sido fundamental e no que ele tem atrasado, ou at√© impedido, o desenvolvimento. Caso seja atingido um ponto onde n√£o √© mais poss√≠vel continuar com o software base, do ponto de vista t√©cnico, isto n√£o ser√° um problema, pois seu time ter√° acumulado a experi√™ncia necess√°ria para desenvolver um software novo.
 
-  Esta estratÈgia È falha do ponto de vista do tempo necess·rio. Mas ela foi recomendada porque escolhendo desde o inicio desenvolver um software novo sem conhecimento prÈvio suficiente da ·rea È um risco grande comparado a adoÁ„o de um software que re˙ne o conhecimento de toda uma comunidade qualificada.
+  Esta estrat√©gia √© falha do ponto de vista do tempo necess√°rio. Mas ela foi recomendada porque escolhendo desde o inicio desenvolver um software novo sem conhecimento pr√©vio suficiente da √°rea √© um risco grande comparado a ado√ß√£o de um software que re√∫ne o conhecimento de toda uma comunidade qualificada.
 
 \section{Projeto Mezuro} \label{sec:projeto-mezuro}
-Em produÁ„o em \url{http://mezuro.org}, o projeto Mezuro visa ser uma interface que permita, de forma flexÌvel, a extraÁ„o e an·lise de mÈtricas est·ticas de cÛdigo fonte. O prÛprio usu·rio fica encarregado de definir qual conjunto de mÈtricas deseja utilizar, permitindo que faÁa c·lculos utilizando estes valores e mantendo resultados histÛricos para comparaÁ„o futura.
+Em produ√ß√£o em \url{http://mezuro.org}, o projeto Mezuro com forte vi√©s acad√™mico, visando ser uma interface que permita, de forma flex√≠vel, a extra√ß√£o e an√°lise de m√©tricas est√°ticas de c√≥digo fonte. O pr√≥prio usu√°rio fica encarregado de definir qual conjunto de m√©tricas deseja utilizar, permitindo que fa√ßa c√°lculos utilizando estes valores e mantendo resultados hist√≥ricos para compara√ß√£o futura.
 
-Com isso, seu objetivo È o de se aproximar de um consenso sobre quais mÈtricas devem ser empregadas na an·lise da qualidade de um cÛdigo fonte e quais s„o os valores destas que definem sua qualidade.
+Com isso, seu objetivo √© o de se aproximar de um consenso sobre quais m√©tricas devem ser empregadas na an√°lise da qualidade de um c√≥digo fonte e quais s√£o os valores destas que definem sua qualidade.
 
-  \subsection{HistÛria} \label{subsec:historia}
-  O projeto surgiu em 2010 dentro da disciplina de LaboratÛrio de ProgramaÁ„o Extrema oferecida no Instituto de Matem·tica e EstatÌstica da Universidade de S„o Paulo (IME - USP), por um time de cinco alunos. Estes decidiram por criar um software novo, englobando desde autenticaÁ„o de usu·rios atÈ a extraÁ„o e an·lise de mÈtricas de cÛdigo fonte, fazendo uso do arcabouÁo Ruby on Rails, que na Època comeÁava a ganhar muita forÁa dentro da comunidade com sua segunda vers„o. Seu cÛdigo fonte pode ser encontrado em \url{https://github.com/mezuro/mezuro-sketch}.
+  \subsection{Hist√≥ria} \label{subsec:historia}
+  O projeto surgiu em 2010 dentro da disciplina de Laborat√≥rio de Programa√ß√£o Extrema oferecida no Instituto de Matem√°tica e Estat√≠stica da Universidade de S√£o Paulo (IME - USP), por um time de cinco alunos. Estes decidiram por criar um software novo, englobando desde autentica√ß√£o de usu√°rios at√© a extra√ß√£o e an√°lise de m√©tricas de c√≥digo fonte, fazendo uso do arcabou√ßo Ruby on Rails, que na √©poca come√ßava a ganhar muita for√ßa dentro da comunidade com sua segunda vers√£o. Seu c√≥digo fonte pode ser encontrado em \url{https://github.com/mezuro/mezuro-sketch}.
 
-  Esta vers„o falhou no quesito de viabilidade. O arcabouÁo adotado ainda n„o era maduro como a vers„o atual, ent„o o time passou boa parte do tempo no desenvolvimento de funcionalidades que eram fundamentais, mas que n„o faziam parte do diferencial do software, como o cadastro e gerenciamento de usu·rios.
+  Esta vers√£o falhou no quesito de viabilidade. O arcabou√ßo adotado ainda n√£o era maduro como a vers√£o atual, ent√£o o time passou boa parte do tempo no desenvolvimento de funcionalidades que eram fundamentais, mas que n√£o faziam parte do diferencial do software, como o cadastro e gerenciamento de usu√°rios.
 
-  Mas a semente e as liÁıes ficaram e, posteriormente, com o advento do projeto Kalibro \cite{of13} como um serviÁo para extraÁ„o e an·lise de mÈtricas est·ticas de cÛdigo fonte, o projeto Mezuro ressurgiu agora como a interface para este serviÁo.
+  Mas a semente e as li√ß√µes ficaram e, posteriormente, com o advento do projeto Kalibro \cite{of13} como um servi√ßo para extra√ß√£o e an√°lise de m√©tricas est√°ticas de c√≥digo fonte, o projeto Mezuro ressurgiu agora como a interface para este servi√ßo.
 
-  Para lidar com os impedimentos encontrados durante o desenvolvimento, foi adotada a plataforma de software livre Noosfero\footnote{\url{http://noosfero.org}}, tambÈm feita sobre Ruby on Rails, que traz a confiabilidade e credibilidade de um software nos repositÛrios oficiais do Linux Debian junto com uma arquitetura de plugins interessante para se extender suas funcionalidades.
+  Para lidar com os impedimentos encontrados durante o desenvolvimento, foi adotada a plataforma de software livre Noosfero\footnote{\url{http://noosfero.org}}, tamb√©m feita sobre Ruby on Rails, que traz a confiabilidade e credibilidade de um software nos reposit√≥rios oficiais do Linux Debian junto com uma arquitetura de plugins interessante para se extender suas funcionalidades.
 
-  AtÈ julho de 2013 o desenvolvimento se deu com base nesta plataforma. PorÈm, ela era desestimulante para o time essencialmente em decorrÍncia de as tecnologias que ela forÁa o uso s„o bastante antigas. Isto implicou em uma sÈrie de situaÁıes desagrad·veis para o time que limitavam muito sua capacidade de inovar e entregar um software de qualidade:
+  At√© julho de 2013 o desenvolvimento se deu com base nesta plataforma. Por√©m, ela era desestimulante para o time essencialmente em decorr√™ncia de as tecnologias que ela for√ßa o uso s√£o bastante antigas. Isto implicou em uma s√©rie de situa√ß√µes desagrad√°veis para o time que limitavam muito sua capacidade de inovar e entregar um software de qualidade:
 
   \begin{itemize}
-    \item arcabouÁo de testes È ultrapassado e com suporte limitado a plugins;
-    \item incompatÌvel com as bibliotecas Ruby mais recentes;
-    \item incompatÌvel com plugins JavaScript mais atuais e,
-    \item baixa performance em produÁ„o.
+    \item arcabou√ßo de testes √© ultrapassado e com suporte limitado a plugins;
+    \item incompat√≠vel com as bibliotecas Ruby mais recentes;
+    \item incompat√≠vel com plugins JavaScript mais atuais e,
+    \item baixa performance em produ√ß√£o.
   \end{itemize}
 
-  AlÈm disso, muitas funcionalidades do Noosfero como comunidades, calend·rio, amizade entre usu·rios e outras n„o eram interessantes para o Mezuro e apenas adicionavam mais complexidade ao usu·rio do sistema.
+  Al√©m disso, muitas funcionalidades do Noosfero como comunidades, calend√°rio, amizade entre usu√°rios e outras n√£o eram interessantes para o Mezuro e apenas adicionavam mais complexidade ao usu√°rio do sistema.
 
-  Com todos estes problemas e sem ter alcanÁado uma vers„o de produÁ„o em quase dois anos de desenvolvimento, o time ent„o resolveu abandonar esta vers„o. O cÛdigo fonte para esta vers„o pode ser encontrado em \url{https://github.com/mezuro/noosfero-plugin}.
+  Com todos estes problemas e sem ter alcan√ßado uma vers√£o de produ√ß√£o em quase dois anos de desenvolvimento, o time ent√£o resolveu abandonar esta vers√£o. O c√≥digo fonte para esta vers√£o pode ser encontrado em \url{https://github.com/mezuro/noosfero-plugin}.
 
   \subsection{Estado atual} \label{subsec:estado-atual}
-  Neste contexto o time se sentiu confiante, tanto no sentido de conhecimento tÈcnico como conhecimento dos requisitos do software, para ent„o dar uma nova chance a desenvolver um software independente ainda utilizando o arcabouÁo Ruby on Rails agora em sua quarta vers„o.
+  Neste contexto o time se sentiu confiante, tanto no sentido de conhecimento t√©cnico como conhecimento dos requisitos do software, para ent√£o dar uma nova chance a desenvolver um software independente ainda utilizando o arcabou√ßo Ruby on Rails agora em sua quarta vers√£o.
 
-  Para diminuir ainda mais a complexidade no Mezuro, toda a comunicaÁ„o com o serviÁo Kalibro foi extraÌdo para uma biblioteca de Ruby denominada kalibro\_gem\footnote{\url{http://rubygems.org/gems/kalibro_gem}}.
+  Para diminuir ainda mais a complexidade no Mezuro, toda a comunica√ß√£o com o servi√ßo Kalibro foi extra√≠da para uma biblioteca de Ruby denominada kalibro\_gem\footnote{\url{http://rubygems.org/gems/kalibro_gem}}. Esta biblioteca reaproveitou boa boa parte do c√≥digo gerado na vers√£o anterior. Boa parte do trabalho para lan√ß√°-la foi criando testes automatizados e corrigindo pequenos problemas.
 
-  Da mesma forma, para possibilitar que a equipe focasse nas funcionalidades especÌficas do software, o m·ximo de bibliotecas caixa-preta disponÌveis em Ruby foi empregada.
+  Da mesma forma, para possibilitar que a equipe focasse nas funcionalidades espec√≠ficas do software, o m√°ximo de bibliotecas caixa-preta dispon√≠veis em Ruby foi empregada.
 
-  Tudo isso, apÛs seis meses de trabalho, culminou na primeira vers„o realmente utiliz·vel do software. Seu cÛdigo fonte pode ser encontrado em \url{https://github.com/mezuro/mezuro}.
+  Tudo isso, ap√≥s seis meses de trabalho, culminou na primeira vers√£o realmente utiliz√°vel do software. Seu c√≥digo fonte pode ser encontrado em \url{https://github.com/mezuro/mezuro}.
 
-  \subsection{LiÁıes aprendidas} \label{subsec:licoes-aprendidas}
+  \subsection{Li√ß√µes aprendidas} \label{subsec:licoes-aprendidas}
+  Agora, com base nos conceitos de \ref{subsec:criteriosclassificacao} e \ref{subsec:qualopcaoescolher}, vamos analisar as decis√µes tomadas para as tr√™s vers√µes do projeto e refletir sobre elas.
 
-\section{Conclus„o} \label{sec:conclusao}
+    \subsubsection{Primeira vers√£o}
+    Em face destes conceitos, claramente a decis√£o de se fazer um software novo logo na primeira vers√£o do Mezuro n√£o foi acertada. Faltava experi√™ncia √† equipe, tanto para reconhecer que n√£o seria capaz de realizar um projeto t√£o grande come√ßando do nada, como conhecimento do arcabou√ßo que estavam adotando. Um maior conhecimento do arcabou√ßo resolveria por exemplo o problema citado do gerenciamento de usu√°rios ao se utilizar a biblioteca de Ruby chamada Devise\footnote{http://rubygems.org/gems/devise} que faz exatamente isso sem esfor√ßo algum para o programador.
+
+    \subsubsection{Segunda vers√£o} \label{subsubsec:segundaversao}
+    √Ä segunda vers√£o sim cabe uma an√°lise mais detalhada. Do ponto de vista de abstra√ß√£o, a arquitetura de plugins fornecida pelo Noosfero √© excelente, permitindo que praticamente seja desenvolvida uma segunda aplica√ß√£o com toda a estrutura de uma aplica√ß√£o Rails.
+
+    Por√©m, quando analisamos o quesito de sele√ß√£o, come√ßamos a encontrar a raiz de um dos problemas que nos levou a abandonar esta vers√£o. √â poss√≠vel extender funcionalidades, mas n√£o √© poss√≠vel suprimir funcionalidades que n√£o eram interessantes para nossa realidade e √©ramos for√ßados a conviver com elas.
+
+    Da mesma forma, a especializa√ß√£o a princ√≠pio dava muito pouca flexibilidade de par√¢metros. O que melhorou consideravelmente quando passou a ser poss√≠vel que plugins tivessem rotas pr√≥prias\footnote{No arcabou√ßo Ruby On Rails, rotas s√£o a forma como URLs do navegador s√£o traduzidas em a√ß√µes programadas na aplica√ß√£o (\url{http://guides.rubyonrails.org/routing.html})}, mas n√£o ao ponto de resolver o problema. Por exemplo, para validar se um usu√°rio estava conectado √† sua conta antes de permitir que este acesse determinadas p√°ginas era preciso concentrar todo o c√≥digo em um √∫nico \textit{controller}\footnote{Parte da arquitetura MVC}.
+
+    Em seguida a integra√ß√£o tamb√©m nos apresentou problemas. Repetidamente nos encontr√°vamos em situa√ß√µes onde para ter a melhor solu√ß√£o seria preciso que modific√°ssemos partes do c√≥digo do pr√≥prio Noosfero, o que evit√°vamos ao m√°ximo. Mas em situa√ß√µes como as referidas rotas foi inevit√°vel.
+
+    Por fim, podemos adicionar mais uma dimens√£o de an√°lise que chamaremos de adequa√ß√£o tecnol√≥gica. Quando se desenvolve um software, quem levanta os requisitos geralmente o faz baseado em suas ideias e em solu√ß√µes que j√° viu aplicadas em outros softwares. Por√©m as tecnologias utilizadas pelo software base podem limitar a capacidade de atender a estes requisitos.
+
+    Uma situa√ß√£o vivida durante o desenvolvimento desta vers√£o foi ao tentarmos utilizar uma biblioteca JavaScript que dependia de uma vers√£o recente da biblioteca JQuery (tamb√©m JavaScript). Por√©m nosso software base j√° inclu√≠a por padr√£o uma vers√£o antiga que causa conflitos se tent√°ssemos incluir uma nova.
+
+    \subsubsection{Terceira vers√£o}
+    Ainda √© cedo para analisar esta vers√£o. Mas podemos afirmar que em pouco mais de seis meses de trabalho alcan√ßamos as mesmas funcionalidades da vers√£o anterior com uma equipe menor. Ent√£o at√© agora podemos apenas dizer que o futuro √© promissor e que isso n√£o seria poss√≠vel sem a experi√™ncia adquirida com a vers√£o anterior.
+
+\section{Conclus√£o} \label{sec:conclusao}
+Re√∫so de software por meio de bibliotecas caixa-preta √© uma solu√ß√£o bastante robusta para otimizar os tempos gastos com desenvolvimento e manuten√ß√£o em projetos de software \cite{hdghi11}, como √© evidenciado pela hist√≥ria apresentada do projeto Mezuro (\ref{sec:projeto-mezuro}).
+
+A ado√ß√£o de um sistema inteiro como base √© algo que precisa de uma an√°lise criteriosa das quatro dimens√µes de abstra√ß√£o, sele√ß√£o, especializa√ß√£o e integra√ß√£o \cite{k92}. Mais uma quinta dimens√£o que sugerimos: adequa√ß√£o tecnol√≥gica (\ref{subsubsec:segundaversao}). O que √© dif√≠cil dada a demanda de grande conhecimento do sistema base e conhecimentos t√©cnicos para se tomar uma decis√£o.
 
 \bibliographystyle{sbc}
 \bibliography{impacto-software-livre}
