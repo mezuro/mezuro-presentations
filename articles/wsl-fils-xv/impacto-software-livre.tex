@@ -153,7 +153,9 @@ Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas
     Em face destes conceitos, claramente a decisão de se fazer um software novo logo na primeira versão do Mezuro não foi acertada. Faltava experiência à equipe, tanto para reconhecer que não seria capaz de realizar um projeto tão grande começando do nada, como conhecimento do arcabouço que estavam adotando. Um maior conhecimento do arcabouço resolveria por exemplo o problema citado do gerenciamento de usuários ao se utilizar a biblioteca de Ruby chamada Devise\footnote{http://rubygems.org/gems/devise} que faz exatamente isso sem esforço algum para o programador.
 
     \subsubsection{Segunda versão} \label{subsubsec:segundaversao}
-    À segunda versão sim cabe uma análise mais detalhada. Do ponto de vista de abstração, a arquitetura de plugins fornecida pelo Noosfero é excelente, permitindo que praticamente seja desenvolvida uma segunda aplicação com toda a estrutura de uma aplicação Rails.
+    À segunda versão sim cabe uma análise mais detalhada. Quanto a lista de vantagens e desvantagens da tabela \ref{tab:projeto-existente} é interessante notar que o sistema Noosfero se converteu em vantagens nas quatro dimensões. Sendo esse um dos motivos mais fortes para sua adoção.
+
+    Do ponto de vista de abstração, a arquitetura de plugins fornecida pelo Noosfero é excelente, permitindo que praticamente seja desenvolvida uma segunda aplicação com toda a estrutura de uma aplicação Rails.
 
     Porém, quando analisamos o quesito de seleção, começamos a encontrar a raiz de um dos problemas que nos levou a abandonar esta versão. É possível extender funcionalidades, mas não é possível suprimir funcionalidades que não eram interessantes para nossa realidade e éramos forçados a conviver com elas.
 
@@ -161,12 +163,18 @@ Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas
 
     Em seguida a integração também nos apresentou problemas. Repetidamente nos encontrávamos em situações onde para ter a melhor solução seria preciso que modificássemos partes do código do próprio Noosfero, o que evitávamos ao máximo. Mas em situações como as referidas rotas foi inevitável.
 
-    Por fim, podemos adicionar mais uma dimensão de análise que chamaremos de adequação tecnológica. Quando se desenvolve um software, quem levanta os requisitos geralmente o faz baseado em suas ideias e em soluções que já viu aplicadas em outros softwares. Porém as tecnologias utilizadas pelo software base podem limitar a capacidade de atender a estes requisitos.
+    Adicionalmente, podemos introduzir mais uma dimensão de análise que chamaremos de adequação tecnológica. Quando se desenvolve um software, quem levanta os requisitos geralmente o faz baseado em suas ideias e em soluções que já viu aplicadas em outros softwares. Porém as tecnologias utilizadas pelo software base podem limitar a capacidade de atender a estes requisitos.
 
     Uma situação vivida durante o desenvolvimento desta versão foi ao tentarmos utilizar uma biblioteca JavaScript que dependia de uma versão recente da biblioteca JQuery (também JavaScript). Porém nosso software base já incluía por padrão uma versão antiga que causa conflitos se tentássemos incluir uma nova.
 
+    Finalmente, podemos concluir que no momento da escolha foram levados em conta a lista de vantagens que  sistema base Noosfero traria de acordo com a tabela \ref{tab:projeto-existente} e a abstração disponível, mas faltou profundidade para levar em conta os critérios de seleção, especialização e integração.
+
     \subsubsection{Terceira versão}
-    Ainda é cedo para analisar esta versão. Mas podemos afirmar que em pouco mais de seis meses de trabalho alcançamos as mesmas funcionalidades da versão anterior com uma equipe menor. Então até agora podemos apenas dizer que o futuro é promissor e que isso não seria possível sem a experiência adquirida com a versão anterior.
+    Ainda é cedo para analisar esta versão. Contudo podemos afirmar que em pouco mais de seis meses de trabalho alcançamos as mesmas funcionalidades da versão anterior com uma equipe menor.
+
+    Nesse tempo, um ponto negativo que podemos destacar sobre o uso extensivo de bibliotecas caixa-preta é o custo de mantê-las sempre atualizadas, dado que esse é um processo parcialmente manual e que a instalação das novas bibliotecas toma entre 5 e 10 minutos em cada ambiente. Em vista dessa quantidade de tempo podemos afirmar que este tempo é um custo irrisório dado o benefício de não ser responsabilidade da equipe manter a grande quantidade de código provido pelas bibliotecas.
+
+    Então, até agora podemos apenas dizer que o futuro é promissor e que isso não seria possível sem a experiência adquirida com a versão anterior.
 
 \section{Conclusão} \label{sec:conclusao}
 Reúso de software por meio de bibliotecas caixa-preta é uma solução bastante robusta para otimizar os tempos gastos com desenvolvimento e manutenção em projetos de software \cite{hdghi11}, como é evidenciado pela história apresentada do projeto Mezuro (\ref{sec:projeto-mezuro}).
