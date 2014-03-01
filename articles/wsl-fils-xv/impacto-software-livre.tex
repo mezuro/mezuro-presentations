@@ -51,7 +51,7 @@ Porém, a reutilização de softwares funcionais inteiros ainda é uma questão 
   Estes artefatos podem ser desde trechos de código copiados que são chamados durante a execução do programa, passando por bibliotecas caixa-preta, até abstrações fornecidas por softwares como arquitetura de \textit{plugins}.
 
   \subsection{Critérios de classificação} \label{subsec:criteriosclassificacao}
-  Conforme descrito por Krueger, há quatro critérios básicos relevantes quando se classificando o reúso de software:
+  Conforme descrito por Krueger, há quatro critérios básicos relevantes quando para classificar o reúso de software:
 
   \begin{itemize}
     \item \textbf{Abstração}: a interface fornecida pelo software para que possa ser reutilizado;
@@ -97,7 +97,7 @@ A seguir vamos tentar brevemente apontar vantagens e desvantagens para cada uma 
   Isto é, a responsabilidade de terceiros por parte do código depende exclusivamente destas pessoas e suas opiniões. O melhor que pode ser feito neste caso é procurar conhecer a reputação delas. Da mesma forma, a qualidade de abstrações e a credibilidade, como segurança, de um software vão depender de conhecimento de seu código fonte mais do que tudo.
 
   \subsection{Projeto totalmente novo} \label{subsec:projeto-novo}
-  A grande vantagem nessa opção se resume em liberdade. Abrangendo escolha de tecnologias, padrões adotados, metodologia, filosofia e todos os aspectos envolvidos no desenvolvimento de um software.
+  A grande vantagem nessa opção se resume em liberdade. A qual abrange escolha de tecnologias, padrões adotados, metodologia, filosofia e todos os aspectos envolvidos no desenvolvimento de um software.
 
   Ou seja, é um grande poder. E, como se popularizou dizer, com grandes poderes vêm grandes responsabilidades. Então, todas estas decisões devem ser tomadas por pessoas qualificadas, experientes e conhecedoras do que tem se passado na comunidade.
 
@@ -111,7 +111,7 @@ A seguir vamos tentar brevemente apontar vantagens e desvantagens para cada uma 
   Esta estratégia é falha do ponto de vista do tempo necessário. Mas ela foi recomendada porque escolhendo desde o inicio desenvolver um software novo sem conhecimento prévio suficiente da área é um risco grande comparado a adoção de um software que reúne o conhecimento de toda uma comunidade qualificada.
 
 \section{Projeto Mezuro} \label{sec:projeto-mezuro}
-Em produção em \url{http://mezuro.org}, o projeto Mezuro com forte viés acadêmico, visando ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte. O próprio usuário fica encarregado de definir qual conjunto de métricas deseja utilizar, permitindo que faça cálculos utilizando estes valores e mantendo resultados históricos para comparação futura.
+Em produção em \url{http://mezuro.org}, o projeto Mezuro com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte. O próprio usuário fica encarregado de definir qual conjunto de métricas deseja utilizar, permitindo que faça cálculos utilizando estes valores e mantendo resultados históricos para comparação futura.
 
 Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas devem ser empregadas na análise da qualidade de um código fonte e quais são os valores destas que definem sua qualidade.
 
@@ -140,7 +140,7 @@ Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas
   \subsection{Estado atual} \label{subsec:estado-atual}
   Neste contexto o time se sentiu confiante, tanto no sentido de conhecimento técnico como conhecimento dos requisitos do software, para então dar uma nova chance a desenvolver um software independente ainda utilizando o arcabouço Ruby on Rails agora em sua quarta versão.
 
-  Para diminuir ainda mais a complexidade no Mezuro, toda a comunicação com o serviço Kalibro foi extraída para uma biblioteca de Ruby denominada kalibro\_gem\footnote{\url{http://rubygems.org/gems/kalibro_gem}}. Esta biblioteca reaproveitou boa boa parte do código gerado na versão anterior. Boa parte do trabalho para lançá-la foi criando testes automatizados e corrigindo pequenos problemas.
+  Para diminuir ainda mais a complexidade no Mezuro, toda a comunicação com o serviço Kalibro foi extraída para uma biblioteca de Ruby denominada kalibro\_gem\footnote{\url{http://rubygems.org/gems/kalibro_gem}}. Esta biblioteca reaproveitou boa boa parte do código gerado na versão anterior. Boa parte do trabalho para lançá-la foi consistiu de criar testes automatizados e corrigir pequenos problemas.
 
   Da mesma forma, para possibilitar que a equipe focasse nas funcionalidades específicas do software, o máximo de bibliotecas caixa-preta disponíveis em Ruby foi empregada.
 
@@ -150,7 +150,7 @@ Com isso, seu objetivo é o de se aproximar de um consenso sobre quais métricas
   Agora, com base nos conceitos de \ref{subsec:criteriosclassificacao} e \ref{subsec:qualopcaoescolher}, vamos analisar as decisões tomadas para as três versões do projeto e refletir sobre elas.
 
     \subsubsection{Primeira versão}
-    Em face destes conceitos, claramente a decisão de se fazer um software novo logo na primeira versão do Mezuro não foi acertada. Faltava experiência à equipe, tanto para reconhecer que não seria capaz de realizar um projeto tão grande começando do nada, como conhecimento do arcabouço que estavam adotando. Um maior conhecimento do arcabouço resolveria por exemplo o problema citado do gerenciamento de usuários ao se utilizar a biblioteca de Ruby chamada Devise\footnote{http://rubygems.org/gems/devise} que faz exatamente isso sem esforço algum para o programador.
+    Em face destes conceitos, claramente a decisão de se fazer um software novo logo na primeira versão do Mezuro não foi acertada. Faltava experiência à equipe, tanto para reconhecer que não seria capaz de realizar um projeto tão grande a partir do nada, como conhecimento do arcabouço que estavam adotando. Um maior conhecimento do arcabouço resolveria por exemplo o problema citado do gerenciamento de usuários ao se utilizar a biblioteca de Ruby chamada Devise\footnote{http://rubygems.org/gems/devise} que faz exatamente isso sem esforço algum para o programador.
 
     \subsubsection{Segunda versão} \label{subsubsec:segundaversao}
     À segunda versão sim cabe uma análise mais detalhada. Quanto a lista de vantagens e desvantagens da tabela \ref{tab:projeto-existente} é interessante notar que o sistema Noosfero se converteu em vantagens nas quatro dimensões. Sendo esse um dos motivos mais fortes para sua adoção.
@@ -181,6 +181,7 @@ Reúso de software por meio de bibliotecas caixa-preta é uma solução bastante
 
 A adoção de um sistema inteiro como base é algo que precisa de uma análise criteriosa das quatro dimensões de abstração, seleção, especialização e integração \cite{k92}. Mais uma quinta dimensão que sugerimos: adequação tecnológica (\ref{subsubsec:segundaversao}). O que é difícil dada a demanda de grande conhecimento do sistema base e conhecimentos técnicos para se tomar uma decisão.
 
+\newpage
 \bibliographystyle{sbc}
 \bibliography{impacto-software-livre}
 
