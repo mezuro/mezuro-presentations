@@ -12,7 +12,7 @@
 \title{Como a Adoção de Projetos de Software Livre Como Base para Novos Projetos Afeta Seu Desenvolvimento}
 
 \author{Rafael R. Manzo\inst{1}, Diego de A. M. Camarinha\inst{1},\\
-        Guilherme H. R. V. de Lima\inst{1}, Fellipe S. Sampaio\inst{1},\\
+        Alessandro Palmeira\inst{1}, Fellipe S. Sampaio\inst{1},\\
         Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}}
 
 
@@ -21,7 +21,7 @@
 \nextinstitute
   Faculdade de Engenharia -- UnB Gama (FGA)\\
   Gama -- DF -- Brasil
-  \email{manzo@ime.usp.br,\{diego.camarinha,guilherme.henrique.lima\}@usp.br}
+  \email{manzo@ime.usp.br,\{diego.camarinha,alessandro.palmeira\}@usp.br}
   \email{\{renan.fichberg,fellipe.sampaio\}@usp.br,paulo@softwarelivre.org}
 }
 
@@ -29,14 +29,26 @@
 
 \maketitle
 
-\begin{abstract}
-  This resumed article approaches one of the most important decisions when starting a new free software project: to adopt and base the new project on an old and mature one or to create a whole new and independent one. The vantages and disadvantages for each option will be discussed for, at last, present a real experience from a project that started by choosing the second option, during it's early development switched to the first one, to recently got back again to the second one.
-\end{abstract}
-
 \begin{resumo}
-  Este artigo resumido trata sobre uma das decisões mais importantes no momento de se iniciar um novo projeto de software livre: adotar como base outro projeto já maduro ou escrever um totalmente novo e independente. Serão discutidas brevemente as vantagens e desvantagens de cada opção para, por fim, apresentar uma experiência real de um projeto que teve início decidindo pela segunda opção, durante o início de seu desenvolvimento resolveu adotar a primeira opção, para recentemente novamente adotar a segunda opção.
+  ESCREVER NO FINAL BASEADO NO QUE FALARMOS AO LONGO DESTE ARQUIVO!
 \end{resumo}
 
+\section{Mezuro: o que é?} \label{sec:projeto-mezuro}
+O projeto Mezuro (\url{http://mezuro.org}) com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte. O usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é: 
+\begin{itemize}
+    \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código fonte
+    \item Buscar os valores destas métricas que definem a qualidade deste código.
+\end{itemize}
+
+\subsection{Por que surgiu?} \label{subsec:problemas}
+As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
+\begin{itemize}
+    \item Não há parâmetros de comparação consolidados
+    \item Existem estudos, mas poucos dados empíricos
+    \item Ainda é dada pouca importância ao monitoramento de código
+\end{itemize}
+
+\section{Por que usar o Mezuro?} \label{sec:projeto-mezuro}
 
 \newpage
 \bibliographystyle{sbc}
