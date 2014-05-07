@@ -9,7 +9,7 @@
 
 \sloppy
 
-\title{Como a Adoção de Projetos de Software Livre Como Base para Novos Projetos Afeta Seu Desenvolvimento}
+\title{Mezuro - Coleta, exibição e interpretação automatizados de métricas estáticas de código fonte}
 
 \author{Rafael R. Manzo\inst{1}, Diego de A. M. Camarinha\inst{1},\\
         Alessandro Palmeira\inst{1}, Fellipe S. Sampaio\inst{1},\\
@@ -29,23 +29,29 @@
 
 \maketitle
 
+\begin{abstract}
+  TO WRITE WHEN FINISHED
+\end{abstract}
+
 \begin{resumo}
   ESCREVER NO FINAL BASEADO NO QUE FALARMOS AO LONGO DESTE ARQUIVO!
 \end{resumo}
 
-\section{Mezuro: o que é?} \label{sec:projeto-mezuro}
-O projeto Mezuro (\url{http://mezuro.org}) com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte. O usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é: 
+\section{Introdução} \label{sec:intro}
+O projeto Mezuro (\url{http://mezuro.org}) com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte. O usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
+
 \begin{itemize}
-    \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código fonte
+    \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código fonte;
     \item Buscar os valores destas métricas que definem a qualidade deste código.
 \end{itemize}
 
-\subsection{Por que surgiu?} \label{subsec:problemas}
+\subsection{Motivação} \label{subsec:motivacao}
 As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
+
 \begin{itemize}
-    \item Não há parâmetros de comparação consolidados
-    \item Existem estudos, mas poucos dados empíricos
-    \item Ainda é dada pouca importância ao monitoramento de código
+    \item Não há parâmetros de comparação consolidados entre projetos;
+    \item Existem estudos, mas poucos dados empíricos;
+    \item Ainda é dada pouca importância ao monitoramento de código.
 \end{itemize}
 
 \section{Por que usar o Mezuro?} \label{sec:projeto-mezuro}
@@ -53,6 +59,7 @@ Idealizado como um plataforma de métricas de código, um dos diferenciais do Me
 
 \section{Principais funcionalidades}\label{sec:princ-funcionalidades}
 No Mezuro as funcionalidades podem ser divididas em dois grupos, projeto e configuração, que são:
+
 \begin{itemize}
   \item Projeto
     \begin{itemize}
@@ -75,8 +82,8 @@ No Mezuro as funcionalidades podem ser divididas em dois grupos, projeto e confi
 
 \section{A rede social}\label{sec:user-potencial}
 O Mezuro se apresenta a seus usuários no formato de uma rede social, no qual os participantes podem ver a produção de terceiros através da avaliação dos projetos ou do clone das configurações. O modelo de rede social foi pensado para que uma comunidade de programadores possa interagir entre si, mesmo que um dado usuário tenha experiência em métricas de software este sempre pode se basear no trabalho de outros usuários. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de software e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
-\newpage
+
 \bibliographystyle{sbc}
-\bibliography{impacto-software-livre}
+\bibliography{mezuro}
 
 \end{document}
