@@ -73,6 +73,18 @@
     \textbf{locm} = média de linhas por método = $qm / loc$
   \end{frame}
 
+  \begin{frame}
+    \frametitle{Extratores}
+    \framesubtitle{}
+
+    \begin{itemize}
+      \item \textbf{Ruby}: metric\_fu
+      \item \textbf{Python}: CVSAnaly, pylint
+      \item \textbf{Java}: Checkstyle, Analizo
+      \item \textbf{C/C++}: Analizo
+    \end{itemize}
+  \end{frame}
+
 \section{Motivação}
 \begin{frame}
   \LARGE{\textbf{Motivação}}
@@ -94,20 +106,36 @@
   \frametitle{Crise do software}
   \framesubtitle{Usando métricas}
 
-  
+  Podemos incorporar métricas de qualidade as metodologias de desenvolvimento como forma de monitorar a qualidade da produção
+
+  Mas, para isso ser viável temos alguns requisitos:
+  \begin{itemize}
+    \item interface que agrupe as diversas ferramentas disponíveis hoje no mercado
+    \item permita seleção e composição de métricas de forma flexível
+    \item manutenção de um histórico de evolução
+    \item exiba os resultados de forma amigável
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Crise do software}
   \framesubtitle{Quais métricas? Como interpretar?}
+
+  Indo além, o que é bom ou ruim para um valor de métrica?
+
+  Dada uma classe com 100 linhas de código:
+  \begin{itemize}
+    \item \textbf{C++}: Bom
+    \item \textbf{Java}: Razoável
+    \item \textbf{Ruby}: Ruim
+  \end{itemize}
+
+  \textbf{Não existe um consenso}
 \end{frame}
 
 \section{Soluções similares}
 \begin{frame}
-  \frametitle{}
-  \framesubtitle{}
-
-  Soluções similares
+  \LARGE{\textbf{Soluções similares}}
 \end{frame}
 
 \begin{frame}
