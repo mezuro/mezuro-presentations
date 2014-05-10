@@ -12,10 +12,9 @@
        FGA - UnB
       }
 \author{
-        Arthur Del Esposte \\
-        Diego Araújo \\
-        Paulo Meirelles \\
         Rafael Manzo
+        Paulo Meirelles \\
+        Arthur Del Esposte \\
        }
 
 \begin{document}
@@ -50,19 +49,28 @@
     \framesubtitle{Primitivas}
 
     Mais comuns:
-    \begin{enumerate}
+    \begin{itemize}
       \item Quantidade de classes
       \item Quantidade de métodos
       \item Linhas de código
       \item Acoplamento
-    \end{enumerate}
+    \end{itemize}
 
     E assim por diante...
   \end{frame}
 
   \begin{frame}
-    \frametitle{Exemplos de métricas}
+    \frametitle{Exemplo de métrica}
     \framesubtitle{Compostas}
+
+    Combinação de uma ou mais métricas primitivas
+
+    \begin{itemize}
+      \item \textbf{qm} = quantidade de métodos de uma classe
+      \item \textbf{loc} = linhas de código da classe
+    \end{itemize}
+
+    \textbf{locm} = média de linhas por método = $qm / loc$
   \end{frame}
 
 \section{Motivação}
