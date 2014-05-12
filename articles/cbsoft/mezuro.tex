@@ -116,8 +116,33 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
   O Mezuro se apresenta a seus usuários no formato de uma rede social, no qual os participantes podem ver a produção de terceiros através da avaliação dos projetos ou do clone das configurações. O modelo de rede social foi pensado para que uma comunidade de programadores possa interagir entre si: mesmo que um dado usuário tenha experiência em métricas de software este sempre pode se basear no trabalho de outros usuários. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de software e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
 
   \subsection{Caso de uso}
-    \subsubsection{Avaliação de repositório}
+  A seguir apresentaremos ilustradas por meio de capturas de telas, as duas principais funcionalidades da ferramenta. Sempre supondo que já se está em uma conta cadastrada no sistema (único privilégio necessário para realizá-las).
+
     \subsubsection{Criação de configuração}
+    \begin{figure}[ht]
+      \centering
+      \frame{\includegraphics[width=\textwidth]{images/choose-metric.png}}
+      \caption{Interface para escolha de ferramenta extratora de métrica e escolha desta para adicionar a uma configuração.}
+      \label{fig:choose-metric}
+    \end{figure}
+
+    Criar uma configuração envolve 5 telas do sistema em 3 passos básicos:
+    \begin{enumerate}
+      \item Acessar a página de listagem de configurações;
+      \item Clicando em ``New configuration'', preencher o formulário de criação de configuração e salvá-lo;
+      \item Clicando em ``Add metric'', escolher a ferramenta de extração e qual a métrica a ser usada;
+      \item Preencher o formulário (detalhado a seguir) e salvá-lo.
+    \end{enumerate}
+
+    Os passos 3 e 4 devem ser repetidos para cada métrica que deva ser adicionada à configuração. O formulário de métrica (passo 4) é complexo se comparado com o de configuração, mas, assim como os demais, cada campo possui detalhes sobre sua utilização. Aqui, destacamos os dois que consideramos os menos óbvios para um novo usuário:
+    \begin{itemize}
+      \item \textbf{Aggregation form:} Por exemplo, dada uma pasta com diversos arquivos contidos, como será calculada a nota desta pasta (média das notas dos arquivos entre outras formas disponíveis);
+      \item \textbf{ReadingGroup:} Conjunto de intervalos usado na interpretação da nota dada, sendo o que dá um significado prático à nota calculada.
+    \end{itemize}
+
+    \subsubsection{Avaliação de repositório}
+
+\section{Conclusão}
 
 \newpage
 \bibliographystyle{sbc}
