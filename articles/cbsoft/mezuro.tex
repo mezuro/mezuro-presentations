@@ -140,8 +140,38 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
       \item \textbf{ReadingGroup:} Conjunto de intervalos usado na interpretação da nota dada que dá um significado prático à nota calculada.
     \end{itemize}
 
-    \subsubsection{Avaliação de repositório}
+    \subsubsection{Criação de projeto e avaliação de repositório}
+    
+    Criar um projeto envolve 2 passos básicos:
+    \begin{enumerate}
+      \item Acessar a página de listagem de projetos;
+      \item Clicando em ``New project'', escolher o nome e a descrição e salvá-lo;
+    \end{enumerate}
 
+%TODO Arrumar as flags de figure pra as imagens não ficarem todas espalhadas pelo artigo.    
+    \begin{figure}[ht]
+      \centering
+      \frame{\includegraphics[width=\textwidth]{images/new-repository.png}}
+      \caption{Interface para criação de um novo repositório.}
+      \label{fig:choose-metric}
+    \end{figure}
+    
+    Clicando em ``New repository'' entramos na criação do repositório para ser avaliado. Alguns campos merecem destaque:
+    \begin{itemize}
+      \item \textbf{Type:} Tipo do repositório (ou tarball) onde o código está hospedado.
+      \item \textbf{Address:} Endereço do repositório remoto.
+      \item \textbf{Process Period:} Periodicidade com a qual o código deve ser analizado pela ferramenta (diariamente, semanalmente, etc).
+      \item \textbf{Configuration:} Configuração de métricas que você deseja utilizar para medir o código. Tal configuração pode ser escolhida dentre todas as configurações criadas pelos usuários.
+    \end{itemize}
+
+%TODO Completar a parte do processamento
+%    \begin{figure}[ht]
+%      \centering
+%      \frame{\includegraphics[width=\textwidth]{images/new-repository-results.png}}
+%      \caption{Tela de visualização dos resultados da avaliação do repositório.}
+%      \label{fig:choose-metric}
+%    \end{figure}
+    
 \section{Conclusão}
 
 \newpage
