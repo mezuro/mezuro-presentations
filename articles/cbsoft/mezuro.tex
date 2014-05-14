@@ -8,6 +8,7 @@
 \usepackage{tabularx}
 \usepackage{cite}
 
+\begin{document}
 \sloppy
 
 \title{Mezuro - Coleta, interpretação e exibição automatizadas de métricas estáticas de código-fonte}
@@ -26,7 +27,6 @@
   \email{\{renan.fichberg,fellipe.sampaio\}@usp.br,paulo@softwarelivre.org}
 }
 
-\begin{document}
 
 \maketitle
 
@@ -39,7 +39,7 @@
 \end{resumo}
 
 \section{Introdução} \label{sec:intro}
-Métricas de código-fonte (ou mais geral, de software) estático são medidas extraídas a partir das análises léxica e sintática do código-fonte de um programa sem compilá-lo ou executá-lo. Podendo ser primitivas ou compostas (composição de uma ou mais métricas primitivas) \cite{m13}. Sua principal função é fornecer informações sobre sua complexidade, capacidade de ser compreendido, testabilidade, manutenibilidade e evolução\cite{m13}.
+Métricas de código-fonte (ou mais geral, de software) estático são medidas extraídas a partir das análises léxica e sintática do código-fonte de um programa sem compilá-lo ou executá-lo. Podendo ser primitivas ou compostas (composição de uma ou mais métricas primitivas) \cite{m13}. Sua principal função é fornecer informações sobre complexidade, capacidade de ser compreendido, testabilidade, manutenibilidade e evolução do código\cite{m13}.
 
 Exemplos de métricas podem ser simples como linhas de código (\textit{loc - lines of code}) e quantidade de métodos por classe, ou complexas como conexões aferentes de uma classe (\textit{acc - afferent connections per class}).
 
@@ -68,11 +68,11 @@ Por último, como explicado por Meirelles \cite{m13}, ainda não existe um conse
   \subsection{Code Climate}
 
 \section{Mezuro}
-O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código fonte, licenciado como \textit{Affero General Public License} versão 3 (AGPLv3). Nele, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
+O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licenciado como \textit{Affero General Public License} versão 3 (AGPLv3). Nele, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
 
 \begin{itemize}
-    \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código fonte;
-    \item Buscar os valores destas métricas que definem a qualidade de um código fonte.
+    \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código-fonte;
+    \item Buscar os valores destas métricas que definem a qualidade de um código-fonte.
 \end{itemize}
 
   \subsection{Arquitetura}
@@ -87,7 +87,7 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
   \end{itemize}
 
   \subsection{Por que usar o Mezuro?} \label{sec:projeto-mezuro}
-  Idealizado como um plataforma de métricas de código, um dos diferenciais do Mezuro reside na possibilidade de gerar informação sobre o código fonte de forma contínua: o usuário decide quando analisar novamente o projeto e acompanha detalhadamente a evolução das notas ao longo do tempo. Os resultados de cada análise são públicos, o que permite uma maior transparência entre o desenvolvedor e a comunidade que utiliza aquele software, esta, que através dos resultados das métricas providas pelo Mezuro, pode decidir se aquela solução atende ou não as suas necessidades e se deve depositar confiança na qualidade do software desenvolvido.
+  Idealizado como um plataforma de métricas de código, um dos diferenciais do Mezuro reside na possibilidade de gerar informação sobre o código-fonte de forma contínua: o usuário decide quando analisar novamente o projeto e acompanha detalhadamente a evolução das notas ao longo do tempo. Os resultados de cada análise são públicos, o que permite uma maior transparência entre o desenvolvedor e a comunidade que utiliza aquele software, esta, que através dos resultados das métricas providas pelo Mezuro, pode decidir se aquela solução atende ou não as suas necessidades e se deve depositar confiança na qualidade do software desenvolvido.
 
   \subsection{Principais funcionalidades}\label{sec:princ-funcionalidades}
   No Mezuro, as funcionalidades podem ser divididas em dois grupos, projeto e configuração, que são:
@@ -113,7 +113,7 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
   \end{itemize}
 
   \subsection{A rede social}\label{sec:user-potencial}
-  O Mezuro se apresenta a seus usuários no formato de uma rede social, no qual os participantes podem ver a produção de terceiros através da avaliação dos projetos ou do clone das configurações. O modelo de rede social foi pensado para que uma comunidade de programadores possa interagir entre si: mesmo que um dado usuário tenha experiência em métricas de software este sempre pode se basear no trabalho de outros usuários. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de software e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
+  O Mezuro se apresenta para seus usuários no formato de uma rede social, no qual os participantes podem ver a produção de terceiros através da avaliação dos projetos ou do clone das configurações. O modelo de rede social foi pensado para que uma comunidade de programadores possa interagir entre si: mesmo que um dado usuário tenha experiência em métricas de software este sempre pode se basear no trabalho de outros usuários. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de software e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
 
   \subsection{Caso de uso}
   A seguir apresentaremos ilustradas por meio de capturas de telas, as duas principais funcionalidades da ferramenta. Sempre supondo que já se está em uma conta cadastrada no sistema (único privilégio necessário para realizá-las).
@@ -122,56 +122,59 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
     \begin{figure}[ht]
       \centering
       \frame{\includegraphics[width=\textwidth]{images/choose-metric.png}}
-      \caption{Interface para escolha de ferramenta extratora de métrica e escolha desta para adicionar a uma configuração.}
+      \caption{Interface para escolha de ferramenta extratora de métrica e escolha de uma métrica nativa para adicionar a uma configuração.}
       \label{fig:choose-metric}
     \end{figure}
 
-    Criar uma configuração envolve 5 telas do sistema em 3 passos básicos:
+    Criar uma configuração envolve 5 telas do sistema em 4 passos básicos:
     \begin{enumerate}
       \item Acessar a página de listagem de configurações;
       \item Clicando em ``New configuration'', preencher o formulário de criação de configuração e salvá-lo;
-      \item Clicando em ``Add metric'', escolher a ferramenta de extração e qual a métrica a ser usada;
+      \item Clicando em ``Add metric'', escolher a ferramenta de extração e qual métrica a ser usada;
       \item Preencher o formulário (detalhado a seguir) e salvá-lo.
     \end{enumerate}
 
-    Os passos 3 e 4 devem ser repetidos para cada métrica que deva ser adicionada à configuração. O formulário de métrica (passo 4) é complexo se comparado com o de configuração, mas, assim como os demais, cada campo possui detalhes sobre sua utilização. Aqui, destacamos os dois que consideramos os menos óbvios para um novo usuário:
+    Os passos 3 e 4 devem ser repetidos para cada métrica que for ser adicionada à configuração. O formulário de métrica (passo 4) é complexo se comparado com o de configuração, mas, assim como os demais, cada campo possui detalhes sobre sua utilização. Aqui, destacamos os dois que consideramos os menos óbvios para um novo usuário:
     \begin{itemize}
-      \item \textbf{Aggregation form:} Por exemplo, dada uma pasta com diversos arquivos contidos, como será calculada a nota desta pasta (média, mediana, máximo, mínimo, entre outras formas disponíveis);
-      \item \textbf{ReadingGroup:} Conjunto de intervalos usado na interpretação da nota dada que dá um significado prático à nota calculada.
+      \item \textbf{Aggregation form:} Por exemplo, dado um diretório com diversos arquivos contidos, como sua nota será calculada (média, mediana, máximo, mínimo, entre outras formas disponíveis);
+      \item \textbf{ReadingGroup:} Conjunto de intervalos usado para dar significado prático à nota calculada.
     \end{itemize}
 
     \subsubsection{Criação de projeto e avaliação de repositório}
-    
+
     Criar um projeto envolve 2 passos básicos:
     \begin{enumerate}
       \item Acessar a página de listagem de projetos;
       \item Clicando em ``New project'', escolher o nome e a descrição e salvá-lo;
     \end{enumerate}
 
-%TODO Arrumar as flags de figure pra as imagens não ficarem todas espalhadas pelo artigo.    
+%TODO Arrumar as flags de figure pra as imagens não ficarem todas espalhadas pelo artigo.
     \begin{figure}[ht]
       \centering
       \frame{\includegraphics[width=\textwidth]{images/new-repository.png}}
       \caption{Interface para criação de um novo repositório.}
       \label{fig:choose-metric}
     \end{figure}
-    
+
     Clicando em ``New repository'' entramos na criação do repositório para ser avaliado. Alguns campos merecem destaque:
     \begin{itemize}
-      \item \textbf{Type:} Tipo do repositório (ou tarball) onde o código está hospedado.
-      \item \textbf{Address:} Endereço do repositório remoto.
+      \item \textbf{Type:} Tipo do repositório (também pode ser um zip ou tarball) onde o código está hospedado.
+      \item \textbf{Address:} Endereço do repositório remoto ou o caminho absoluto no sistema de arquivos.
       \item \textbf{Process Period:} Periodicidade com a qual o código deve ser analizado pela ferramenta (diariamente, semanalmente, etc).
-      \item \textbf{Configuration:} Configuração de métricas que você deseja utilizar para medir o código. Tal configuração pode ser escolhida dentre todas as configurações criadas pelos usuários.
+      \item \textbf{Configuration:} Configuração de métricas que o usuário deseja utilizar para medir o código. Tal configuração pode ser escolhida dentre todas as configurações criadas pelos usuários.
     \end{itemize}
 
-%TODO Completar a parte do processamento
-%    \begin{figure}[ht]
-%      \centering
-%      \frame{\includegraphics[width=\textwidth]{images/new-repository-results.png}}
-%      \caption{Tela de visualização dos resultados da avaliação do repositório.}
-%      \label{fig:choose-metric}
-%    \end{figure}
-    
+    Após preencher todos os campos e salvar o repositório, seu primeiro processamento será automaticamente ativado e o usuário será redirecionado para a página que exibe os resultados. Nela, o usuário poderá conferir dados do processamento (tempo gasto para o término de cada uma de suas fases), navegar na árvore de módulos (pacotes e classes, basicamente) gerada, para que possa visualizar os resultados das métricas e a nota de cada um deles especificamente. Além disso, ao clicar no nome de uma métrica calculada, um gráfico com a evolução dos valores da métrica ao longo dos processamentos será exibido.
+
+\pagebreak
+
+    \begin{figure}[ht]
+      \centering
+      \frame{\includegraphics[width=\textwidth]{images/new-repository-results.png}}
+      \caption{Tela de visualização dos resultados do processamento do repositório.}
+      \label{fig:choose-metric}
+    \end{figure}
+
 \section{Conclusão}
 
 \newpage
