@@ -78,7 +78,33 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
 \end{itemize}
 
   \subsection{Arquitetura}
+  Através de nossa arquitetura buscamos criar um sistema de simples manutenção e que incorpore outras funcionalidades facilmente, com o objetivo de:
+  \begin{itemize}
+    \item Minimizar a quantidade de código a ser mantida
+    \item Testar e garantir a qualidade do código
+    \item Modularizar a aplicação em diversos serviçoes independentes
+  \end{itemize}
 
+  No presente momento a arquitetura está em reformulação, tanto estruturalmente quanto no quesito da linguagem de programação.
+  A próxima imagem especifica o seu atual estado:
+
+  \begin{figure}[h!]
+    \centering
+      \includegraphics[scale=0.5]{images/mezuro-architecture-actual.png}
+    \caption{Arquitetura atual do web-service.}
+    \label{fig:architecture-1}
+  \end{figure}
+
+  As elipses são os diferentes softwares envolvidos e os paralelogramos as interfaces de comunicação entre estes. Na base do Mezuro existe o Kalibro, que está sendo reescrito 
+  de Java para Ruby e segmentado em três entidades menores, como ilustrado na imagem a seguir:
+  \begin{figure}[h!]
+    \centering
+      \includegraphics[scale=0.45]{images/mezuro-architecture-predicted.png}
+    \caption{Arquitetura futura do web-service.}
+    \label{fig:architecture-1}
+  \end{figure}
+
+  O objetivo pretendido com quebra da estrutura monolitica do Kalibro é que sua manutenção e evolução torne-se mais fácil, sem que todo o sistema venha a ser comprometido com tal ação.
   \subsection{Diferenciais} \label{subsec:motivacao}
   As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
 
