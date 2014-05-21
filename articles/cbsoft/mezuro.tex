@@ -82,11 +82,11 @@ Por último, como explicado por Meirelles \cite{m13}, ainda não existe um conse
 \section{Ferramentas similares}
 
   \subsection{SonarQube}
-  O SonarQube é um software livre, licenciado pela LGPLv3, que oferece uma plataforma de gerenciamento de qualidade de código. Por meio de plugins ele calcula métricas como classificação de problemas encontrados no código, cobertura de testes e dívida técnica em várias linguagens. Porém, seus melhores plugins tem código fechado e pago.
+  O SonarQube é um software livre, licenciado pela LGPLv3, que oferece uma plataforma de gerenciamento de qualidade de código. Através de plugins ele classifica problemas encontrados no código e calcula métricas simples de cobertura de testes e divida técnica em várias linguagens. Porém, seus melhores plugins tem código fechado e pago.
 
   \subsection{Code Climate}
   O Code Climate é uma ferramenta que fornece análise de códigos JavaScript ou Ruby (Versão 1.8 em diante) que estejam disponíveis em um servidor Git.
-  O software procura por ``Code Smells'' no programa do usuário e os classifica como mais ou menos problemáticos levando em consideração, dentre outras características, o tamanho dos métodos e duplicação de blocos. Conforme os encontra, o programa atribui valores ao código para no final determinar uma nota de A a F com base no somatório dos valores encontrados. Note que a análise feita não necessariamente indica um real problema, uma vez que aquela pode ter sido a implementação escolhida pelo programador. 
+  O software procura por ``Code Smells'' no programa do usuário e os classifica como mais ou menos problemáticos levando em consideração o tamanho dos métodos e duplicação de blocos. Conforme os encontra, o programa atribui valores ao código para no final determinar uma nota de A a F com base no somatório dos valores encontrados. Note que a análise feita não necessariamente indica um real problema, uma vez que aquela pode ter sido a implementação escolhida pelo programador. 
 
 \section{Mezuro}
 O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licenciado como \textit{Affero General Public License} versão 3 (AGPLv3). Nele, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
@@ -222,6 +222,7 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
     \end{figure}
 
 \section{Conclusão}
+O Mezuro surge como uma potencial resposta para a falta de monitoramento e padronização de código-fonte e a necessidade de avaliação do mesmo, considerando que é um software livre, altamente customizável, com suporte para muitas linguagens computacionais, interface amigável, que fornece histórico de processamentos e também com uma arquitetura planejada para incorporar novas funcionalidades.
 
 \newpage
 \bibliographystyle{sbc}
