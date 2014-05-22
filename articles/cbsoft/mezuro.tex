@@ -35,6 +35,7 @@
   We enumerate the main characteristics that distinguish Mezuro from its competitors and why its use can be more advantageous compared to other
   web services for source code analysis.
   \\*
+%TODO colocar link do youtube
   \textbf{Keywords:} free software, source code analysis, source code metrics, web services.
 \end{abstract}
 
@@ -44,16 +45,17 @@
   comparativo com outras soluções disponíveis no mercado. Enumeraremos as principais características que diferenciam
   o Mezuro de seus concorrentes e porque seu uso mostra-se mais vantajoso em comparação a outros serviços web de análise de código-fonte.
   \\*
+%TODO colocar link do youtube
   \textbf{Palavras-chave:} software livre, análise de código fonte, métricas de código, serviços web.
 \end{resumo}
 
 \newpage
 
 \section{Introdução} \label{sec:intro}
-Métricas de código-fonte (ou mais geral, de software) estático são medidas extraídas a partir das análises léxica e sintática do código-fonte de um programa sem compilá-lo ou executá-lo e podem ser primitivas ou compostas (composição de uma ou mais métricas primitivas) \cite{m13}. Sua principal função é fornecer informações sobre complexidade, compreensão, testabilidade, manutenibilidade e evolução do código\cite{m13}.
+Métricas de código-fonte estático são medidas extraídas a partir das análises léxica e sintática de um programa sem compilá-lo ou executá-lo e podem ser primitivas ou compostas, ou seja, formadas pela composição de uma ou mais métricas primitivas \cite{m13}. Sua principal função é fornecer informações sobre complexidade, compreensão, testabilidade, manutenibilidade e evolução do código\cite{m13}.
 
-Exemplos de métricas podem ser simples como linhas de código (\textit{loc - lines of code}) e quantidade de métodos por classe, ou complexas como conexões aferentes de uma classe (\textit{acc - afferent connections per class}).
-Hoje, existem diversas ferramentas para a simples extração de métricas, como pylint (Python), metric\_fu (Ruby) e Analizo (C/C++ e Java), cada uma com diferentes graus de usabilidade, padrões e conjuntos de métricas, tornando estas importantes informações inacessíveis para muitos usuários.
+Exemplos de métricas podem ser simples como linhas de código e quantidade de métodos por classe ou complexas como conexões aferentes de uma classe.
+Hoje existem diversas ferramentas para a simples extração de métricas como  pylint (Python), metric\_fu (Ruby) e Analizo (C/C++ e Java), cada uma com diferentes graus de usabilidade, padrões e conjuntos de métricas, sendo necessária a criação de uma plataforma que reúna, organize e apresente essas informações para o usuário.
 
 \section{Motivação}
 Por meio da avaliação de métricas de código-fonte podemos definir como está a qualidade do software e pensar em estratégias interessantes para lidar com a chamada ``crise do software'' \cite{nr68}. Esta afirma que, com o crescimento da capacidade computacional, mais problemas difíceis se tornam viáveis para serem resolvidos, mas que, por outro lado, a complexidade dos equipamentos (\textit{hardware}) e do processo de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam falhas do software. Assim, controlar a qualidade com que um software evolui durante o tempo torna-se uma ferramenta para se identificar e prevenir tais falhas.
