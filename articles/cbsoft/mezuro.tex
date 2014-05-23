@@ -82,14 +82,14 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
     \item Buscar os valores destas métricas que definem a qualidade de um código-fonte
 \end{itemize}
   \subsection{Arquitetura}
-  Com a nossa arquitetura buscamos criar um sistema de simples manutenção e que incorpore outras funcionalidades facilmente, com o objetivo de:
+  Com o objetivo de ser agradável para o desenvolvedor, buscamos criar um sistema de simples manutenção que incorpore outras funcionalidades facilmente. Para isso, visamos:
   \begin{itemize}
     \item Minimizar a quantidade de código a ser mantida
     \item Testar e garantir a qualidade do código
     \item Modularizar a aplicação em diversos serviços independentes
   \end{itemize}
   No presente momento, a arquitetura está em reformulação tanto estruturalmente quanto no quesito da linguagem de programação.
-  A próxima imagem especifica o seu atual estado:
+  A \textbf{Figura 1} especifica seu atual estado:
   \begin{figure}[H]
     \centering
       \includegraphics[scale=0.415]{images/mezuro-architecture-actual.png}
@@ -97,14 +97,14 @@ O projeto Mezuro (\url{http://mezuro.org}), com forte viés acadêmico, visa ser
     \label{fig:architecture-1}
   \end{figure}
   As elipses são os diferentes softwares envolvidos e os paralelogramos as interfaces de comunicação entre eles. Na base do Mezuro existe o Kalibro, que está sendo reescrito
-  de Java para Ruby e segmentado em três entidades menores, como ilustrado na imagem a seguir:
+  de Java para Ruby e segmentado em três entidades menores, como ilustrado na \textbf{Figura 2}:
   \begin{figure}[H]
     \centering
       \includegraphics[scale=0.415]{images/mezuro-architecture-predicted.png}
     \caption{Arquitetura futura do web-service.}
     \label{fig:architecture-1}
   \end{figure}
-  O objetivo pretendido com quebra da estrutura monolítica do Kalibro é que sua manutenção e evolução torne-se mais fácil, sem que todo o sistema venha a ser comprometido com tal ação.
+  O objetivo pretendido a com quebra da estrutura monolítica do Kalibro é que sua manutenção e evolução torne-se mais fácil, sem que todo o sistema seja comprometido.
   \subsection{Diferenciais} \label{subsec:motivacao}
   As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
   \begin{itemize}
