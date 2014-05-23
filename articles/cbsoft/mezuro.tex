@@ -49,15 +49,15 @@ Exemplos de métricas podem ser simples como linhas de código e quantidade de m
 Hoje existem diversas ferramentas para a simples extração de métricas como  pylint (Python), metric\_fu (Ruby) e Analizo (C/C++ e Java), cada uma com diferentes graus de usabilidade, padrões e conjuntos de métricas, sendo necessária a criação de uma plataforma que reúna, organize e apresente essas informações para o usuário.
 
 \section{Motivação}
-Por meio da avaliação de métricas de código-fonte podemos definir como está a qualidade do software e pensar em estratégias interessantes para lidar com a chamada ``crise do software'' \cite{nr68}. Esta afirma que, com o crescimento da capacidade computacional, mais problemas difíceis se tornam viáveis para serem resolvidos mas que, por outro lado, a complexidade dos equipamentos (\textit{hardware}) e do processo de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam falhas do software. Assim, o controle da qualidade de um software durante sua evolução no tempo torna-se uma ferramenta para identificar e prevenir tais falhas.
+Por meio da avaliação de métricas de código-fonte podemos definir como está a qualidade do software e pensar em estratégias interessantes para lidar com a chamada ``crise do software'' \cite{nr68}. Esta afirma que, com o crescimento da capacidade computacional, mais problemas difíceis passam a ter solução viável, mas que, por outro lado, a complexidade da interface para uso dos novos equipamentos (\textit{hardware}) e do processo de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam falhas do software. Assim, o controle da qualidade de um software durante sua evolução no tempo torna-se uma ferramenta para identificar e prevenir tais falhas.
 
 Porém, incorporar esta avaliação às metodologias de desenvolvimento de software não pode ser um processo manual pois corre-se o risco de cair em desuso. Isto se deve ao fato de que as ferramentas de extração de métricas, em geral, não apresentam uma interface amigável para seres humanos lerem seus resultados e muito menos um padrão entre si.
 Neste contexto, uma ferramenta com as seguintes características se faz necessária para a introdução deste tipo de avaliação constante às metodologias:
 \begin{itemize}
-  \item interface que agrupe as diversas ferramentas disponíveis
-  \item permita seleção e composição de métricas de forma flexível
-  \item manutenção de um histórico de evolução
-  \item exiba os resultados de forma amigável
+  \item interface que agrupe as diversas ferramentas disponíveis;
+  \item permita seleção e composição de métricas de forma flexível;
+  \item manutenção de um histórico de evolução;
+  \item exiba os resultados de forma amigável.
 \end{itemize}
 Por último, como explicado por Meirelles \cite{m13}, ainda não existe um consenso sobre qual conjunto de métricas é relevante para se avaliar a qualidade do código e muito menos quais valores destas supostas métricas são bons ou ruins. Portanto, mais uma característica interessante para uma ferramenta neste campo é que permita aos usuários especialistas definirem tais parâmetros, viabilizando estudos estatísticos que nos aproximem de uma conclusão.
 \section{Ferramentas similares}
