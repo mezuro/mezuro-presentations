@@ -1,5 +1,5 @@
-\documentclass[12pt]{article}
- 
+\documentclass{llncs}
+
 \usepackage{llncsdoc}
 \usepackage{graphicx,url}
 \usepackage[brazil]{babel}
@@ -18,14 +18,13 @@
         Alessandro Palmeira\inst{1}, Fellipe S. Sampaio\inst{1},\\
         Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}}
 
-\address{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
-  Rua do Matão, 1010 -- 05508-090 -- Cidade Universitária -- São Paulo -- SP -- Brasil
-\nextinstitute
+\institute{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
+  Rua do Matão, 1010 -- 05508-090 -- Cidade Universitária -- São Paulo -- SP -- Brasil\\
+  \email{\{manzo, damc90\}@ime.usp.br, \{alessandro.palmeira,renan.fichberg,fellipe.sampaio\}@usp.br}
+  \and
   Faculdade de Engenharia -- UnB Gama (FGA)\\
   Gama -- DF -- Brasil
-  \email{manzo@ime.usp.br,\{diego.camarinha,alessandro.palmeira\}@usp.br}
-  \email{\{renan.fichberg,fellipe.sampaio\}@usp.br,paulo@softwarelivre.org}
-}
+  \email{paulo@softwarelivre.org}}
 
 \maketitle
 \begin{abstract}
@@ -36,11 +35,11 @@
 \textbf{Youtube video link:} \url{http://youtu.be/_am9noS0ICw}
 \end{abstract}
 
-\begin{resumo}
+\begin{abstract}
   Neste artigo, apresentaremos a motivação, as principais características, arquitetura e um caso de uso do projeto de \textit{software} livre Mezuro. A motivação por trás do projeto será apresentada por meio da dificuldade inerente à análise de métricas de código, fazendo um breve comparativo com outras soluções disponíveis no mercado. Enumeraremos as principais características que diferenciam o Mezuro de seus concorrentes e porque seu uso mostra-se mais vantajoso em comparação a outros serviços web de análise de código-fonte.
 
 \textbf{Palavras-chave:} \textit{software} livre, análise de código fonte, métricas de código, serviços \textit{web}.
-\end{resumo}
+\end{abstract}
 
 
 \section{Introdução} \label{sec:intro}
