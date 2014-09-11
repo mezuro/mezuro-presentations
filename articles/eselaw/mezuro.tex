@@ -1,5 +1,5 @@
-\documentclass[12pt]{article}
- 
+\documentclass{llncs}
+
 \usepackage{llncsdoc}
 \usepackage{graphicx,url}
 \usepackage[brazil]{babel}
@@ -15,32 +15,24 @@
 \title{Mezuro - Coleta, interpretação e exibição automatizadas de métricas estáticas de código-fonte}
 
 \author{Rafael R. Manzo\inst{1}, Diego de A. M. Camarinha\inst{1},\\
-        Alessandro Palmeira\inst{1}, Fellipe S. Sampaio\inst{1},\\
-        Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}}
+        Alessandro Palmeira\inst{1}, Heitor R. Ribeiro\inst{1},\\
+        Daniel P. Alves\inst{1}, Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}
+        \thanks{Agradecemos a Fellipe S. Sampaio por sua contribuição em uma versão anterior deste artigo}}
 
-\address{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
-  Rua do Matão, 1010 -- 05508-090 -- Cidade Universitária -- São Paulo -- SP -- Brasil
-\nextinstitute
+\institute{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
+  Rua do Matão, 1010 -- 05508-090 -- Cidade Universitária -- São Paulo -- SP -- Brasil\\
+  \email{\{manzo, danielpa, diegoamc\}@ime.usp.br, \{alessandro.palmeira, renan.fichberg, heitor.reis\}@usp.br}
+  \and
   Faculdade de Engenharia -- UnB Gama (FGA)\\
   Gama -- DF -- Brasil
-  \email{manzo@ime.usp.br,\{diego.camarinha,alessandro.palmeira\}@usp.br}
-  \email{\{renan.fichberg,fellipe.sampaio\}@usp.br,paulo@softwarelivre.org}
-}
+  \email{paulo@softwarelivre.org}}
 
 \maketitle
 \begin{abstract}
-  In this article, we present the motivation, main characteristics, architecture and a use case of the Mezuro free software project. The motivation behind the project will be presented through the problem of analyzing code metrics, making a brief comparison with other solutions avaliable in the market. We enumerate the main characteristics that distinguish Mezuro from it's competitors and why it's use can be more advantageous compared to other web services for source code analysis.
-
-\textbf{Keywords:} free software, source code analysis, source code metrics, web services.
-\\
-\textbf{Youtube video link:} \url{http://youtu.be/_am9noS0ICw}
-\end{abstract}
-
-\begin{resumo}
   Neste artigo, apresentaremos a motivação, as principais características, arquitetura e um caso de uso do projeto de \textit{software} livre Mezuro. A motivação por trás do projeto será apresentada por meio da dificuldade inerente à análise de métricas de código, fazendo um breve comparativo com outras soluções disponíveis no mercado. Enumeraremos as principais características que diferenciam o Mezuro de seus concorrentes e porque seu uso mostra-se mais vantajoso em comparação a outros serviços web de análise de código-fonte.
 
 \textbf{Palavras-chave:} \textit{software} livre, análise de código fonte, métricas de código, serviços \textit{web}.
-\end{resumo}
+\end{abstract}
 
 
 \section{Introdução} \label{sec:intro}
@@ -202,6 +194,6 @@ O projeto Mezuro\footnote{\url{http://mezuro.org}}, com forte viés acadêmico, 
 \section{Conclusão}
 O Mezuro surge como uma potencial resposta para a falta de monitoramento e padronização de código-fonte e a necessidade de avaliação do mesmo, considerando que é um \textit{software} livre, altamente customizável, com suporte para muitas linguagens computacionais, interface amigável, que fornece histórico de processamentos e também com uma arquitetura planejada para incorporar novas funcionalidades.
 
-\bibliographystyle{sbc}
+\bibliographystyle{splncs03}
 \bibliography{mezuro}
 \end{document}
