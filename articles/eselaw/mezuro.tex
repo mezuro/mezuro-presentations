@@ -73,6 +73,11 @@ O projeto Mezuro\footnote{\url{http://mezuro.org}}, com forte viés acadêmico, 
     \item Buscar os valores destas métricas que definem a qualidade de um código-fonte.
 \end{itemize}
 
+\subsection{Reescrita}
+Nos últimos meses de 2013, foi encontrado um problema no Prezento, impossibilitando que o projeto seguisse em frente, entrando em um estado de estagnação. Na seqüência, foram realizados diversos testes na esperança de localizar o que estava causando o comportamento indesejado, até que, finalmente, foi descoberto que este estava relacionado aos processamentos da Kalibro. A partir deste ponto, sucessivas tentativas de debug tomaram conta da rotina do Mezuro, todas sem sucesso, uma vez que o a arquitetura monolítica da Kalibro tornava a manutenção do seu código extremamente complicada. Assim, foi levantada a questão de reescrevê-la em Ruby. Porquê Ruby? Dentre muitos motivos, os principais foram a familiaridade da equipe com a linguagem e o fato de que o resto do Mezuro já estava escrito em Ruby. 
+Como já estávamos perdendo um tempo relativamente alto com o problema, não foi difícil optarmos pela opção ``um passo para trás, dois para frente'', pois já pensávamos nos lucros que teríamos com a reescrita, sem mencionar os temores que tínhamos se não optassemos por ela, como por exemplo encontrarmos outros problemas de tão difícil resolução quanto o que já tinhamos em mãos. Nos meses seguintes, após tomada a decisão (a esta altura já estávamos no início de 2014), começamos a adaptar todo o projeto para receber a mudança e começarmos efetivamente a reescrita da Kalibro. 
+Com dedicação total da equipe, o processo de reescrita demorou do final de Maio ao final de Agosto de 2014 e, melhor que isso, o problema que tínhamos com a antiga Kalibro foi resolvido e hoje temos uma base de processamentos estável com um código de fácil manutenibilidade.
+
   \subsection{Arquitetura}
   Com o objetivo de ser agradável para o desenvolvedor, buscamos criar um sistema de simples manutenção que incorpore outras funcionalidades facilmente. Para isto, visamos:
   \begin{itemize}
@@ -81,24 +86,21 @@ O projeto Mezuro\footnote{\url{http://mezuro.org}}, com forte viés acadêmico, 
     \item Modularizar a aplicação em diversos serviços independentes.
   \end{itemize}
 
-  No presente momento, a arquitetura está em reformulação tanto estruturalmente quanto no quesito da linguagem de programação.
-
-  A figura \ref{fig:architecture-1} especifica seu atual estado:
+  A figura \ref{fig:architecture-1} especifica o atual estado do Mezuro:
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/mezuro-architecture-actual.png}
     \caption{Arquitetura atual do sistema.}
     \label{fig:architecture-1}
   \end{figure}
-  As elipses são os diferentes \textit{softwares} envolvidos e os paralelogramos as interfaces de comunicação entre eles. Na base do Mezuro existe o Kalibro, que está sendo reescrito
-  de Java para Ruby e segmentado em três entidades menores, como ilustrado na figura \ref{fig:architecture-2}:
+  As elipses são os diferentes \textit{softwares} envolvidos e os paralelogramos as interfaces de comunicação entre eles. Na base do Mezuro encontra-se o Kalibro, segmentado em três entidades menores, como ilustrado na figura \ref{fig:architecture-2}:
   \begin{figure}[H]
     \centering
       \includegraphics[width=\textwidth]{images/mezuro-architecture-predicted.png}
     \caption{Arquitetura futura do sistema.}
     \label{fig:architecture-2}
   \end{figure}
-  O objetivo pretendido a com quebra da estrutura monolítica do Kalibro é que sua manutenção e evolução torne-se mais fácil, sem que todo o sistema seja comprometido.
+  O objetivo pretendido com quebra da estrutura monolítica do Kalibro é que sua manutenção e evolução torne-se mais fácil, sem que todo o sistema seja comprometido.
 
   \subsection{Diferenciais} \label{subsec:motivacao}
   As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
