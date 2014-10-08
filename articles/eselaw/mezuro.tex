@@ -12,26 +12,33 @@
 
 \begin{document}
 \sloppy
-\title{Mezuro - Coleta, interpretação e exibição automatizadas de métricas estáticas de código-fonte}
+\title{Mezuro: Entendendo métricas de código}
 
-\author{Rafael R. Manzo\inst{1}, Diego de A. M. Camarinha\inst{1},\\
-        Alessandro Palmeira\inst{1}, Heitor R. Ribeiro\inst{1},\\
-        Daniel P. Alves\inst{1}, Renan Fichberg\inst{1}, Paulo Meirelles\inst{2}
-        \thanks{Agradecemos a Fellipe S. Sampaio por sua contribuição em uma versão anterior deste artigo}}
+\author{Diego de A. M. Camarinha\inst{1}, Rafael R. Manzo\inst{1},\\
+        Daniel P. Alves\inst{1}, Daniel C. Bucher\inst{1}, \\
+        Heitor R. Ribeiro\inst{1}, Paulo R. M. Meirelles\inst{2}}
 
 \institute{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
   Rua do Matão, 1010 -- 05508-090 -- Cidade Universitária -- São Paulo -- SP -- Brasil\\
-  \email{\{manzo, danielpa, diegoamc\}@ime.usp.br, \{alessandro.palmeira, renan.fichberg, heitor.ribeiro\}@usp.br}
+  \email{\{diegoamc, manzo, danielpa, dbucher\}@ime.usp.br, \{heitor.ribeiro\}@usp.br}
   \and
-  Faculdade de Engenharia -- UnB Gama (FGA)\\
-  Gama -- DF -- Brasil
-  \email{paulo@softwarelivre.org}}
+  Faculdade do Gama -- Universidade de Brasília (UnB)\\
+  Área Especial de Indústria Projeção A, DF-480 -- 72444-240 -- Gama -- DF -- Brasil
+  \email{paulormm@unb.br}}
 
 \maketitle
 \begin{abstract}
-  Neste artigo, apresentaremos a motivação, as principais características, arquitetura e um caso de uso do projeto de \textit{software} livre Mezuro. A motivação por trás do projeto será apresentada por meio da dificuldade inerente à análise de métricas de código, fazendo um breve comparativo com outras soluções disponíveis no mercado. Enumeraremos as principais características que diferenciam o Mezuro de seus concorrentes e porque seu uso mostra-se mais vantajoso em comparação a outros serviços web de análise de código-fonte.
+  % Contexto
+  A facilidade de desenvolvimento e manutenção de um \textit{software} está diretamente relacionada com a qualidade de seu código fonte.
+  % Problema
+  % TODO: adicionar referência que apoie a falta de uso de análise estática em ambientes de desenvolvimento.
+  No entanto, analisá-lo impõe dificuldades como, por exemplo, definir as métricas e interpretar o resultado de uma medição. Além disso, essa prática ainda não é comum em ambientes de desenvolvimento. Outro problema é a falta de ferramentas livres que integrem coletores de métricas para diversas liguagens.
+  % Soluções propostas
+  Neste artigo, apresentamos o Mezuro, uma plataforma \textit{web} livre para a avaliação colaborativa de código fonte. O projeto fornece um meio para comparar projetos e compartilhar conhecimento sobre métricas, ensinando a configurá-las e interpretá-las. A plataforma foi idealizada de forma que seja possível integrar diversos coletores de métricas para diversas linguagens. Atualmente, a ferramenta permite analisar códigos escritos nas linguagens C, C++, Java e Ruby.
+  % Frase de impacto
+  Com este projeto, esperamos disseminar o conhecimento e incentivar o uso de métricas de código.
 
-\textbf{Palavras-chave:} \textit{software} livre, análise de código fonte, métricas de código, serviços \textit{web}.
+\textbf{Palavras-chave:} análise estática, métricas de código fonte, \textit{software} livre.
 \end{abstract}
 
 
