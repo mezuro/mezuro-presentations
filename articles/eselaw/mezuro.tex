@@ -73,13 +73,20 @@ O \textit{software} procura por ``\textit{code smells}'' no programa do usuário
 
 Recentemente, o Code Climate iniciou uma análise estatística preliminar de todos os projetos que já foram analisados por este. Publicada informalmente em uma simples publicação em sua página\footnote{\url{http://blog.codeclimate.com/blog/2014/05/21/does-team-size-impact-code-quality/?utm_source=Code+Climate&utm_campaign=69c024549d-newsletter-NI-2014-05-22&utm_medium=email&utm_term=0_672a7f5529-69c024549d-317410425}}.
 
-\section{Mezuro}
-O projeto Mezuro\footnote{\url{http://mezuro.org}}, com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licenciado como \textit{Affero General Public License} versão 3 (AGPLv3). Nele, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
+\section{Mezuro}\label{sec:mezuro}
+Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}. Explicaremos o contexto no qual o projeto foi criado, mostrando como as ideias das partes que o compõe evoluíram até alcançar o estágio atual. Além disso, descreveremos a integração do projeto com o Noosfero\footnote{\url{http://noosfero.org}} e porque ela não deu certo. Por fim, exibiremos a fase atual de desenvolvimento de todas as partes do Mezuro, explicitando as decisões mais importantes que foram tomadas para melhorar o andamento do projeto.
+
+\subsection{Histórico}\label{sec:historico}
+
+\subsection{Integração com o Noosfero}\label{sec:noosfero}
+
+\subsection{Mezuro \textit{standalone}}\label{sec:standalone}
+
+O projeto Mezuro, com forte viés acadêmico, visa ser uma interface que permita, de forma flexível, a extração e análise de métricas estáticas de código-fonte, licenciado como \textit{Affero General Public License} versão 3 (AGPLv3). Nele, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
 \begin{itemize}
     \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código-fonte;
     \item Buscar os valores destas métricas que definem a qualidade de um código-fonte.
 \end{itemize}
-
 \subsection{Reescrita}
 Nos últimos meses de 2013, foi encontrado um problema no Prezento, impossibilitando que o projeto seguisse em frente, entrando em um estado de estagnação. Na seqüência, foram realizados diversos testes na esperança de localizar o que estava causando o comportamento indesejado, até que, finalmente, foi descoberto que este estava relacionado aos processamentos da Kalibro. A partir deste ponto, sucessivas tentativas de debug tomaram conta da rotina do Mezuro, todas sem sucesso, uma vez que o a arquitetura monolítica da Kalibro tornava a manutenção do seu código extremamente complicada. Assim, foi levantada a questão de reescrevê-la em Ruby. Porquê Ruby? Dentre muitos motivos, os principais foram a familiaridade da equipe com a linguagem e o fato de que o resto do Mezuro já estava escrito em Ruby. 
 Como já estávamos perdendo um tempo relativamente alto com o problema, não foi difícil optarmos pela opção ``um passo para trás, dois para frente'', pois já pensávamos nos lucros que teríamos com a reescrita, sem mencionar os temores que tínhamos se não optassemos por ela, como por exemplo encontrarmos outros problemas de tão difícil resolução quanto o que já tinhamos em mãos. Nos meses seguintes, após tomada a decisão (a esta altura já estávamos no início de 2014), começamos a adaptar todo o projeto para receber a mudança e começarmos efetivamente a reescrita da Kalibro. 
