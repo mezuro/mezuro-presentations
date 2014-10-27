@@ -9,6 +9,7 @@
 
 \usepackage{tabularx}
 \usepackage{cite}
+\usepackage{hyperref}
 
 \begin{document}
 \sloppy
@@ -29,27 +30,27 @@
 \maketitle
 \begin{abstract}
   % Contexto
-  A facilidade de desenvolvimento e manutenção de um \textit{software} está diretamente relacionada com a qualidade de seu código fonte.
+  A facilidade de desenvolvimento e manutenção de um \textit{software} está diretamente relacionada com a qualidade de seu código-fonte.
   % Problema
   % TODO: adicionar referência que apoie a falta de uso de análise estática em ambientes de desenvolvimento.
   No entanto, analisá-lo impõe dificuldades como, por exemplo, definir as métricas e interpretar o resultado de uma medição. Além disso, essa prática ainda não é comum em ambientes de desenvolvimento. Outro problema é a falta de ferramentas livres que integrem coletores de métricas para diversas liguagens.
   % Soluções propostas
-  Neste artigo, apresentamos o Mezuro, uma plataforma \textit{web} livre para a avaliação colaborativa de código fonte. O projeto fornece um meio para comparar projetos e compartilhar conhecimento sobre métricas, ensinando a configurá-las e interpretá-las. A plataforma foi idealizada de forma que seja possível integrar diversos coletores de métricas para diversas linguagens. Atualmente, a ferramenta permite analisar códigos escritos nas linguagens C, C++, Java e Ruby.
+  Neste artigo, apresentamos o Mezuro, uma plataforma \textit{web} livre para a avaliação colaborativa de código-fonte. O projeto fornece um meio para comparar projetos e compartilhar conhecimento sobre métricas, ensinando a configurá-las e interpretá-las. A plataforma foi idealizada de forma que seja possível integrar diversos coletores de métricas para diversas linguagens. Atualmente, a ferramenta permite analisar códigos escritos nas linguagens C, C++, Java e Ruby.
   % Frase de impacto
   Com este projeto, esperamos disseminar o conhecimento e incentivar o uso de métricas de código.
 
-\textbf{Palavras-chave:} análise estática, métricas de código fonte, \textit{software} livre.
+\textbf{Palavras-chave:} análise estática, métricas de código-fonte, \textit{software} livre.
 \end{abstract}
 
 
 \section{Introdução} \label{sec:intro}
-Métricas de código-fonte estático são medidas extraídas a partir das análises léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas ou compostas, ou seja, formadas pela composição de uma ou mais métricas primitivas. Sua principal função é fornecer informações sobre complexidade, compreensão, testabilidade, manutenibilidade e evolução do código\cite{m13}.
+Métricas de código-fonte estático são medidas extraídas a partir das análises léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas ou compostas, ou seja, formadas pela composição de uma ou mais métricas primitivas. Sua principal função é fornecer informações sobre complexidade, compreensão, testabilidade, manutenibilidade e evolução do código\cite{meirelles2013monitoramento}.
 
 Exemplos de métricas podem ser simples como linhas de código e quantidade de métodos por classe ou complexas como conexões aferentes de uma classe.
 Hoje existem diversas ferramentas para a simples extração de métricas como  pylint\footnote{\url{http://www.pylint.org/}} (Python), metric\_fu\footnote{\url{https://github.com/metricfu/metric_fu}} (Ruby) e Analizo\footnote{\url{http://www.analizo.org/}} (C/C++ e Java), cada uma com diferentes graus de usabilidade, padrões e conjuntos de métricas, sendo necessária a criação de uma plataforma que reúna, organize e apresente essas informações para o usuário.
 
 \section{Motivação}\label{sec:motivacao}
-Por meio da avaliação de métricas de código-fonte podemos definir como está a qualidade do \textit{software} e pensar em estratégias interessantes para lidar com a chamada ``crise do \textit{software}'' \cite{nr68}. Esta afirma que, com o crescimento da capacidade computacional, mais problemas difíceis passam a ter solução viável, mas que, por outro lado, a complexidade da interface para uso dos novos equipamentos (\textit{hardware}) e do processo de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam falhas do \textit{software}. Assim, o controle da qualidade de um \textit{software} durante sua evolução no tempo torna-se uma ferramenta para identificar e prevenir tais falhas.
+Por meio da avaliação de métricas de código-fonte podemos definir como está a qualidade do \textit{software} e pensar em estratégias interessantes para lidar com a chamada ``crise do \textit{software}'' \cite{naur1969software}. Esta afirma que, com o crescimento da capacidade computacional, mais problemas difíceis passam a ter solução viável, mas que, por outro lado, a complexidade da interface para uso dos novos equipamentos (\textit{hardware}) e do processo de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam falhas do \textit{software}. Assim, o controle da qualidade de um \textit{software} durante sua evolução no tempo torna-se uma ferramenta para identificar e prevenir tais falhas.
 
 Porém, incorporar esta avaliação às metodologias de desenvolvimento de \textit{software} não pode ser um processo manual em razão do risco desta prática cair em desuso. Isto se deve ao fato de que as ferramentas de extração de métricas, em geral, não apresentam uma interface amigável para seres humanos lerem seus resultados e muito menos um padrão entre si.
 Neste contexto, uma ferramenta com as seguintes características se faz necessária para a introdução deste tipo de avaliação constante às metodologias:
@@ -60,7 +61,7 @@ Neste contexto, uma ferramenta com as seguintes características se faz necessá
   \item exiba os resultados de forma amigável.
 \end{itemize}
 
-Por último, como explicado por Meirelles \cite{m13}, ainda não existe um consenso sobre qual conjunto de métricas é relevante para se avaliar a qualidade do código e muito menos quais valores destas supostas métricas são bons ou ruins. Portanto, mais uma característica interessante para uma ferramenta neste campo é que permita aos usuários especialistas definirem tais parâmetros, viabilizando estudos estatísticos que nos aproximem de uma conclusão.
+Por último, como explicado por Meirelles \cite{meirelles2013monitoramento}, ainda não existe um consenso sobre qual conjunto de métricas é relevante para se avaliar a qualidade do código e muito menos quais valores destas supostas métricas são bons ou ruins. Portanto, mais uma característica interessante para uma ferramenta neste campo é que permita aos usuários especialistas definirem tais parâmetros, viabilizando estudos estatísticos que nos aproximem de uma conclusão.
 
 \section{Ferramentas similares}
 Foram levantadas informações básicas sobre duas ferramentas similares já consolidados dentre desenvolvedores de \textit{software} para que possamos avaliá-las brevemente com respeito aos critérios definidos na motivação (seção \ref{sec:motivacao}).
@@ -71,12 +72,15 @@ Por sua vez, o Code Climate\footnote{\url{https://codeclimate.com/}} é uma ferr
 
 O \textit{software} procura por ``\textit{code smells}'' no programa do usuário e os classifica como mais ou menos problemáticos levando em consideração o tamanho dos métodos e duplicação de blocos. Conforme os encontra, o programa atribui valores ao código para no final determinar uma nota de \textit{A} a \textit{F} com base no somatório dos valores encontrados. Note que a análise feita não necessariamente indica um problema real, uma vez que aquela pode ter sido a implementação escolhida pelo programador.
 
-Recentemente, o Code Climate iniciou uma análise estatística preliminar de todos os projetos que já foram analisados por este. Publicada informalmente em uma simples publicação em sua página\footnote{\url{http://blog.codeclimate.com/blog/2014/05/21/does-team-size-impact-code-quality/?utm_source=Code+Climate&utm_campaign=69c024549d-newsletter-NI-2014-05-22&utm_medium=email&utm_term=0_672a7f5529-69c024549d-317410425}}.
+Recentemente, o Code Climate iniciou uma análise estatística preliminar de todos os projetos que já foram analisados por este. Publicada informalmente em uma simples publicação em sua página\footnote{\url{http://blog.codeclimate.com/blog/2014/05/21/does-team-size-impact-code-quality/?utm\_source=Code+Climate&utm\_campaign=69c024549d-newsletter-NI-2014-05-22&utm\_medium=email&utm\_term=0\_672a7f5529-69c024549d-317410425}}.
 
 \section{Mezuro}\label{sec:mezuro}
 Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}. Explicaremos o contexto no qual o projeto foi criado, mostrando como as ideias das partes que o compõe evoluíram até alcançar o estágio atual. Além disso, descreveremos a integração do projeto com o Noosfero\footnote{\url{http://noosfero.org}} e porque ela não deu certo. Por fim, exibiremos a fase atual de desenvolvimento de todas as partes do Mezuro, explicitando as decisões mais importantes que foram tomadas para melhorar o andamento do projeto.
 
 \subsection{Histórico}\label{sec:historico}
+O Mezuro é dividido em duas partes: processamento e cálculo de métricas de código-fonte; e a interface gráfica para apresentação dos resultados. Ambas tiveram seu início na disciplina de Laboratório de Programação Extrema, do Instituto de Matemática e Estátistica da Universidade de São Paulo em 2009 e 2010, respectivamente. Porém, apenas no segundo semestre de 2013 que os desenvolvedores dos dois projetos passaram a trabalhar em conjunto. Com essa união, uma troca de nomes foi necessária: até essa data, a interface gráfica era chamada de Mezuro e o módulo de processamento de Kalibro; a partir dela, passamos a chamar de Prezento o módulo de visualização e de Mezuro o projeto inteiro, ou seja, o Kalibro integrado com o Prezento.
+
+O Kalibro é uma evolução do projeto Crab\cite{meirelles2009crab}
 
 \subsection{Integração com o Noosfero}\label{sec:noosfero}
 
