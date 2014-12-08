@@ -102,7 +102,7 @@ Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}
 
   Principalmente com o intuito de trazer ao projeto tudo o que as tecnologias mais recentes têm a oferecer, mas também eliminar funcionalidades não utilizadas, a equipe de desenvolvimento então tomou a decisão de abandonar o plugin para Noosfero e, novamente no arcabouço \textit{Ruby on Rails}, recriar a interface gráfica para o Kalibro.
 
-  Para isso, uma parte considerável do código do plugin foi extraída e empacotada em uma gema Ruby, denominada \textit{kalibro_gem}, a licença \textit{Affero General Public License} versão 3 (AGPLv3) foi adotada e uma interface completamente redesenhada foi desenvolvida. Nessa interface, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
+  Para isso, uma parte considerável do código do plugin foi extraída e empacotada em uma gema Ruby, denominada \textit{kalibro\_gem}, a licença \textit{Affero General Public License} versão 3 (AGPLv3) foi adotada e uma interface completamente redesenhada foi desenvolvida. Nessa interface, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
 
   \begin{itemize}
     \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código-fonte;
@@ -125,39 +125,26 @@ Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}
 
 \section{Arquitetura}
   Desde a sua primeira implementação até a sua reescrita completa, a arquitetura do sistema evoluiu consideravelmente. A figura X mostra a arquitetura do sistema quando ele ainda chamava Mezuro, integrado com o Noosfero. Nela, nosso sistema ficava preso às limitações tanto da tecnologia utilizada, que tinha que ser compatível com a do Noosfero, quanto da arquitetura de \textit{plugins}, que restringia nossa liberdade para expandirmos nossas funcionalidades.
-  
-  %%% Colocar figura da época do Noosfero
-  
-  Após desacoplarmos o Mezuro do Noosfero, passamos a ter completa autonomia para usar as tecnologias que julgávamos ser mais adequadas para os nossos problemas. Preocupamo-nos também em mantê-las atualizadas para termos as funcionalidades mais novas e a correção de defeitos antigos. Outra mudança importante foi a adoção do estilo arquitetural de micro serviços (REF). A figura X+1 mostra a arquitetura do sistema durante a reescrita da interface gráfica.
-  
-  %%% Colocar figura da época pós Noosfero. Dependendo da figura que vamos colocar aqui, adaptar o texto e adicionar mais coisas.
-  
-  Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual (Figura X+2).
-  
-  %%% Colocar figura atual. Decidir se já vamos colocar com kalibro_client e kalibro_core. Complementar o texto.
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Com o objetivo de ser agradável para o desenvolvedor, buscamos criar um sistema de simples manutenção que incorpore outras funcionalidades facilmente. Para isto, visamos:
-\begin{itemize}
-  \item Minimizar a quantidade de código a ser mantida;
-  \item Testar e garantir a qualidade do código;
-  \item Modularizar a aplicação em diversos serviços independentes.
-\end{itemize}
 
-A figura \ref{fig:architecture-1} especifica o atual estado do Mezuro:
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{images/mezuro-architecture-actual.png}
-  \caption{Arquitetura atual do sistema.}
-  \label{fig:architecture-1}
-\end{figure}
-As elipses são os diferentes \textit{softwares} envolvidos e os paralelogramos as interfaces de comunicação entre eles. Na base do Mezuro encontra-se o Kalibro, segmentado em três entidades menores, como ilustrado na figura \ref{fig:architecture-2}:
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=\textwidth]{images/mezuro-architecture-predicted.png}
-  \caption{Arquitetura futura do sistema.}
-  \label{fig:architecture-2}
-\end{figure}
-O objetivo pretendido com quebra da estrutura monolítica do Kalibro é que sua manutenção e evolução torne-se mais fácil, sem que todo o sistema seja comprometido.
+  Após desacoplarmos o Mezuro do Noosfero, passamos a ter completa autonomia para usar as tecnologias que julgávamos ser mais adequadas para os nossos problemas. Preocupamo-nos também em mantê-las atualizadas para termos as funcionalidades mais novas e a correção de defeitos antigos. Outra mudança importante foi a adoção do estilo arquitetural de micro serviços (REF). A figura \ref{fig:architecture-1} ilustra a arquitetura do sistema ao fim da reescrita da interface gráfica por meio de um diagrama UML de sequência para o processo de criação de uma configuração até os resultados finais de uma análise.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/prev_processing_seq_diag.png}
+    \caption{Arquitetura do sistema ao fim da reescrita da interface gráfica.}
+    \label{fig:architecture-1}
+  \end{figure}
+
+  Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual na figura \ref{fig:architecture-2} que representa as mesmas operações da figura anterior.
+
+  \begin{figure}[H]
+    \centering
+      \includegraphics[width=\textwidth]{images/processing_seq_diag.png}
+    \caption{Arquitetura do sistema ao fim da reestruturação do Kalibro.}
+    \label{fig:architecture-2}
+  \end{figure}
+
+  Explorando mais a fundo a figura \ref{fig:architecture-2}, notamos que a separação do serviço monolítico em dois serviços menores e especializados, Kalibro Processor e Kalibro Configurations, produziu mais complexidade do ponto de vista da quantidade de mensagens trocadas, trazendo a impressão de piorar a manutenabilidade do projeto. Por outro lado, dada uma interface muito bem definida de comunicação como foi feita antes da refatoração do serviço, o aumento na troca de mensagens gera impactos mínimos que são compensados pela modularização e maior especialização dos serviços.
 
 \section{Diferenciais} \label{subsec:motivacao}
 As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
