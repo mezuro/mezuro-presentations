@@ -124,9 +124,9 @@ Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}
   Com dedicação total da equipe, o processo de reescrita demorou do final de maio ao final de agosto de 2014 e, melhor que isso, o problema que tínhamos com o antigo Kalibro foi resolvido. Hoje temos uma base de processamentos estável com código de fácil manutenibilidade.
 
 \section{Arquitetura}
-  Desde a sua primeira implementação até a sua reescrita completa, a arquitetura do sistema evoluiu consideravelmente. A figura X mostra a arquitetura do sistema quando ele ainda chamava Mezuro, integrado com o Noosfero. Nela, nosso sistema ficava preso às limitações tanto da tecnologia utilizada, que tinha que ser compatível com a do Noosfero, quanto da arquitetura de \textit{plugins}, que restringia nossa liberdade para expandirmos nossas funcionalidades.
+  Desde a sua primeira implementação até a sua reescrita completa, a arquitetura do sistema evoluiu consideravelmente. Quando o projeto era integrado com o Noosfero, nosso sistema ficava preso às limitações tanto da tecnologia utilizada, que tinha que ser compatível com a do Noosfero, quanto da arquitetura de \textit{plugins}, que restringia nossa liberdade para expandirmos nossas funcionalidades.
 
-  Após desacoplarmos o Mezuro do Noosfero, passamos a ter completa autonomia para usar as tecnologias que julgávamos ser mais adequadas para os nossos problemas. Preocupamo-nos também em mantê-las atualizadas para termos as funcionalidades mais novas e a correção de defeitos antigos. Outra mudança importante foi a adoção do estilo arquitetural de micro serviços (REF). A figura \ref{fig:architecture-1} ilustra a arquitetura do sistema ao fim da reescrita da interface gráfica por meio de um diagrama UML de sequência para o processo de criação de uma configuração até os resultados finais de uma análise.
+  Após desacoplarmos o Mezuro do Noosfero, passamos a ter completa autonomia para usar as tecnologias que julgávamos ser mais adequadas para solucionar nossos problemas. Preocupamo-nos também em mantê-las atualizadas para termos as funcionalidades mais novas e as correções de defeitos antigos. Outra mudança importante foi a adoção do estilo arquitetural de micro serviços (REF). A \textbf{figura \ref{fig:architecture-1}} ilustra a arquitetura do sistema, ao fim da reescrita da interface gráfica, por meio de um diagrama UML de sequência. A ilustração se refere ao processo de criação de uma configuração até os resultados finais de uma análise.
 
   \begin{figure}[H]
     \centering
@@ -135,7 +135,7 @@ Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}
     \label{fig:architecture-1}
   \end{figure}
 
-  Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual na figura \ref{fig:architecture-2} que representa as mesmas operações da figura anterior.
+  Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual (\textbf{figura \ref{fig:architecture-2}}) que representa as mesmas operações da figura anterior.
 
   \begin{figure}[H]
     \centering
@@ -144,7 +144,7 @@ Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}
     \label{fig:architecture-2}
   \end{figure}
 
-  Explorando mais a fundo a figura \ref{fig:architecture-2}, notamos que a separação do serviço monolítico em dois serviços menores e especializados, Kalibro Processor e Kalibro Configurations, produziu mais complexidade do ponto de vista da quantidade de mensagens trocadas, trazendo a impressão de piorar a manutenabilidade do projeto. Por outro lado, dada uma interface muito bem definida de comunicação como foi feita antes da refatoração do serviço, o aumento na troca de mensagens gera impactos mínimos que são compensados pela modularização e maior especialização dos serviços.
+  Explorando mais a fundo a \textbf{figura \ref{fig:architecture-2}}, notamos que houve uma separação do serviço monolítico em dois serviços menores e especializados: o Kalibro Processor e o Kalibro Configurations. Essa mudança produziu mais complexidade do ponto de vista de quantidade de mensagens trocadas, o que pode causar a impressão de que a manutenabilidade do projeto piorou. Entretanto, com uma interface de comunicação bem definida, o aumento na troca de mensagens gera impactos mínimos que são compensados pela modularização e maior especialização dos serviços.
 
 \section{Diferenciais} \label{subsec:motivacao}
 As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
