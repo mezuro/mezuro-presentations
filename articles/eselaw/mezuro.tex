@@ -268,7 +268,7 @@ essa questão se apresenta mais aberta ainda.
 
 %------------------------------------------------------------------------------
 
-\section{Uma abordagem para o monitoramento de métricas de código-fonte}
+\section{Abordagem de monitoramento de métricas de código}
 \label{sec:abordagem}
 
 Ao constatarmos a contradição nos trabalhos da área em relação às distribuições
@@ -413,7 +413,7 @@ apresentados, a abordagem proposta é o acompanhamento de métricas de
 código-fonte, flexibilizando a análise, ou seja, dependendo do projeto, da
 linguagem e até do tipo de métricas em questão.
 %
-Em muitos casos, o indicado é saber comparar o projeto entre ele mesmo ao longo
+Em muitos casos, o indicado é saber comparar o projeto com ele mesmo ao longo
 do tempo. Para isso, a abordagem de análise estatística, observando a
 distribuição e identificando o melhor ponto (percentil) de análise se faz
 necessário; ao contrário de usar como parâmetro referências genéricas.
@@ -424,48 +424,71 @@ outros, se for do mesmo escopo e contexto, por exemplo.
 
 %------------------------------------------------------------------------------
 
-\section{Mezuro: plataforma de monitoramento de métricas de  código-fonte}
+\section{Plataforma de monitoramento de métricas de código}
 \label{sec:mezuro}
 
 Para aplicação da abordagem discutida neste artigo, uma ferramenta com as
-seguintes características se faz necessária para a introdução deste tipo de
-avaliação constante às metodologias de desenvolvimento de software:
-(i) interface que agrupe as diversas ferramentas disponíveis;
-(ii) permita seleção e composição de métricas de forma flexível;
-(iii) manutenção de um histórico de evolução;
-(iv) exiba os resultados de forma amigável.
+seguintes características se faz necessária, para a introdução deste tipo de
+avaliação constante às metodologias de desenvolvimento de software: (i)
+interface que agrupe as diversas ferramentas disponíveis; (ii) permita seleção
+e composição de métricas de forma flexível; (iii) manutenção de um histórico de
+evolução; (iv) exiba os resultados de forma amigável.
 
-Em 2009, iniciamos a concepção de uma plataforma de monitoramento de métricas de código-fonte denominada Mezuro, disponível em {\url{http://mezuro.org}}. Essa plataforma é composta por um conjunto
-de ferramentas com as quais colaboramos em seu desenvolvimento ou implementamos de acordo
-com as necessidades e critérios que foram definidos aos longo de nossos estudos.
- 
- \subsection{Segunda interface gráfica - Prezento}
-\label{sec:segundo-prototipo}
+Em 2009, iniciamos a concepção de uma plataforma de monitoramento de métricas
+de código-fonte denominada Mezuro\cite{mezuro2012}, disponível em
+{\url{http://mezuro.org}}.
+%
+Em uma visão geral, o Mezuro é dividido em duas partes: processamento e cálculo
+de métricas de código-fonte (Kalibro, um \textit{webservice}); e a interface
+gráfica para apresentação dos resultados (Prezento, uma aplicação
+\textit{Web}).
 
-Principalmente com o intuito de trazer ao projeto tudo o que as tecnologias mais recentes têm a oferecer, mas também eliminar funcionalidades não utilizadas, a equipe de desenvolvimento então tomou a decisão de abandonar o plugin para Noosfero e, novamente no arcabouço \textit{Ruby on Rails}, recriar a interface gráfica para o Kalibro.
+O Prezento é a nova versão da camada de visualização do Mezuro, que começou a
+ser reescrito, em 2013, principalmente com o intuito de trazer ao projeto tudo
+o que as tecnologias mais recentes têm a oferecer, mas também eliminar
+funcionalidades não essenciais em suas versões iniciais. Assim, o Prezento foi
+escrito em \textit{Ruby}, utilizando o arcabouço \textit{Ruby on Rails}
+%
+No processo de evolução do Mezuro, uma parte considerável do código legado foi
+empacotada em uma gema Ruby, denominada \textit{kalibro\_gem}, a licença
+\textit{Affero General Public License} versão 3 (AGPLv3) foi adotada e uma
+interface completamente redesenhada foi desenvolvida, ou seja, o Prezento.
+%
+Nessa interface, o usuário é o responsável por definir o conjunto de métricas a
+ser utilizado para realizar cálculos, com a possibilidade de armazenar os
+resultados para comparações futuras. Seu objetivo é (i) aproximar-se de um
+consenso acerca de quais métricas devem ser empregadas na análise da qualidade
+de um código-fonte; e (ii) buscar os valores dessas métricas que definem a
+qualidade de um código-fonte.
 
-  Para isso, uma parte considerável do código do plugin foi extraída e empacotada em uma gema Ruby, denominada \textit{kalibro\_gem}, a licença \textit{Affero General Public License} versão 3 (AGPLv3) foi adotada e uma interface completamente redesenhada foi desenvolvida. Nessa interface, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
+O Kalibro\cite{de2013kalibro} foi inicialmente escrito em Java, mas também no
+processo de evolução do projeto Mezuro, a partir de 2014, passou a ser
+reescrito em Ruby, com o objetivo de unificar as tecnologias do projeto e
+corrigir os problemas da versão original em Java.
+%
+Isso porque, os resultados dos testes de escalabilidade indicaram que o módulo
+da plataforma que mais exigia capacidade de processamento era o que calculava e
+analisava métricas de repositórios, ou seja, o Kalibro.
+%
+Para melhor definir a nova arquitetura do Kalibro, monitoramos seus parâmetros
+de escalabilidade utilizando o arcabouço \textit{Scalability Explorer}
+\cite{moura2013automated} para gerenciar a carga de requisições e a frequência
+com que elas eram enviadas. 
+%
+Em suma, dependendo do número de requisições recebidas e do número de núcleos
+que o servidor possuía, o Kalibro original entrava em estado de impasse. Além
+disso, a arquitetura original era monolítica, ou seja, uma mudança em um ponto
+do código culminava na obrigação de mudar outros diversos pontos do código.
+%
+As vantagens decorrentes da reescrita do Kalibro foram prover a maior
+modularidade do sistema (ou seja, dos serviços), e, por ser software livre,
+facilitar o entendimento do código para novos contribuidores.
 
-  \begin{itemize}
-    \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código-fonte;
-    \item Buscar os valores dessas métricas que definem a qualidade de um código-fonte.
-  \end{itemize}
+%------------------------------------------------------------------------------
 
-  Com essa nova implementação do Mezuro, que mais tarde seria renomeada com seu nome atual, Prezento, a estabilidade da interface gráfica finalmente deixou o nível de protótipo com a expectativa de finalmente ser lançada em produção. Porém, erros que acreditávamos ser relacionados ao plugin do Noosfero persistiram na nova versão, levando-nos a conclusão de que a implementação original do Kalibro em Java possuía falhas.
+\subsection{Arquitetura do Mezuro}
+\label{sec:arquitetura}
 
-  \subsection{Kalibro em \textit{Ruby on Rails}}
-  Com todos os esforços da equipe de desenvolvimento voltados para o lançamento do projeto e com a expectativa de que muitos projetos fossem cadastrados no sistema, identificamos a necessidade de realizar testes de escalabilidade. O módulo do sistema que mais exigia capacidade de processamento era o que calculava e analisava métricas de repositórios, o Kalibro. Por isso, decidimos concentrar nele nossos testes de escalabilidade.
-  Começamos criando um \textit{script} em Ruby que media a latência de requisições para o serviço, ou seja, medíamos o tempo total que levava para uma requisição ser respondida. Os resultados foram surpreendentes: a resposta de nenhuma requisição demorava mais de 1 segundo para chegar ao cliente. Essa surpresa aconteceu devido ao fato de que não conseguíamos verificar os resultados manualmente. Quando usávamos o Prezento, a latência era maior e o que era pior: alguns processamentos não terminavam. Essa inconsistência entre os dois resultados nos fez olhar com mais atenção para o \textit{script}. Percebemos, então, que ele era demasiado simples e que desconsiderava vários aspectos relevantes para testes de escalabilidade:
-  \begin{itemize}
-    \item Rodávamos o servidor localmente. Isso evitava atrasos de conexão.
-    \item Esperávamos uma requisição terminar para enviar a próxima. Porém, em uma situação real muitas requisições são enviadas simultaneamente ao servidor.
-  \end{itemize}
-  Portanto, dedicamos um tempo maior para avaliar corretamente a escalabilidade do Kalibro. Hospedamos o servidor em uma máquina externa e utilizamos o arcabouço Scalability Explorer \cite{moura2013automated} para gerenciar a carga de requisições e a frequência com que elas eram enviadas. Descobrimos que, para uma carga relativamente baixa de requisições (10 requisições por minuto), as requisições de processamento não respondiam. A partir deste ponto, sucessivas tentativas de depuração tomaram conta da rotina do time. Apesar de não conseguirmos provar, o tínhamos fortes indícios de que o Kalibro entrava em estado de impasse. Isso acontecia porque o Kalibro foi implementado usando um \textit{pool de threads} estático. No momento da inicialização do servidor, a quantidade de \textit{threads} criadas era 10 vezes o número de núcleos do computador. Elas dormiam até que uma requisição as acordasse. O Kalibro paralelizava algumas partes de seu processamento e, para concluí-lo, necessitava de 4 \textit{threads}. Porém, as requisições só acordavam as \textit{threads} quando elas eram necessárias e só as liberavam quando o processamento terminava. Portanto, dependendo do número de requisições recebidas e do número de núcleos que o servidor possuía, o Kalibro entrava em estado de impasse. Por exemplo, se o servidor tivesse 3 núcleos, o Kalibro criaria um \textit{pool} de 30 \textit{threads}. Se 10 requisições chegassem simultaneamente no servidor, a probabilidade era alta de que houvesse um impasse.
-  Ao tentar resolver o problema do impasse, outro fator desmotivou o time na manutenção do Kalibro. A principal dificuldade era a arquitetura monolítica de um sistema grande e complexo como o Kalibro. Por exemplo, uma mudança em um ponto do código culminava na obrigação de mudar outros diversos pontos do código. Assim, no final de 2013, foi levantada a questão de reescrevê-la em Ruby. Por que Ruby? Os principais motivos foram a familiaridade da equipe com a linguagem e o fato de que o resto do Mezuro já estava escrito nessa linguagem.
-  Como já estávamos perdendo um bom tempo com o problema, não foi difícil optarmos pela opção ``um passo para trás, dois para frente''. Nesse ponto, já pensávamos em duas vantagens decorrentes da reescrita: maior modularidade do sistema e, por ser software livre, facilitar o entendimento do código para novos contribuidores. A reescrita também nos livraria do receio de encontrar outros problemas de tão difícil resolução quanto o que já tínhamos em mãos. Por conta de tudo isso, decidimos reescrever o Kalibro e, nos primeiros meses de 2014, adaptamos todo o projeto para receber a mudança e iniciamos efetivamente a reescrita do sistema.
-  Com dedicação total da equipe, o processo de reescrita demorou do final de maio ao final de agosto de 2014 e, melhor que isso, o problema que tínhamos com o antigo Kalibro foi resolvido. Hoje temos uma base de processamentos estável com código de fácil manutenibilidade.
-
-\section{Arquitetura}
   Desde a sua primeira implementação até a sua reescrita completa, a arquitetura do sistema evoluiu consideravelmente. Quando o projeto era integrado com o Noosfero, nosso sistema ficava preso às limitações tanto da tecnologia utilizada, que tinha que ser compatível com a do Noosfero, quanto da arquitetura de \textit{plugins}, que restringia nossa liberdade para expandirmos nossas funcionalidades.
 
   Após desacoplarmos o Mezuro do Noosfero, passamos a ter completa autonomia para usar as tecnologias que julgávamos ser mais adequadas para solucionar nossos problemas. Preocupamo-nos também em mantê-las atualizadas para termos as funcionalidades mais novas e as correções de defeitos antigos. Outra mudança importante foi a adoção do estilo arquitetural de micro serviços \cite{namiot2014micro}. A \textbf{figura \ref{fig:architecture-1}} ilustra a arquitetura do sistema, ao fim da reescrita da interface gráfica, por meio de um diagrama UML de sequência. A ilustração se refere ao processo de criação de uma configuração até os resultados finais de uma análise.
