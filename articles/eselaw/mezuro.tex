@@ -15,33 +15,38 @@
 \sloppy
 \title{Uma abordagem para o monitoramento de métricas estáticas de código-fonte}
 
-\author{Diego de A. M. Camarinha\inst{1}, Rafael R. Manzo\inst{1},\\
-        Daniel P. Alves\inst{1}, Daniel C. Bucher\inst{1}, \\
-        Heitor R. Ribeiro\inst{1}, Paulo R. M. Meirelles\inst{2}}
+\author{Diego Camarinha\inst{1},Rafael Manzo\inst{1},Paulo Meirelles\inst{1}}
 
-\institute{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
-  Rua do Matão, 1010 -- 05508-090 -- Cidade Universitária -- São Paulo -- SP -- Brasil\\
-  \email{\{diegoamc, manzo, danielpa, dbucher\}@ime.usp.br, \{heitor.ribeiro\}@usp.br}
-  \and
-  Faculdade do Gama -- Universidade de Brasília (UnB)\\
-  Gama -- DF -- Brasil\\
-  \email{paulormm@unb.br}}
+\institute{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)
+  \email{\{diegoamc,manzo,paulormm\}@ime.usp.br}}
 
 \maketitle
-\begin{abstract}
-  % Contexto
-  A facilidade de desenvolvimento e manutenção de um \textit{software} está diretamente relacionada com a qualidade de seu código-fonte.
-  % Problema
-  % TODO: adicionar referência que apoie a falta de uso de análise estática em ambientes de desenvolvimento.
-  No entanto, analisá-lo impõe dificuldades como, por exemplo, definir as métricas e interpretar o resultado de uma medição. Além disso, essa prática ainda não é comum em ambientes de desenvolvimento. Outro problema é a falta de ferramentas livres que integrem coletores de métricas para diversas liguagens.
-  % Soluções propostas
-  Neste artigo, apresentamos o Mezuro, uma plataforma \textit{web} livre para a avaliação colaborativa de código-fonte. O projeto fornece um meio para comparar projetos e compartilhar conhecimento sobre métricas, ensinando a configurá-las e interpretá-las. A plataforma foi idealizada de forma que seja possível integrar diversos coletores de métricas para diversas linguagens. Atualmente, a ferramenta permite analisar códigos escritos nas linguagens C, C++, Java e Ruby.
-  % Frase de impacto
-  Com este projeto, esperamos disseminar o conhecimento e incentivar o uso de métricas de código.
 
-\textbf{Palavras-chave:} análise estática, métricas de código-fonte, \textit{software} livre.
+%------------------------------------------------------------------------------
+
+\begin{abstract}
+
+% Contexto
+A facilidade de desenvolvimento e manutenção de um \textit{software} está
+diretamente relacionada com a qualidade de seu código-fonte.
+% Problema
+No entanto, analisá-lo impõe dificuldades como, por exemplo, definir as
+métricas e interpretar o resultado de uma medição. Além disso, essa prática
+ainda não é comum em ambientes de desenvolvimento. Outro problema é a falta de
+ferramentas livres que integrem coletores de métricas para diversas liguagens.
+% Soluções propostas
+Neste artigo, apresentamos uma abordagem para o monitoramento de métricas de
+código-fonte, bem como uma plataforma \textit{web} livre para a avaliação
+colaborativa de código-fonte, chamada Mezuro. Essa abordagem, apoiada pelo
+Mezuro, fornece um meio para comparar projetos e compartilhar conhecimento
+sobre métricas, ensinando a configurá-las e interpretá-las.
+
+\textbf{Palavras-chave:} análise estática, métricas de código-fonte, software
+livre.
+
 \end{abstract}
 
+%------------------------------------------------------------------------------
 
 \section{Introdução} \label{sec:intro}
 Métricas de código-fonte estático são medidas extraídas a partir das análises léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas ou compostas, ou seja, formadas pela composição de uma ou mais métricas primitivas. Sua principal função é fornecer informações sobre complexidade, compreensão, testabilidade, manutenibilidade e evolução do código\cite{meirelles2013monitoramento}.
