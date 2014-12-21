@@ -58,7 +58,7 @@ léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas
 compostas, ou seja, formadas pela composição de uma ou mais métricas
 primitivas. Sua principal função é fornecer informações sobre complexidade,
 compreensão, testabilidade, manutenibilidade e evolução do
-código~\cite{Henderson-Sellers96,Sato07}
+código~\cite{Henderson-Sellers96,Sato07}.
 
 Exemplos de métricas podem ser simples como linhas de código e quantidade de
 métodos por classe ou complexas como conexões aferentes de uma classe. Hoje
@@ -87,9 +87,10 @@ prática cair em desuso. Isto se deve ao fato de que as ferramentas de extraçã
 de métricas, em geral, não apresentam uma interface amigável para seres humanos
 lerem seus resultados e muito menos um padrão entre si. 
 %
-Além disso, não existe um consenso sobre qual conjunto de métricas é relevante para
-se avaliar a qualidade do código e uma abordagem de análise estatística para indicar
-valores bons ou ruins de tais métricas\cite{meirelles2013monitoramento}.
+Além disso, não existe um consenso sobre qual conjunto de métricas é relevante
+para se avaliar a qualidade do código e uma abordagem de análise estatística
+para indicar valores bons ou ruins de tais
+métricas\cite{meirelles2013monitoramento}.
 
 Entre nossos estudos, avaliamos a distribuição e correlações dos valores das
 métricas de 38 projetos de software livre, dentre os com mais contribuidores
@@ -517,19 +518,33 @@ até os resultados finais de uma análise.
     \label{fig:architecture-2}
   \end{figure}
 
-Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual, conforme a \textbf{Figura \ref{fig:architecture-2}}.
+Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado
+atual, conforme a \textbf{Figura \ref{fig:architecture-2}}.
 %
-Explorando mais a fundo a \textbf{Figura \ref{fig:architecture-2}}, notamos que houve uma separação do serviço monolítico em dois serviços menores e especializados: o Kalibro Processor e o Kalibro Configurations.
+Explorando mais a fundo a \textbf{Figura \ref{fig:architecture-2}}, notamos que
+houve uma separação do serviço monolítico em dois serviços menores e
+especializados: o Kalibro Processor e o Kalibro Configurations.
 %
-Essa mudança produziu mais complexidade do ponto de vista de quantidade de mensagens trocadas, o que pode causar a impressão de que a manutenabilidade do projeto piorou. Entretanto, com uma interface de comunicação bem definida, o aumento na troca de mensagens gera impactos mínimos que são compensados pela modularização e maior especialização dos serviços.
+Essa mudança produziu mais complexidade do ponto de vista de quantidade de
+mensagens trocadas, o que pode causar a impressão de que a manutenabilidade do
+projeto piorou. Entretanto, com uma interface de comunicação bem definida, o
+aumento na troca de mensagens gera impactos mínimos que são compensados pela
+modularização e maior especialização dos serviços.
 
+%------------------------------------------------------------------------------
 
 \subsection{Principais funcionalidades}
 \label{sec:funcionalidades}
 
-Idealizado como uma plataforma de métricas de código, um dos diferenciais do Mezuro reside na possibilidade de gerar informação sobre o código-fonte de forma contínua: o usuário decide quando analisar novamente o projeto e acompanha detalhadamente a evolução das notas ao longo do tempo.
+Idealizado como uma plataforma de métricas de código, um dos diferenciais do
+Mezuro reside na possibilidade de gerar informação sobre o código-fonte de
+forma contínua: o usuário decide quando analisar novamente o projeto e
+acompanha detalhadamente a evolução das notas ao longo do tempo.
 %
-Os resultados de cada análise são públicos, o que permite uma maior transparência entre o desenvolvedor e a comunidade que utiliza aquele software. Assim, ela pode decidir se aquela solução atende ou não às suas necessidades e se deve depositar confiança na qualidade do software desenvolvido.
+Os resultados de cada análise são públicos, o que permite uma maior
+transparência entre o desenvolvedor e a comunidade que utiliza aquele software.
+Assim, ela pode decidir se aquela solução atende ou não às suas necessidades e
+se deve depositar confiança na qualidade do software desenvolvido.
 
 No Mezuro, as funcionalidades podem ser divididas em dois grupos:
 \begin{itemize}
@@ -555,14 +570,23 @@ No Mezuro, as funcionalidades podem ser divididas em dois grupos:
 
 \end{itemize}
 
-O Mezuro tem o formato de uma rede social, no qual os participantes podem ver a produção de terceiros por meio da avaliação dos projetos ou do clone das configurações. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de software e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
+O Mezuro tem o formato de uma rede social, no qual os participantes podem ver a
+produção de terceiros por meio da avaliação dos projetos ou do clone das
+configurações. Essa interação mútua e aberta pode ser interessante para
+desenvolvedores, gerentes de projeto, auditores de software e até mesmo uma
+equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que
+veja o valor de tais metodologias e como isso pode contribuir para o sucesso do
+seu projeto.
 
 \subsection{Exemplo de uso}
 \label{sec:exemplo-uso}
 
-Apresentaremos a seguir o fluxo de uso mais comum das funcionalidades do Mezuro. Para utilizar o Mezuro, por exemplo, basta criar um usuário em {\url{http://mezuro.org}} e seguir os passos descritos nesta seção. 
+Apresentaremos a seguir o fluxo de uso das duas principais funcionalidades do
+Mezuro. Para utilizar o Mezuro, por exemplo, basta criar um usuário em
+{\url{http://mezuro.org}} e seguir os passos descritos nesta seção. 
 
-  \subsubsection{Criação de configuração:}
+  \subsubsection{A) Criação de configuração:}
+
   \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{images/choose-metric.png}
@@ -571,6 +595,7 @@ Apresentaremos a seguir o fluxo de uso mais comum das funcionalidades do Mezuro.
   \end{figure}
 
   Criar uma configuração envolve 5 telas do sistema em 4 passos básicos:
+
   \begin{enumerate}
     \item Acessar a página de listagem de configurações;
     \item Clicando em ``New configuration'', preencher o formulário de criação de configuração e salvá-lo;
@@ -578,20 +603,27 @@ Apresentaremos a seguir o fluxo de uso mais comum das funcionalidades do Mezuro.
     \item Preencher o formulário (detalhado a seguir) e salvá-lo.
   \end{enumerate}
 
-  Os passos 3 e 4 devem ser repetidos para cada métrica adicionada à configuração. O formulário de métrica (passo 4) é complexo se comparado ao de configuração mas, assim como os demais, cada campo possui detalhes sobre sua utilização. Aqui, destacamos os menos evidentes:
+  Os passos 3 e 4 devem ser repetidos para cada métrica adicionada à
+configuração. O formulário de métrica (passo 4) é complexo se comparado ao de
+configuração mas, assim como os demais, cada campo possui detalhes sobre sua
+utilização. Aqui, destacamos os menos evidentes:
+
   \begin{itemize}
     \item \textbf{Aggregation Form:} Maneira com a qual o resultado de uma métrica será agregado (média, mediana, máximo, etc);
     \item \textbf{Reading Group:} Conjunto de intervalos usado para dar significado prático ao resultado calculado.
   \end{itemize}
 
-  \subsubsection{Criação de projeto e avaliação de repositório:}
+  \subsubsection{B) Criação de projeto e avaliação de repositório:}
+
   Criar um projeto envolve 2 passos básicos:
   \begin{enumerate}
     \item Acessar a página de listagem de projetos;
     \item Clicando em ``New project'', escolher o nome, a descrição e salvá-lo.
   \end{enumerate}
 
-  Ao clicar em ``New repository'' entramos na criação do repositório a ser avaliado. Alguns campos merecem destaque:
+  Ao clicar em ``New repository'' entramos na criação do repositório a ser
+avaliado. Alguns campos merecem destaque:
+
   \begin{itemize}
     \item\textbf{Type:} Tipo do repositório (também pode ser um zip ou tarball) onde o código está hospedado;
     \item\textbf{Address:} Endereço do repositório remoto ou o caminho absoluto no sistema de arquivos;
@@ -606,9 +638,22 @@ Apresentaremos a seguir o fluxo de uso mais comum das funcionalidades do Mezuro.
     \label{fig:results}
   \end{figure}
 
-Após preencher todos os campos e salvar o repositório, seu primeiro processamento será automaticamente ativado e o usuário será redirecionado para a página que exibe os resultados. Nela, ele poderá conferir dados do processamento (tempo gasto para o término de cada uma de suas fases) e navegar na árvore de módulos gerada, para que possa visualizar a nota, os resultados das métricas e suas interpretações para cada um deles (Figura \ref{fig:results}). Além disso, ao clicar no nome de uma métrica calculada, um gráfico que representa a evolução dos seus valores ao longo do tempo será exibido.
+Após preencher todos os campos e salvar o repositório, seu primeiro
+processamento será automaticamente ativado e o usuário será redirecionado para
+a página que exibe os resultados. Nela, ele poderá conferir dados do
+processamento (tempo gasto para o término de cada uma de suas fases) e navegar
+na árvore de módulos gerada, para que possa visualizar a nota, os resultados
+das métricas e suas interpretações para cada um deles (Figura
+\ref{fig:results}). Além disso, ao clicar no nome de uma métrica calculada, um
+gráfico que representa a evolução dos seus valores ao longo do tempo será
+exibido.
 
-Em resumo, o Mezuro surge como uma potencial resposta para a falta de monitoramento e padronização de código-fonte e a necessidade de avaliação do mesmo, considerando que é um software livre, altamente customizável, com suporte para muitas linguagens computacionais, interface amigável, que fornece histórico de processamentos e também com uma arquitetura planejada para incorporar novas funcionalidades.
+Em resumo, o Mezuro surge como uma potencial resposta para a falta de
+monitoramento e padronização de código-fonte e a necessidade de avaliação do
+mesmo, considerando que é um software livre, altamente customizável, com
+suporte para muitas linguagens computacionais, interface amigável, que fornece
+histórico de processamentos e também com uma arquitetura planejada para
+incorporar novas funcionalidades.
 
 \section{Considerações finais}
 \label{sec:consideracoes-finais}
