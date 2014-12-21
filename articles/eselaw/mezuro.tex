@@ -13,7 +13,7 @@
 
 \begin{document}
 \sloppy
-\title{Uma abordagem para o monitoramento de métricas estáticas de código-fonte}
+\title{Abordagem e plataforma para o monitoramento de métricas estáticas de código-fonte}
 
 \author{Diego Camarinha\inst{1},Rafael Manzo\inst{1},Paulo Meirelles\inst{1}}
 
@@ -48,27 +48,69 @@ livre.
 
 %------------------------------------------------------------------------------
 
-\section{Introdução} \label{sec:intro}
-Métricas de código-fonte estático são medidas extraídas a partir das análises léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas ou compostas, ou seja, formadas pela composição de uma ou mais métricas primitivas. Sua principal função é fornecer informações sobre complexidade, compreensão, testabilidade, manutenibilidade e evolução do código\cite{meirelles2013monitoramento}.
+\section{Introdução}
+\label{sec:intro}
 
-Exemplos de métricas podem ser simples como linhas de código e quantidade de métodos por classe ou complexas como conexões aferentes de uma classe.
-Hoje existem diversas ferramentas para a simples extração de métricas como  pylint\footnote{\url{http://www.pylint.org/}} (Python), metric\_fu\footnote{\url{https://github.com/metricfu/metric_fu}} (Ruby) e Analizo\footnote{\url{http://www.analizo.org/}} (C/C++ e Java), cada uma com diferentes graus de usabilidade, padrões e conjuntos de métricas, sendo necessária a criação de uma plataforma que reúna, organize e apresente essas informações para o usuário.
+Métricas estática de código-fonte são medidas extraídas a partir das análises
+léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas ou
+compostas, ou seja, formadas pela composição de uma ou mais métricas
+primitivas. Sua principal função é fornecer informações sobre complexidade,
+compreensão, testabilidade, manutenibilidade e evolução do código.
+%TODO: referência sem ser meirelles
+%~\cite{Henderson-Sellers96,Sato07}
 
-\section{Motivação}\label{sec:motivacao}
-Por meio da avaliação de métricas de código-fonte podemos definir como está a qualidade do \textit{software} e pensar em estratégias interessantes para lidar com a chamada ``crise do \textit{software}'' \cite{naur1969software}. Esta afirma que, com o crescimento da capacidade computacional, mais problemas difíceis passam a ter solução viável, mas que, por outro lado, a complexidade da interface para uso dos novos equipamentos (\textit{hardware}) e do processo de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam falhas do \textit{software}. Assim, o controle da qualidade de um \textit{software} durante sua evolução no tempo torna-se uma ferramenta para identificar e prevenir tais falhas.
+Exemplos de métricas podem ser simples como linhas de código e quantidade de
+métodos por classe ou complexas como conexões aferentes de uma classe. Hoje
+existem diversas ferramentas para a extração de métricas como
+pylint\footnote{\url{http://www.pylint.org/}} (Python),
+metric\_fu\footnote{\url{https://github.com/metricfu/metric_fu}} (Ruby) e
+Analizo\footnote{\url{http://www.analizo.org/}} (C/C++ e Java), cada uma com
+diferentes graus de usabilidade, padrões e conjuntos de métricas, sendo
+necessária a criação de uma plataforma que reúna, organize e apresente essas
+informações para o usuário.
 
-Porém, incorporar esta avaliação às metodologias de desenvolvimento de \textit{software} não pode ser um processo manual em razão do risco desta prática cair em desuso. Isto se deve ao fato de que as ferramentas de extração de métricas, em geral, não apresentam uma interface amigável para seres humanos lerem seus resultados e muito menos um padrão entre si.
-Neste contexto, uma ferramenta com as seguintes características se faz necessária para a introdução deste tipo de avaliação constante às metodologias:
-\begin{itemize}
-  \item interface que agrupe as diversas ferramentas disponíveis;
-  \item permita seleção e composição de métricas de forma flexível;
-  \item manutenção de um histórico de evolução;
-  \item exiba os resultados de forma amigável.
-\end{itemize}
+Por meio da avaliação de métricas de código-fonte podemos definir como está a
+qualidade do \textit{software} e pensar em estratégias interessantes para lidar
+com a chamada ``crise do \textit{software}'' \cite{naur1969software}. Esta
+afirma que, com o crescimento da capacidade computacional, mais problemas
+difíceis passam a ter solução viável, mas que, por outro lado, a complexidade
+da interface para uso dos novos equipamentos (\textit{hardware}) e do processo
+de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam
+falhas do \textit{software}. Assim, o controle da qualidade de um
+\textit{software} durante sua evolução no tempo torna-se uma ferramenta para
+identificar e prevenir tais falhas.
 
-Por último, como explicado por Meirelles \cite{meirelles2013monitoramento}, ainda não existe um consenso sobre qual conjunto de métricas é relevante para se avaliar a qualidade do código e muito menos quais valores destas supostas métricas são bons ou ruins. Portanto, mais uma característica interessante para uma ferramenta neste campo é que permita aos usuários especialistas definirem tais parâmetros, viabilizando estudos estatísticos que nos aproximem de uma conclusão.
+Entretanto, incorporar esta avaliação às metodologias de desenvolvimento de
+\textit{software} não pode ser um processo manual em razão do risco desta
+prática cair em desuso. Isto se deve ao fato de que as ferramentas de extração
+de métricas, em geral, não apresentam uma interface amigável para seres humanos
+lerem seus resultados e muito menos um padrão entre si. 
+%
+Além disso, não existe um consenso sobre qual conjunto de métricas é relevante para
+se avaliar a qualidade do código e uma abordagem de análise estatística para indicar
+valores bons ou ruins de tais métricas\cite{meirelles2013monitoramento}.
+
+Entre nossos estudos, avaliamos a distribuição e correlações dos valores das
+métricas de 38 projetos de software livre, dentre os com mais contribuidores
+ativos em seus repositórios. Para tal, coletamos e analisamos os valores para
+cada métrica em mais de 344.872 classes e módulos dos projetos
+avaliados\cite{meirelles2013monitoramento}.
+%
+A partir dessas análises, definimos uma abordagem que permita a definição de
+parâmetros, viabilizando estudos estatísticos que nos aproximem de uma
+conclusão sobre os resultados das métricas coletadas.
+%
+Do ponto de vista prático, desenvolvemos um conjunto de ferramentas,
+representada pela plataforma Mezuro, para a automação da avaliação de projetos
+de software, com ênfase nos estudos e na seleção de métricas, o que
+permite a análise de código-fonte ao longo do tempo.
+
+%TODO: se couber, o que vem a seguir no artigo
+
+%------------------------------------------------------------------------------
 
 \section{Ferramentas similares}
+
 Foram levantadas informações básicas sobre duas ferramentas similares já consolidados dentre desenvolvedores de \textit{software} para que possamos avaliá-las brevemente com respeito aos critérios definidos na motivação (seção \ref{sec:motivacao}).
 
 A primeira delas e mais próxima do idealizado, o SonarQube\footnote{\url{http://www.sonarqube.org/}} é um \textit{software} livre, licenciado como LGPLv3, que oferece uma plataforma de gerenciamento de qualidade de código. Por meio de \textit{plugins} disponíveis através de uma biblioteca\footnote{\url{http://docs.codehaus.org/display/SONAR/Plugin+Library/}}. Em sua versão básica ele classifica problemas encontrados no código e calcula métricas simples de cobertura de testes e divida técnica em várias linguagens. Entretanto, seus melhores \textit{plugins} tem código fechado e pago como, por exemplo, o para análise de C/C++\footnote{\url{http://www.sonarsource.com/products/plugins/languages/cpp/}}.
