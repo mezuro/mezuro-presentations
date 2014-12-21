@@ -658,8 +658,90 @@ incorporar novas funcionalidades.
 \section{Considerações finais}
 \label{sec:consideracoes-finais}
 
-...
+Métricas de código-fonte permitem a análise de dados relacionados aos erros,
+flexibilidade, complexidade, legibilidade, manutenibilidade, segurança e
+portabilidade do código, que são fatores para a aceitação de um produto de
+software ~\cite{Henderson-Sellers96,Sato07}.
+%
+No entanto, obter esses dados e extrair deles informações úteis é uma tarefa
+não trivial que requer a ajuda de ferramentas automatizadas.
+%
+Ao contrário do software restrito, cujo código-fonte normalmente não é
+disponível para seus clientes e usuários, o software livre permite a análise de
+seu código e  mesmo a execução de testes do tipo ``caixa branca'' onde os
+módulos internos do software são avaliados.
+%
+Assim, tendo-se acesso ao código-fonte é possível realizar medições sobre a sua
+estrutura e organização interna de forma a avaliar sua qualidade.
 
+Nesta artigo, apresentamos argumentos para se observar a qualidade do software
+também através das métricas de código-fonte.
+%
+Associamos qualidade do software à qualidade do código. Medir a qualidade do
+código-fonte passou a ser tão importante quanto medir a qualidade do processo,
+principalmente no contexto do software livre.
+%
+Em muitos casos, o que está disponível é o código-fonte, promovendo-o ao
+principal artefato para se medir a qualidade do software. Uma maneira objetiva
+de se observar as ca\-rac\-te\-rís\-ti\-cas de um código-fonte é analisando os
+valores de suas métricas. 
+%
+Entretanto, ainda não está disseminada uma análise sistemática da qualidade do
+código-fonte produzido.
+%
+Mesmo com métricas de software e de código-fonte sendo propostas em alguns
+trabalhos desde a década de 1970, seu potencial de uso no desenvolvimento de
+software não tem sido explorado.
+%
+Um dos motivos da sub-utilização das métricas de código-fonte por parte dos
+desenvolvedores é a falta de conhecimento de como coletar automaticamente os
+valores das métricas, interpretar os seus resultados e os associar à qualidade
+do código-fonte.
+%
+Somado a isso, temos o fato da maior parte das métricas não possuir valores
+frequentes conhecidos, o que seria útil como parâmetro nas análises dos valores
+das métricas de um determinado código-fonte.
+%
+É nesse cenário teórico e prático que este trabalho evoluiu.
+
+Cconstatamos uma contradição nos trabalhos relacionados quanto à abordagem para
+se estudar e observar as métricas de código-fonte.
+%
+Dessa forma, discutimos de maneira objetiva sobre o comportamento de métricas
+selecionadas para este trabalho, em particular, com relação aos tipos de
+distribuição que as governam e os valores frequentes dessas métricas entre
+alguns dos principais projetos de software livre escritos em C,  C++ e Java.
+
+Em suma, não ficamos limitados a uma única plataforma e fonte de dados. Assim,
+identificamos as distribuições estatísticas dos valores das métricas em 38
+projetos de software livre, dentre eles os com mais contribuidores e usuários,
+a fim de compreendermos qual a medida mais representativa para o monitoramento
+de tais métricas.
+%
+Com isso, contribuindo para uma abordagem estatística para monitoramento de
+métricas de código-fonte.
+
+Do ponto de vista das contribuições práticas, hoje, temos uma plataforma que
+permite, em resumo: 
+% 
+(i) Obter e publicar informações sobre os projetos de softwarw por uma análise
+viável e de fácil leitura, percorrendo periodicamente e de forma automatizada
+os repositórios dos projetos de software; 
+% 
+(ii) Fornecer um modelo, baseado nas métricas de código-fonte, para avaliar e
+comparar a qualidade de diferentes projetos de software; 
+% 
+(iii) Permitir que os usuários de software possam usufruir dessa avaliação como
+uma informação inicial para se decidirem por qual projeto usar; 
+%
+(iv) Prover mecanismos para que as equipes de desenvolvimento de software
+possam se auto-avaliar de forma a melhorar a qualidade do seu próprio produto. 
+%
+Por isso, apresentamos em detalhes a plataforma Mezuro, que permite colocar em
+prática as abordagens de monitoramento e avaliação das métricas apresentadas em
+nossos estudos.
+
+%\scalefont{0.9}
 \bibliographystyle{splncs03}
 \bibliography{mezuro}
 \end{document}
