@@ -29,7 +29,7 @@
 \begin{abstract}
 
 % Contexto
-A facilidade de desenvolvimento e manutenção de um \textit{software} está
+A facilidade de desenvolvimento e manutenção de um software está
 diretamente relacionada com a qualidade de seu código-fonte.
 % Problema
 No entanto, analisá-lo impõe dificuldades como, por exemplo, definir as
@@ -71,18 +71,18 @@ necessária a criação de uma plataforma que reúna, organize e apresente essas
 informações para o usuário.
 
 Por meio da avaliação de métricas de código-fonte podemos definir como está a
-qualidade do \textit{software} e pensar em estratégias interessantes para lidar
-com a chamada ``crise do \textit{software}'' \cite{naur1969software}. Esta
+qualidade do software e pensar em estratégias interessantes para lidar
+com a chamada ``crise do software'' \cite{naur1969software}. Esta
 afirma que, com o crescimento da capacidade computacional, mais problemas
 difíceis passam a ter solução viável, mas que, por outro lado, a complexidade
 da interface para uso dos novos equipamentos (\textit{hardware}) e do processo
 de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam
-falhas do \textit{software}. Assim, o controle da qualidade de um
-\textit{software} durante sua evolução no tempo torna-se uma ferramenta para
+falhas do software. Assim, o controle da qualidade de um
+software durante sua evolução no tempo torna-se uma ferramenta para
 identificar e prevenir tais falhas.
 
 Entretanto, incorporar esta avaliação às metodologias de desenvolvimento de
-\textit{software} não pode ser um processo manual em razão do risco desta
+software não pode ser um processo manual em razão do risco desta
 prática cair em desuso. Isto se deve ao fato de que as ferramentas de extração
 de métricas, em geral, não apresentam uma interface amigável para seres humanos
 lerem seus resultados e muito menos um padrão entre si. 
@@ -489,43 +489,52 @@ facilitar o entendimento do código para novos contribuidores.
 \subsection{Arquitetura do Mezuro}
 \label{sec:arquitetura}
 
-  Desde a sua primeira implementação até a sua reescrita completa, a arquitetura do sistema evoluiu consideravelmente. Quando o projeto era integrado com o Noosfero, nosso sistema ficava preso às limitações tanto da tecnologia utilizada, que tinha que ser compatível com a do Noosfero, quanto da arquitetura de \textit{plugins}, que restringia nossa liberdade para expandirmos nossas funcionalidades.
+Desde a sua primeira implementação até a sua reescrita completa, a arquitetura
+do sistema evoluiu consideravelmente.
+%
+Recentemente, passamos a ter completa autonomia para usar as tecnologias que
+julgávamos ser mais adequadas para solucionar nossos problemas. Preocupamo-nos
+também em mantê-las atualizadas para termos as funcionalidades mais novas e as
+correções de defeitos antigos. Outra mudança importante foi a adoção do estilo
+arquitetural de micro serviços \cite{namiot2014micro}.
+%
+A \textbf{Figura \ref{fig:architecture-1}} ilustra a arquitetura do sistema, ao
+fim da reescrita da interface gráfica, por meio de um diagrama UML de
+sequência. A ilustração refere-se ao processo de criação de uma configuração
+até os resultados finais de uma análise.
 
-  Após desacoplarmos o Mezuro do Noosfero, passamos a ter completa autonomia para usar as tecnologias que julgávamos ser mais adequadas para solucionar nossos problemas. Preocupamo-nos também em mantê-las atualizadas para termos as funcionalidades mais novas e as correções de defeitos antigos. Outra mudança importante foi a adoção do estilo arquitetural de micro serviços \cite{namiot2014micro}. A \textbf{figura \ref{fig:architecture-1}} ilustra a arquitetura do sistema, ao fim da reescrita da interface gráfica, por meio de um diagrama UML de sequência. A ilustração se refere ao processo de criação de uma configuração até os resultados finais de uma análise.
-
-  \begin{figure}[H]
+  \begin{figure}[htb]
     \centering
-    \includegraphics[width=\textwidth]{images/prev_processing_seq_diag.png}
+    \includegraphics[scale=0.5]{images/prev_processing_seq_diag.png}
     \caption{Arquitetura do sistema ao fim da reescrita da interface gráfica.}
     \label{fig:architecture-1}
   \end{figure}
 
-  Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual (\textbf{figura \ref{fig:architecture-2}}) que representa as mesmas operações da figura anterior.
-
-  \begin{figure}[H]
+\begin{figure}[htb]
     \centering
-      \includegraphics[width=\textwidth]{images/processing_seq_diag.png}
+      \includegraphics[scale=0.45]{images/processing_seq_diag.png}
     \caption{Arquitetura do sistema ao fim da reestruturação do Kalibro.}
     \label{fig:architecture-2}
   \end{figure}
 
-  Explorando mais a fundo a \textbf{figura \ref{fig:architecture-2}}, notamos que houve uma separação do serviço monolítico em dois serviços menores e especializados: o Kalibro Processor e o Kalibro Configurations. Essa mudança produziu mais complexidade do ponto de vista de quantidade de mensagens trocadas, o que pode causar a impressão de que a manutenabilidade do projeto piorou. Entretanto, com uma interface de comunicação bem definida, o aumento na troca de mensagens gera impactos mínimos que são compensados pela modularização e maior especialização dos serviços.
+Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual, conforme a \textbf{Figura \ref{fig:architecture-2}}.
+%
+Explorando mais a fundo a \textbf{Figura \ref{fig:architecture-2}}, notamos que houve uma separação do serviço monolítico em dois serviços menores e especializados: o Kalibro Processor e o Kalibro Configurations.
+%
+Essa mudança produziu mais complexidade do ponto de vista de quantidade de mensagens trocadas, o que pode causar a impressão de que a manutenabilidade do projeto piorou. Entretanto, com uma interface de comunicação bem definida, o aumento na troca de mensagens gera impactos mínimos que são compensados pela modularização e maior especialização dos serviços.
 
-\section{Diferenciais} \label{subsec:motivacao}
-As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
-\begin{itemize}
-    \item Não há parâmetros de comparação consolidados entre projetos;
-    \item Existem estudos, mas poucos dados empíricos;
-    \item Ainda é dada pouca importância ao monitoramento de código.
-\end{itemize}
 
-\section{Por que usar o Mezuro?} \label{sec:projeto-mezuro}
-Idealizado como uma plataforma de métricas de código, um dos diferenciais do Mezuro reside na possibilidade de gerar informação sobre o código-fonte de forma contínua: o usuário decide quando analisar novamente o projeto e acompanha detalhadamente a evolução das notas ao longo do tempo. Os resultados de cada análise são públicos, o que permite uma maior transparência entre o desenvolvedor e a comunidade que utiliza aquele \textit{software}. Assim, ela pode decidir se aquela solução atende ou não às suas necessidades e se deve depositar confiança na qualidade do \textit{software} desenvolvido.
+\subsection{Principais funcionalidades}
+\label{sec:funcionalidades}
 
-\section{Principais funcionalidades}\label{sec:princ-funcionalidades}
+Idealizado como uma plataforma de métricas de código, um dos diferenciais do Mezuro reside na possibilidade de gerar informação sobre o código-fonte de forma contínua: o usuário decide quando analisar novamente o projeto e acompanha detalhadamente a evolução das notas ao longo do tempo.
+%
+Os resultados de cada análise são públicos, o que permite uma maior transparência entre o desenvolvedor e a comunidade que utiliza aquele software. Assim, ela pode decidir se aquela solução atende ou não às suas necessidades e se deve depositar confiança na qualidade do software desenvolvido.
+
 No Mezuro, as funcionalidades podem ser divididas em dois grupos:
 \begin{itemize}
-  \item Projeto
+
+  \item \textbf{Projeto}
     \begin{itemize}
     \item \textit{Download} do código-fonte a partir de repositórios (Git, Subversion, Bazaar etc) ou via arquivo compactado;
         \item Escolha da periodicidade do processamento do código (1 dia, 2 dias, semanal, quinzenal e mensal);
@@ -534,7 +543,8 @@ No Mezuro, as funcionalidades podem ser divididas em dois grupos:
         \item Análise gráfica de cada arquivo do repositório por meio de um gráfico de pontos com notas ao longo do tempo;
         \item Resultados públicos e acessíveis à comunidade.
     \end{itemize}
-    \item Configuração
+
+    \item \textbf{Configuração}
     \begin{itemize}
     \item Criação de configuração e a possibilidade de clonagem;
         \item Estatísticas sobre as configurações mais populares dentro da comunidade;
@@ -542,16 +552,18 @@ No Mezuro, as funcionalidades podem ser divididas em dois grupos:
         \item Criação de grupos de leitura para a interpretação textual dos resultados das métricas;
         \item Combinações de métricas nativas para criação de análises compostas e mais complexas.
     \end{itemize}
+
 \end{itemize}
 
-\section{A rede social}\label{sec:user-potencial}
-O Mezuro tem o formato de uma rede social, no qual os participantes podem ver a produção de terceiros por meio da avaliação dos projetos ou do clone das configurações. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de \textit{software} e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
+O Mezuro tem o formato de uma rede social, no qual os participantes podem ver a produção de terceiros por meio da avaliação dos projetos ou do clone das configurações. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de software e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
 
-\section{Casos de uso}
-Apresentaremos a seguir as duas principais funcionalidades da ferramenta ilustradas por meio de capturas de telas. Em todas elas, utilizamos uma conta já cadastrada no sistema (único privilégio necessário para realizá-las).
+\subsection{Exemplo de uso}
+\label{sec:exemplo-uso}
 
-  \subsection{Criação de configuração}
-  \begin{figure}[H]
+Apresentaremos a seguir o fluxo de uso mais comum das funcionalidades do Mezuro. Para utilizar o Mezuro, por exemplo, basta criar um usuário em {\url{http://mezuro.org}} e seguir os passos descritos nesta seção. 
+
+  \subsubsection{Criação de configuração:}
+  \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{images/choose-metric.png}
     \caption{Interface para escolha de ferramenta extratora de métrica e escolha de uma métrica nativa para adicionar a uma configuração.}
@@ -562,7 +574,7 @@ Apresentaremos a seguir as duas principais funcionalidades da ferramenta ilustra
   \begin{enumerate}
     \item Acessar a página de listagem de configurações;
     \item Clicando em ``New configuration'', preencher o formulário de criação de configuração e salvá-lo;
-    \item Clicando em ``Add metric'', escolher a ferramenta de extração e qual métrica a ser usada (figura \ref{fig:choose-metric});
+    \item Clicando em ``Add metric'', escolher a ferramenta de extração e qual métrica a ser usada (Figura \ref{fig:choose-metric});
     \item Preencher o formulário (detalhado a seguir) e salvá-lo.
   \end{enumerate}
 
@@ -572,38 +584,36 @@ Apresentaremos a seguir as duas principais funcionalidades da ferramenta ilustra
     \item \textbf{Reading Group:} Conjunto de intervalos usado para dar significado prático ao resultado calculado.
   \end{itemize}
 
-  \subsection{Criação de projeto e avaliação de repositório}
+  \subsubsection{Criação de projeto e avaliação de repositório:}
   Criar um projeto envolve 2 passos básicos:
   \begin{enumerate}
     \item Acessar a página de listagem de projetos;
     \item Clicando em ``New project'', escolher o nome, a descrição e salvá-lo.
   \end{enumerate}
 
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/new-repository.png}
-    \caption{Interface para criação de um novo repositório.}
-    \label{fig:new-repository}
-  \end{figure}
-
-  Ao clicar em ``New repository'' entramos na criação do repositório a ser avaliado (figura \ref{fig:new-repository}). Alguns campos merecem destaque:
+  Ao clicar em ``New repository'' entramos na criação do repositório a ser avaliado. Alguns campos merecem destaque:
   \begin{itemize}
     \item\textbf{Type:} Tipo do repositório (também pode ser um zip ou tarball) onde o código está hospedado;
     \item\textbf{Address:} Endereço do repositório remoto ou o caminho absoluto no sistema de arquivos;
     \item\textbf{Process Period:} Periodicidade com a qual o código deve ser analizado pela ferramenta (diariamente, semanalmente etc);
     \item\textbf{Configuration:} Configuração de métricas que o usuário deseja utilizar para medir o código (pode ser escolhida dentre todas as configurações criadas pelos usuários).
   \end{itemize}
-  Após preencher todos os campos e salvar o repositório, seu primeiro processamento será automaticamente ativado e o usuário será redirecionado para a página que exibe os resultados. Nela, ele poderá conferir dados do processamento (tempo gasto para o término de cada uma de suas fases) e navegar na árvore de módulos gerada, para que possa visualizar a nota, os resultados das métricas e suas interpretações para cada um deles (figura \ref{fig:results}). Além disso, ao clicar no nome de uma métrica calculada, um gráfico que representa a evolução dos seus valores ao longo do tempo será exibido.
 
-  \begin{figure}[H]
+  \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{images/new-repository-results.png}
     \caption{Tela de visualização dos resultados do processamento do repositório.}
     \label{fig:results}
   \end{figure}
 
-\section{Conclusão}
-O Mezuro surge como uma potencial resposta para a falta de monitoramento e padronização de código-fonte e a necessidade de avaliação do mesmo, considerando que é um \textit{software} livre, altamente customizável, com suporte para muitas linguagens computacionais, interface amigável, que fornece histórico de processamentos e também com uma arquitetura planejada para incorporar novas funcionalidades.
+Após preencher todos os campos e salvar o repositório, seu primeiro processamento será automaticamente ativado e o usuário será redirecionado para a página que exibe os resultados. Nela, ele poderá conferir dados do processamento (tempo gasto para o término de cada uma de suas fases) e navegar na árvore de módulos gerada, para que possa visualizar a nota, os resultados das métricas e suas interpretações para cada um deles (Figura \ref{fig:results}). Além disso, ao clicar no nome de uma métrica calculada, um gráfico que representa a evolução dos seus valores ao longo do tempo será exibido.
+
+Em resumo, o Mezuro surge como uma potencial resposta para a falta de monitoramento e padronização de código-fonte e a necessidade de avaliação do mesmo, considerando que é um software livre, altamente customizável, com suporte para muitas linguagens computacionais, interface amigável, que fornece histórico de processamentos e também com uma arquitetura planejada para incorporar novas funcionalidades.
+
+\section{Considerações finais}
+\label{sec:consideracoes-finais}
+
+...
 
 \bibliographystyle{splncs03}
 \bibliography{mezuro}
