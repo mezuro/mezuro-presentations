@@ -10,6 +10,8 @@
 \usepackage{tabularx}
 \usepackage{cite}
 \usepackage{hyperref}
+\usepackage{comment}
+\usepackage{scalefnt}
 
 \begin{document}
 \sloppy
@@ -55,9 +57,8 @@ Métricas estática de código-fonte são medidas extraídas a partir das análi
 léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas ou
 compostas, ou seja, formadas pela composição de uma ou mais métricas
 primitivas. Sua principal função é fornecer informações sobre complexidade,
-compreensão, testabilidade, manutenibilidade e evolução do código.
-%TODO: referência sem ser meirelles
-%~\cite{Henderson-Sellers96,Sato07}
+compreensão, testabilidade, manutenibilidade e evolução do
+código~\cite{Henderson-Sellers96,Sato07}
 
 Exemplos de métricas podem ser simples como linhas de código e quantidade de
 métodos por classe ou complexas como conexões aferentes de uma classe. Hoje
@@ -109,45 +110,339 @@ permite a análise de código-fonte ao longo do tempo.
 
 %------------------------------------------------------------------------------
 
-\section{Ferramentas similares}
+\section{Trabalhos relacionados}
 
-Foram levantadas informações básicas sobre duas ferramentas similares já consolidados dentre desenvolvedores de \textit{software} para que possamos avaliá-las brevemente com respeito aos critérios definidos na motivação (seção \ref{sec:motivacao}).
+Alguns estudos baseado em análise de métricas de código-fonte têm uma limitação
+ao não avaliarem se a média das valores é uma medida representativa, ou seja,
+informativa estatisticamente, para tais
+análises\cite{meirelles2013monitoramento}.
+%
+Mesmo estudo mais recentes, baseados nas análises de métricas também não deixam
+claro a representatividade da média das métricas. Por exemplo, Williams at
+at.\cite{williams2010} determinaram os tipos de mudanças na arquitetura de
+software e propuseram uma caracterização dessas mudanças, o que também envolveu
+a análise de métricas de complexidade de código-fonte.
+%
+Terceiro e seu grupo~\cite{terceiro2009, terceiro2012:csmr, terceiro2010:dcoss,
+terceiro2010:core-periphery} realizaram estudos para definir uma caracterização
+da complexidade estrutural em sistemas de software livre.
+%
+Eles analisaram a complexidade estrutural média entre todos os módulos de 13
+projetos de software livre, de diferentes domínios de aplicação e linguagens de
+programação, observando o histórico de mudanças desses sistemas, porém,
+limitados ao considerar a média representativa para suas análises.
+%
 
-A primeira delas e mais próxima do idealizado, o SonarQube\footnote{\url{http://www.sonarqube.org/}} é um \textit{software} livre, licenciado como LGPLv3, que oferece uma plataforma de gerenciamento de qualidade de código. Por meio de \textit{plugins} disponíveis através de uma biblioteca\footnote{\url{http://docs.codehaus.org/display/SONAR/Plugin+Library/}}. Em sua versão básica ele classifica problemas encontrados no código e calcula métricas simples de cobertura de testes e divida técnica em várias linguagens. Entretanto, seus melhores \textit{plugins} tem código fechado e pago como, por exemplo, o para análise de C/C++\footnote{\url{http://www.sonarsource.com/products/plugins/languages/cpp/}}.
+Entretanto, alguns outros trabalhos relacionados mencionam que métricas de
+software, incluindo as métricas de código-fonte, têm sido analisados como dados
+que são leis de potência~\cite{clauset2007}, em especial as métricas de
+orientação a objetos.
+%
+Isso significa que, de acordo com esses trabalhos, as métricas de código-fonte
+possuem distribuições estatísticas que têm como característica geral ter cauda
+longa e ser de escala livre, o que significa que a média não é um valor
+informativo~\cite{clauset2007}.
 
-Por sua vez, o Code Climate\footnote{\url{https://codeclimate.com/}} é uma ferramenta que fornece análise de códigos JavaScript ou Ruby (da versão 1.8 em diante) que estejam disponíveis em um servidor Git.
+Entretanto, observarmos que a maioria desses trabalhos estavam analisando
+apenas códigos em Java e generalizando suas observações para todos os projetos
+orientados a objetos.
+%
+Além disso, os critérios de seleção dos projetos avaliados não contemplam, em
+uma amostra maior, os principais projetos de software livre disponibilizados,
+em particular os com mais desenvolvedores ativos e atualizações nos repositório
+(atividade de desenvolvimento).
 
-O \textit{software} procura por ``\textit{code smells}'' no programa do usuário e os classifica como mais ou menos problemáticos levando em consideração o tamanho dos métodos e duplicação de blocos. Conforme os encontra, o programa atribui valores ao código para no final determinar uma nota de \textit{A} a \textit{F} com base no somatório dos valores encontrados. Note que a análise feita não necessariamente indica um problema real, uma vez que aquela pode ter sido a implementação escolhida pelo programador.
+Por exemplo, Wheewldon et al.\cite{Wheeldon2003} avaliaram 4 projetos em Java:
+JDK (Java Development Kit), Apache, Ant e Tomcat.
+%
+Eles identificaram leis de potência para as métricas de número de atributos,
+número de métodos. Um estudo com poucos projetos e poucas métricas, mas que
+levantou a questão das leis de potências.
+%
+Potanin et al.\cite{Potanin2005} analisaram 35 programas Java e observaram que,
+neles, os relacionamentos entre os objetos constituem um grafo livre de escala,
+que difere de um grafo com arestas distribuídas aleatoriamente. Em um de grafo
+livre de escala, uma vez que a distribuição dos graus de seus vértices seguem
+uma lei de potência, a média não é representativa. Fizeram constatações
+interessantes, mas limitados a Java e a seleção não clara dos projetos não
+permite generalizar os resultados.
+%
+Baxter et al.\cite{Baxter2006} coletaram métricas de 56 projetos de software
+livre em Java.  Eles demonstram que nem todas as métricas estão sob leis de
+potência, indicando que algumas métricas, como grau de entrada
+(\textit{fan-in}) e número de subclasses, seguem leis de potência, mas outras
+métricas não, como grau de saída (\textit{fan-out}), número de atributos e
+número de atributos públicos.
+%
+Louridas et al.\cite{Louridas2008} avaliaram partes de 11 projetos (10 livres e
+um restrito) escritos em Java, C, Ruby e Perl.
+%
+Eles investigaram apenas o grau de entrada (\textit{fan-in}) e de saída
+(\textit{fan-out}) dos módulos e classes. Seus resultados  indicam que essas
+métricas possuem distribuições na família de leis de potência, independente do
+paradigma de programação.
+%
+Em relação à métrica de grau de saída, o estudo de Baxter et
+al.\cite{Baxter2006} apresenta resultados diferentes. Isso nos levou a refletir
+pela literatura que as métricas que trabalhamos nesta tese não são governadas
+necessariamente pelas leis de potência; além disso, não podemos generalizar
+para uma distribuição normal.
 
-Recentemente, o Code Climate iniciou uma análise estatística preliminar de todos os projetos que já foram analisados por este. Publicada informalmente em uma simples publicação em sua página\footnote{\url{http://blog.codeclimate.com/blog/2014/05/21/does-team-size-impact-code-quality/?utm\_source=Code+Climate&utm\_campaign=69c024549d-newsletter-NI-2014-05-22&utm\_medium=email&utm\_term=0\_672a7f5529-69c024549d-317410425}}.
+Mesmo com esses estudos sobre as leis de potência, observamos que, na área de
+avaliação de métricas de código-fonte e visualização de software, os trabalhos
+de Michele Lanza, em particular o seu livro \cite{Lanza2006}, são os mais
+reconhecidos.
+%
+Entretanto, não se verifica cuidadosamente como seus dados foram analisados.
+%
+Lanza e Marinescu\cite{Lanza2006} definiram valores referência para 3 métricas
+de código-fonte (número de métodos por classe, número de linhas de código
+linhas de código e complexidade ciclomática por método) baseado em informações
+estatísticas.
+%
+Eles avaliaram essas 3 métricas em 37 programas desenvolvidos em C++ e 45 em
+Java, entre projetos de software livre e software restrito.
+%
+Lanza e Marinescu\cite{Lanza2006} generalizaram as análises e consideraram os
+valores das métricas como uma distribuição Normal.
+%
+Dessa forma, um cálculo simples com a média e o desvio padrão foi feito para
+definir o que eles denominaram de intervalos de referência:
+%
+o valor de uma métrica é considerando fora desse padrão quando ele é 50\% maior
+que o valor do intervalo determinado. Em resumo, eles assumem a média como um
+valor informativo para suas análises.
 
-\section{Histórico do Mezuro}\label{sec:mezuro}
-Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}. Explicaremos o contexto no qual o projeto foi criado, mostrando como as ideias das partes que o compõe evoluíram até alcançar o estágio atual. Além disso, descreveremos a integração do projeto com o Noosfero\footnote{\url{http://noosfero.org}} e porque ela não deu certo. Por fim, exibiremos a fase atual de desenvolvimento de todas as partes do Mezuro, explicitando as decisões mais importantes que foram tomadas para melhorar o andamento do projeto.
+Na mesma linha do trabalho de Lanza e Marinescu\cite{Lanza2006}, na tentativa
+de definir valores de referência, Ferreira et al.\cite{Ferreira2009} conduziram
+um estudo que analisou diferentes métricas para 40 programas, de 11 diferentes
+domínios de aplicação, desenvolvidos em Java.
+%
+Esse trabalho sugere intervalos qualitativos para 6 métricas: COF
+(conectividade), LCOM (coesão), DIT (profundidade da arvore de herança), ACC
+(conexões aferentes), NPA (atributos públicos) e NPM (número de métodos
+públicos).
+%
+Eles argumentam que essas métricas podem ser modeladas pelas distribuições
+Weibull e Poisson, que são leis de potência, sendo possível identificar valores
+típicos para tais métricas e usá-los com referência para o desenvolvimento de
+software de qualidade.
+%
+Mesmo sendo uma tentativa de definir valores de referência, a limitação pela
+linguagem Java e por não contemplar os principais projetos de software livre,
+somado às contradições e generalização dos trabalhos relacionados citados, nos
+levou a verificar em detalhes as distribuições de cada métrica.
+%
+Por fim, em particular, na abordagem de \cite{Ferreira2009} não ficou clara a
+definição dos pontos de corte para a indicação dos intervalos, bem como nos
+testes das distribuições foi usada uma ferramenta restrita (fechada), o que
+impede a reprodução na íntegra do referido
+estudo\cite{meirelles2013monitoramento}.
 
-  \subsection{Origem}\label{sec:origin}
-  O Mezuro é dividido em duas partes: processamento e cálculo de métricas de código-fonte; e a interface gráfica para apresentação dos resultados. Ambas tiveram seu início na disciplina de Laboratório de Programação Extrema, do Instituto de Matemática e Estatística da Universidade de São Paulo (IME-USP) em 2009 e 2010, respectivamente. Porém, apenas no segundo semestre de 2013 que os desenvolvedores dos dois projetos passaram a trabalhar em conjunto. Com essa união, uma troca de nomes foi necessária: até essa data, a interface gráfica era chamada de Mezuro e o módulo de processamento de Kalibro; a partir dela, passamos a chamar de Prezento o módulo de visualização e de Mezuro o projeto inteiro, ou seja, o Kalibro integrado com o Prezento.
+%% trabalhos que questionam a generalização e exclusivadade da power law
 
-  O Kalibro\cite{de2013kalibro} tem suas raízes ainda mais no passado, em 2003, com o projeto JaBUTI\cite{vincenzi2003jabuti}. Esse projeto inspirou, a partir de 2009, uma equipe de colaboradores a desenvolver uma melhor interface para exibir seus resultados. Dessa motivação, surgiu o projeto Crab\cite{meirelles2009crab}. Mais tarde, em 2010, sua equipe decidiu abandonar a integração com o JaBUTI para integrar o Analizo\cite{terceiro2010analizo}. Com essa mudança, o Crab foi renomeado para Kalibro.
+Nesse contexto, como visto, as distribuições estatísticas de métricas de
+código-fonte têm sido estudadas.
+%
+Por um lado, em particular as métricas para códigos escritos em linguagens
+orientadas a objetos, no caso Java, parecem obedecer a leis de
+potência~\cite{Wheeldon2003, Potanin2005, Concas2007, Ferreira2009, Yao2009}.
+%
+Por outro lado, observamos que há indícios que não necessariamente algumas
+métricas têm suas distribuições de modo que seu comportamento siga uma lei de
+potência~\cite{Baxter2006, Lanza2006, Herraiz2011, Herraiz2012}.
 
-  Em seu início como Kalibro, o \textit{software} dispunha de uma interface gráfica nativa em Java. Porém, logo tomou o rumo de ser um serviço web e assim essa interface deixou de ser mantida. Para suprir a necessidade de visualização, foi concebido o projeto então denominado Mezuro \cite{meirelles2013monitoramento}. Esse projeto visava ser uma rede social na qual desenvolvedores pudessem calcular métricas de seus códigos-fonte e compartilhar tanto os resultados quanto a escolha de métricas utilizada. Os principais objetivos eram disseminar conhecimento sobre métricas e aproximar a comunidade de um consenso sobre quais delas são mais relevantes para serem consideradas, em contextos diferentes.
+Estamos argumentando e apresentando aqui que não há consenso sobre se as
+métricas de código-fonte podem ser melhor descritas usando leis de potência,
+distribuição normal ou lognormal~\cite{meirelles2013monitoramento}.
+%
+Essa informação é relevante para determinarmos qual medida estatística (média,
+mediana ou algum percentil) devemos observar para monitorarmos as métricas de
+código-fonte.
+%
+Também, se há essa dispersão de abordagens sobre as distribuições das métricas
+em códigos escritos no paradigma de orientação a objetos, que vem sendo o alvo
+de estudos da maioria dos trabalhos, no contexto de projetos de software livre,
+em que boa parte dos projetos são escritos em C\cite{robles2006:mining-large},
+essa questão se apresenta mais aberta ainda.
 
-  A primeira equipe formada para desenvolver o Mezuro decidiu que o projeto seria escrito em \textit{Ruby}, com o apoio do arcabouço \textit{Ruby on Rails}. Os principais motivos dessa escolha foram: ambas as tecnologias são softwares livres; a comunidade delas é ativa e elas estavam ganhando notoriedade entre os desenvolvedores web. Porém, a equipe não tinha experiência com elas. Como a curva de aprendizado é acentuada, a entrega de novas funcionalidades constantemente atrasava. Para agilizar o desenvolvimento e aproveitar a estrutura de rede social já fornecida pelo Noosfero, o primeiro protótipo do Mezuro foi projetado para ser um \textit{plugin} dessa plataforma.
+%------------------------------------------------------------------------------
 
-  \subsection{Primeiro protótipo de interface gráfica}\label{sec:primeiro-prototipo}
+\section{Uma abordagem para o monitoramento de métricas de código-fonte}
+\label{sec:abordagem}
 
-  O Noosfero é uma plataforma web para redes sociais. Ele possui todas as funcionalidades desejadas de uma rede social, como suporte à comunidade, eventos e amizade entre usuários. Além disso, a plataforma possui uma estrutura robusta para \textit{plugins}. Ela permite que eles sejam adicionados e configurados com facilidade, escondendo aquilo que não precisa ser conhecido.
+Ao constatarmos a contradição nos trabalhos da área em relação às distribuições
+das métricas e observarmos o número limitado de métricas estudadas, geralmente
+apenas em projetos escrito em Java, conduzimos estudos selecionando um conjunto
+de 38 projetos de software livre (18 escritos predominantemente em C, 6 em C++
+e 14 em Java), por exemplo, Linux Kernel, FreeBSD, Chrome, Firefox, Eclipse IDE
+e Open JDK8, num total de 344.872 classes e
+módulos~\cite{meirelles2013monitoramento}.
 
-  A utilização do Noosfero impulsionou o desenvolvimento do Mezuro, ainda como apenas uma interface gráfica para o Kalibro, por reduzir a curva de aprendizado da equipe em dois importantes aspectos: não foi necessário construir uma aplicação do começo e a arquitetura de \textit{plugins} é mais simples em comparação com a arquitetura de um projeto \textit{Ruby on Rails}.
+As métricas coletadas e analisadas para este estudo foram:
+(ACC) Conexões aferentes de uma classe;
+(ACCM) Média da Complexidade Ciclomática por método;
+(AMLOC) Média do número de linhas de código por método;
+(ANPM) Média do Número de Parâmetros por Método;
+(CBO)Acoplamento entre objetos;
+(DIT) Profundidade da árvore de herança;
+(LCOM) Ausência de coesão em métodos;
+(LOC) Número de linhas de código;
+(NOA) Número de atributos;
+(NOC) Número de filhos;
+(NOM) Número de métodos;
+(NPA) Número de atributos públicos;
+(NPM) Número de métodos públicos;
+(RFC) Respostas para uma classe;
+(SC) Complexidade estrutural~\cite{meirelles2013monitoramento}.
+%
+Fizemos análises estatísticas detalhadas, desde a análise descritiva dos dados,
+passando pela verificação do tipo de distribuição em cada métrica, até
+chegarmos nos percentis dos valores das métricas das classes (ou módulos) de
+cada um dos projetos.
+%
+Em resumo, nossos dados sinalizam que o monitoramento dessas métricas pode
+variar de acordo com a linguagem de programação, domínio de aplicação ou mesmo
+de acordo com a maturidade do projeto~\cite{meirelles2013monitoramento}.
 
-  O Noosfero é um software complexo e, apesar de a estrutura de \textit{plugins} esconder alguns detalhes de sua implementação, em alguns momentos era difícil compreender seu funcionamento. Nessa fase do desenvolvimento, o projeto recebeu a consultoria tanto dos líderes de desenvolvimento da plataforma, quanto de ex-alunos do IME-USP com experiência no arcabouço.
+%ACC
+Por exemplo, no caso da métrica ACC, por conta da distribuição de Pareto
+observada, sugerimos como referência de valores frequentes, os dados do
+percentil 75, de forma que para projetos escritos em C, o código do Linux
+sinaliza ter valores frequentes não tão bons quanto o do Android, mas factíveis
+de serem usados como uma referência para C: de 0 a 2,0: muito frequente; de 2,1
+a 7,0: frequente; de 7,1 a 13,0: pouco frequente; acima de 13,0: não frequente.
+%
+Para C++, o código do Firefox, mesmo com ACC não tão bom quanto o OpenOffice,
+indica um equilíbrio para usarmos seus valores frequentes: de 0 a 2,0: muito
+frequente; de 2,1 a 7,0: frequente; de 7,1 a 15,0: pouco frequente; acima de
+15,0: não frequente.
+%
+Para Java, o Open JDK8 pode ser nossa referência ao observarmos os 14 projetos:
+de 0 a 1,0: muito frequente; 1,1 a 5,0: frequente; de 5,1 12,0: pouco
+frequente; acima de 12,0: não frequente.
 
-  No primeiro semestre de 2013, durante mais uma edição da disciplina de Laboratório de Programação Extrema, o desenvolvimento de novas funcionalidades novamente começou a atrasar. Porém, dessa vez não era por causa de falta de conhecimento das tecnologias. Pelo contrário, a equipe queria criar funcionalidades avançadas demais para elas. Isso porque o Noosfero segue o ritmo de atualizações do Linux Debian (na época em sua versão 5) que utilizava versões muito antigas das bibliotecas necessárias. Por exemplo, a versão do arcabouço \textit{Ruby on Rails} utilizada no Noosfero era a 2.3.5, enquanto que o a equipe responsável pelo arcabouço já se preparava para lançar a versão 4.0. Outro problema é que a estrutura de \textit{plugins} começou a limitar algumas funcionalidades do Mezuro pois não tínhamos a liberdade de implementação que gostaríamos de ter. Por fim, percebemos que o Mezuro não precisava de todas as funcionalidades de rede social disponíveis no Noosfero (comunidades, por exemplo) e que elas apenas adicionavam mais complexidade ao nosso projeto.
+%ACCM
+Outro exemplo é que o tipo de distribuição para a métrica de complexidade
+ciclomática (ACCM) varia entre os projetos.
+%
+Além da Weibull, dependendo do projeto, ela se ajusta ao \textit{Skew
+Exponential Power}, que também vamos considerar como uma lei de potência, uma
+vez que as distribuições que seguem as leis de potência são consideradas um
+caso particular das distribuições Skew~\cite{Mahnke2012}.
+%
+Também, há casos em que a métrica ACCM se ajusta com a Sin-Arcsinh, que é um
+caso especial das distribuições Beta, e assim também entendemos que a média não
+é informativa para ela~\cite{jones2005}.
 
-  Em face desses novos problemas, a equipe decidiu reescrever o Mezuro como uma aplicação independente.
+Da mesma forma, como apresentado para a métrica ACC, no caso da ACCM,
+observamos o percentil 75 dos dados das métricas, e não a média, para podermos
+sugerir seus valores como frequentes.
+%
+Para C, de 0 a 3,6 muito frequente; de 3,1 a 5,3 frequente; de 5,4 a 7,0 pouco
+frequente, acima de 7,0 não frequente.  Para projetos escritos em C++, de 0 a
+2,0 muito frequente; de 2,1 a 4,0 frequente; 4,1 a 6,0 pouco frequente; acima
+de 6 não frequente.
+%
+Para os projetos Java, de 0 a 2,8 muito frequente; de 2,9 a 4,4 frequente; de
+4,5 a 6,0 pouco frequente; acima de 6 não frequente.
 
-  \subsection{Segunda interface gráfica - Prezento}\label{sec:segundo-prototipo}
+%AMLOC
+Também para a métrica AMLOC há uma variação entre os tipos de distribuição.
+Além da Pareto tipo 2, entre os projetos, a AMLOC ajusta-se com a \textit{Skew
+Exponential Power} e \textit{Skew t}, que seguem as leis de potência, como
+argumentamos para a métrica ACCM, bem como a Sin-Arcsinh.
+%
+Entretanto, há projeto em que a distribuição da métricas AMLOC se ajusta com
+\textit{Generalized t}, \textit{Box-Cox Power Exponential} e \textit{Box-Cox
+t}.
+%
+A Generalized t (ou Student's t ou simplesmente distribuição t) tem a média
+como um valor informativo, uma vez que estima a média de uma população
+distribuída normalmente.
+%
+As distribuições da família de Box-Cox são conhecidas como uma distribuição de
+potência normal e são muitas vezes modelas como normal em alguns
+estudos~\cite{Rigby2006}.
+%
+Com isso, nesses casos, a média é uma médida informativa. Isso também pode
+sinalizar que, dependo do conjunto de projetos, a abordagem apresentada por
+Lanza e Marinescu~\cite{Lanza2006}.
+%
+Assim, também nos faz considerar a mediana como um dado informativo para o
+número médio de linhas de código por métodos.
 
-  Principalmente com o intuito de trazer ao projeto tudo o que as tecnologias mais recentes têm a oferecer, mas também eliminar funcionalidades não utilizadas, a equipe de desenvolvimento então tomou a decisão de abandonar o plugin para Noosfero e, novamente no arcabouço \textit{Ruby on Rails}, recriar a interface gráfica para o Kalibro.
+Uma vez considerando a mediana um valor representativo, nossa interpretação
+para os valores frequentes da métrica AMLOC tem como primeiro ponto de corte o
+percentil 50.
+%
+Mais uma vez, vamos sinalizar os valores de AMLOC para o Linux, Firefox e Open
+JDK8 como os mais equilibrados.
+%
+Na busca de uma melhor referência, por exemplo, para os códigos em C, os
+valores do código do GCC para a métrica AMLOC se apresentam mais indicados.
+%
+Em nossa abordagem, estamos indicando esses três projetos como referência entre
+os de suas linguagens.
+%
+Portanto, estamos sugerindo que esses nossos dados tenham outras
+interpretações, por outros pesquisadores, e que possam gerar outros valores
+frequentes de referência, de acordo das diferentes interpretações.
+%
+Nosso objetivo não é definir valores frequentes em si, mas mostrar como é
+possível achá-los e indicá-los: uma maneira é interpretar esse nosso conjunto
+de dados ou reproduzir nossas coletas em outro projetos para indicar os valores
+frequentes também baseado neles, preferencialmente somando-se aos avaliados
+aqui neste trabalho.
+
+Baseado nos valores observados no código do Linux, para um código escrito em C:
+de 0 a 15,6 muito frequente; de 15,7 a 25,5 frequente; de 25,6 a 39,3 pouco
+frequente; acima de 39,3 não frequente.
+%
+Para os projetos em C++, de acordo com valores do Firefox: de 0 a 8,0 muito
+frequente; de 9 a 19,5 frequente; 19,6 a 37 pouco frequente; acima de 37 não
+frequente.
+%
+Por fim, para os projetos escritos em Java, conforme observado no código do
+Open JDK8, temos para a AMLOC: de 0 a 8,3 muito frequente; de 8,4 a 18
+frequente; de 19 a 34 pouco frequente; acima de 34 não frequente.
+
+O estudo completo, contemplando as demais métricas, é discutido por Meirelles,
+em sua tese de doutorado~\cite{meirelles2013monitoramento}. Com os exemplos
+apresentados, a abordagem proposta é o acompanhamento de métricas de
+código-fonte, flexibilizando a análise, ou seja, dependendo do projeto, da
+linguagem e até do tipo de métricas em questão.
+%
+Em muitos casos, o indicado é saber comparar o projeto entre ele mesmo ao longo
+do tempo. Para isso, a abordagem de análise estatística, observando a
+distribuição e identificando o melhor ponto (percentil) de análise se faz
+necessário; ao contrário de usar como parâmetro referências genéricas.
+Entendendo a complexidade dessa abordagem na prática, uma forma de
+concretizá-la, foi desenvolver uma plataforma que permitisse tal flexibilização
+por projeto analisado e ao mesmo tempo pudesse ser compartilhado em rede para
+outros, se for do mesmo escopo e contexto, por exemplo.
+
+%------------------------------------------------------------------------------
+
+\section{Mezuro: plataforma de monitoramento de métricas de  código-fonte}
+\label{sec:mezuro}
+
+Para aplicação da abordagem discutida neste artigo, uma ferramenta com as
+seguintes características se faz necessária para a introdução deste tipo de
+avaliação constante às metodologias de desenvolvimento de software:
+(i) interface que agrupe as diversas ferramentas disponíveis;
+(ii) permita seleção e composição de métricas de forma flexível;
+(iii) manutenção de um histórico de evolução;
+(iv) exiba os resultados de forma amigável.
+
+Em 2009, iniciamos a concepção de uma plataforma de monitoramento de métricas de código-fonte denominada Mezuro, disponível em {\url{http://mezuro.org}}. Essa plataforma é composta por um conjunto
+de ferramentas com as quais colaboramos em seu desenvolvimento ou implementamos de acordo
+com as necessidades e critérios que foram definidos aos longo de nossos estudos.
+ 
+ \subsection{Segunda interface gráfica - Prezento}
+\label{sec:segundo-prototipo}
+
+Principalmente com o intuito de trazer ao projeto tudo o que as tecnologias mais recentes têm a oferecer, mas também eliminar funcionalidades não utilizadas, a equipe de desenvolvimento então tomou a decisão de abandonar o plugin para Noosfero e, novamente no arcabouço \textit{Ruby on Rails}, recriar a interface gráfica para o Kalibro.
 
   Para isso, uma parte considerável do código do plugin foi extraída e empacotada em uma gema Ruby, denominada \textit{kalibro\_gem}, a licença \textit{Affero General Public License} versão 3 (AGPLv3) foi adotada e uma interface completamente redesenhada foi desenvolvida. Nessa interface, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
 
