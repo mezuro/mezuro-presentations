@@ -13,246 +13,30 @@
 
 \begin{document}
 \sloppy
-\title{Mezuro: Entendendo métricas de código}
+\title{Evolving FLOSS Source Code Metrics Tracking to the Cloud}
 
-\author{Diego de A. M. Camarinha\inst{1}, Rafael R. Manzo\inst{1},\\
-        Daniel P. Alves\inst{1}, Daniel C. Bucher\inst{1}, \\
-        Heitor R. Ribeiro\inst{1}, Paulo R. M. Meirelles\inst{2}}
+\author{Diego Camarinha\inst{1}, Rafael Manzo\inst{1},\\
+        Paulo Meirelles\inst{2}, Fabio Kon\inst{1}}
 
 \institute{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)\\
   Rua do Matão, 1010 -- 05508-090 -- Cidade Universitária -- São Paulo -- SP -- Brasil\\
-  \email{\{diegoamc, manzo, danielpa, dbucher\}@ime.usp.br, \{heitor.ribeiro\}@usp.br}
+  \email{\{diegoamc,manzo,fabio.kon\}@ime.usp.br
   \and
   Faculdade do Gama -- Universidade de Brasília (UnB)\\
   Gama -- DF -- Brasil\\
-  \email{paulormm@unb.br}}
+  \email{paulormm@unb.br}}} 
 
 \maketitle
-\begin{abstract}
-  % Contexto
-  A facilidade de desenvolvimento e manutenção de um \textit{software} está diretamente relacionada com a qualidade de seu código-fonte.
-  % Problema
-  % TODO: adicionar referência que apoie a falta de uso de análise estática em ambientes de desenvolvimento.
-  No entanto, analisá-lo impõe dificuldades como, por exemplo, definir as métricas e interpretar o resultado de uma medição. Além disso, essa prática ainda não é comum em ambientes de desenvolvimento. Outro problema é a falta de ferramentas livres que integrem coletores de métricas para diversas liguagens.
-  % Soluções propostas
-  Neste artigo, apresentamos o Mezuro, uma plataforma \textit{web} livre para a avaliação colaborativa de código-fonte. O projeto fornece um meio para comparar projetos e compartilhar conhecimento sobre métricas, ensinando a configurá-las e interpretá-las. A plataforma foi idealizada de forma que seja possível integrar diversos coletores de métricas para diversas linguagens. Atualmente, a ferramenta permite analisar códigos escritos nas linguagens C, C++, Java e Ruby.
-  % Frase de impacto
-  Com este projeto, esperamos disseminar o conhecimento e incentivar o uso de métricas de código.
+%------------------------------------------------------------------------------
 
-\textbf{Palavras-chave:} análise estática, métricas de código-fonte, \textit{software} livre.
-\end{abstract}
+\input{01-abstract}
+\input{02-introduction}
+\input{03-background}
+\input{04-research}
+\input{05-mezuro}
+\input{06-final}
 
-
-\section{Introdução} \label{sec:intro}
-Métricas de código-fonte estático são medidas extraídas a partir das análises léxica e sintática deste sem compilá-lo ou executá-lo e podem ser primitivas ou compostas, ou seja, formadas pela composição de uma ou mais métricas primitivas. Sua principal função é fornecer informações sobre complexidade, compreensão, testabilidade, manutenibilidade e evolução do código\cite{meirelles2013monitoramento}.
-
-Exemplos de métricas podem ser simples como linhas de código e quantidade de métodos por classe ou complexas como conexões aferentes de uma classe.
-Hoje existem diversas ferramentas para a simples extração de métricas como  pylint\footnote{\url{http://www.pylint.org/}} (Python), metric\_fu\footnote{\url{https://github.com/metricfu/metric_fu}} (Ruby) e Analizo\footnote{\url{http://www.analizo.org/}} (C/C++ e Java), cada uma com diferentes graus de usabilidade, padrões e conjuntos de métricas, sendo necessária a criação de uma plataforma que reúna, organize e apresente essas informações para o usuário.
-
-\section{Motivação}\label{sec:motivacao}
-Por meio da avaliação de métricas de código-fonte podemos definir como está a qualidade do \textit{software} e pensar em estratégias interessantes para lidar com a chamada ``crise do \textit{software}'' \cite{naur1969software}. Esta afirma que, com o crescimento da capacidade computacional, mais problemas difíceis passam a ter solução viável, mas que, por outro lado, a complexidade da interface para uso dos novos equipamentos (\textit{hardware}) e do processo de desenvolvimento atuais combinados com a complexidade dos problemas exacerbam falhas do \textit{software}. Assim, o controle da qualidade de um \textit{software} durante sua evolução no tempo torna-se uma ferramenta para identificar e prevenir tais falhas.
-
-Porém, incorporar esta avaliação às metodologias de desenvolvimento de \textit{software} não pode ser um processo manual em razão do risco desta prática cair em desuso. Isto se deve ao fato de que as ferramentas de extração de métricas, em geral, não apresentam uma interface amigável para seres humanos lerem seus resultados e muito menos um padrão entre si.
-Neste contexto, uma ferramenta com as seguintes características se faz necessária para a introdução deste tipo de avaliação constante às metodologias:
-\begin{itemize}
-  \item interface que agrupe as diversas ferramentas disponíveis;
-  \item permita seleção e composição de métricas de forma flexível;
-  \item manutenção de um histórico de evolução;
-  \item exiba os resultados de forma amigável.
-\end{itemize}
-
-Por último, como explicado por Meirelles \cite{meirelles2013monitoramento}, ainda não existe um consenso sobre qual conjunto de métricas é relevante para se avaliar a qualidade do código e muito menos quais valores destas supostas métricas são bons ou ruins. Portanto, mais uma característica interessante para uma ferramenta neste campo é que permita aos usuários especialistas definirem tais parâmetros, viabilizando estudos estatísticos que nos aproximem de uma conclusão.
-
-\section{Ferramentas similares}
-Foram levantadas informações básicas sobre duas ferramentas similares já consolidados dentre desenvolvedores de \textit{software} para que possamos avaliá-las brevemente com respeito aos critérios definidos na motivação (seção \ref{sec:motivacao}).
-
-A primeira delas e mais próxima do idealizado, o SonarQube\footnote{\url{http://www.sonarqube.org/}} é um \textit{software} livre, licenciado como LGPLv3, que oferece uma plataforma de gerenciamento de qualidade de código. Por meio de \textit{plugins} disponíveis através de uma biblioteca\footnote{\url{http://docs.codehaus.org/display/SONAR/Plugin+Library/}}. Em sua versão básica ele classifica problemas encontrados no código e calcula métricas simples de cobertura de testes e divida técnica em várias linguagens. Entretanto, seus melhores \textit{plugins} tem código fechado e pago como, por exemplo, o para análise de C/C++\footnote{\url{http://www.sonarsource.com/products/plugins/languages/cpp/}}.
-
-Por sua vez, o Code Climate\footnote{\url{https://codeclimate.com/}} é uma ferramenta que fornece análise de códigos JavaScript ou Ruby (da versão 1.8 em diante) que estejam disponíveis em um servidor Git.
-
-O \textit{software} procura por ``\textit{code smells}'' no programa do usuário e os classifica como mais ou menos problemáticos levando em consideração o tamanho dos métodos e duplicação de blocos. Conforme os encontra, o programa atribui valores ao código para no final determinar uma nota de \textit{A} a \textit{F} com base no somatório dos valores encontrados. Note que a análise feita não necessariamente indica um problema real, uma vez que aquela pode ter sido a implementação escolhida pelo programador.
-
-Recentemente, o Code Climate iniciou uma análise estatística preliminar de todos os projetos que já foram analisados por este. Publicada informalmente em uma simples publicação em sua página\footnote{\url{http://blog.codeclimate.com/blog/2014/05/21/does-team-size-impact-code-quality/?utm\_source=Code+Climate&utm\_campaign=69c024549d-newsletter-NI-2014-05-22&utm\_medium=email&utm\_term=0\_672a7f5529-69c024549d-317410425}}.
-
-\section{Histórico do Mezuro}\label{sec:mezuro}
-Nesta seção, apresentaremos o projeto Mezuro\footnote{\url{http://mezuro.org}}. Explicaremos o contexto no qual o projeto foi criado, mostrando como as ideias das partes que o compõe evoluíram até alcançar o estágio atual. Além disso, descreveremos a integração do projeto com o Noosfero\footnote{\url{http://noosfero.org}} e porque ela não deu certo. Por fim, exibiremos a fase atual de desenvolvimento de todas as partes do Mezuro, explicitando as decisões mais importantes que foram tomadas para melhorar o andamento do projeto.
-
-  \subsection{Origem}\label{sec:origin}
-  O Mezuro é dividido em duas partes: processamento e cálculo de métricas de código-fonte; e a interface gráfica para apresentação dos resultados. Ambas tiveram seu início na disciplina de Laboratório de Programação Extrema, do Instituto de Matemática e Estatística da Universidade de São Paulo (IME-USP) em 2009 e 2010, respectivamente. Porém, apenas no segundo semestre de 2013 que os desenvolvedores dos dois projetos passaram a trabalhar em conjunto. Com essa união, uma troca de nomes foi necessária: até essa data, a interface gráfica era chamada de Mezuro e o módulo de processamento de Kalibro; a partir dela, passamos a chamar de Prezento o módulo de visualização e de Mezuro o projeto inteiro, ou seja, o Kalibro integrado com o Prezento.
-
-  O Kalibro\cite{de2013kalibro} tem suas raízes ainda mais no passado, em 2003, com o projeto JaBUTI\cite{vincenzi2003jabuti}. Esse projeto inspirou, a partir de 2009, uma equipe de colaboradores a desenvolver uma melhor interface para exibir seus resultados. Dessa motivação, surgiu o projeto Crab\cite{meirelles2009crab}. Mais tarde, em 2010, sua equipe decidiu abandonar a integração com o JaBUTI para integrar o Analizo\cite{terceiro2010analizo}. Com essa mudança, o Crab foi renomeado para Kalibro.
-
-  Em seu início como Kalibro, o \textit{software} dispunha de uma interface gráfica nativa em Java. Porém, logo tomou o rumo de ser um serviço web e assim essa interface deixou de ser mantida. Para suprir a necessidade de visualização, foi concebido o projeto então denominado Mezuro \cite{meirelles2013monitoramento}. Esse projeto visava ser uma rede social na qual desenvolvedores pudessem calcular métricas de seus códigos-fonte e compartilhar tanto os resultados quanto a escolha de métricas utilizada. Os principais objetivos eram disseminar conhecimento sobre métricas e aproximar a comunidade de um consenso sobre quais delas são mais relevantes para serem consideradas, em contextos diferentes.
-
-  A primeira equipe formada para desenvolver o Mezuro decidiu que o projeto seria escrito em \textit{Ruby}, com o apoio do arcabouço \textit{Ruby on Rails}. Os principais motivos dessa escolha foram: ambas as tecnologias são softwares livres; a comunidade delas é ativa e elas estavam ganhando notoriedade entre os desenvolvedores web. Porém, a equipe não tinha experiência com elas. Como a curva de aprendizado é acentuada, a entrega de novas funcionalidades constantemente atrasava. Para agilizar o desenvolvimento e aproveitar a estrutura de rede social já fornecida pelo Noosfero, o primeiro protótipo do Mezuro foi projetado para ser um \textit{plugin} dessa plataforma.
-
-  \subsection{Primeiro protótipo de interface gráfica}\label{sec:primeiro-prototipo}
-
-  O Noosfero é uma plataforma web para redes sociais. Ele possui todas as funcionalidades desejadas de uma rede social, como suporte à comunidade, eventos e amizade entre usuários. Além disso, a plataforma possui uma estrutura robusta para \textit{plugins}. Ela permite que eles sejam adicionados e configurados com facilidade, escondendo aquilo que não precisa ser conhecido.
-
-  A utilização do Noosfero impulsionou o desenvolvimento do Mezuro, ainda como apenas uma interface gráfica para o Kalibro, por reduzir a curva de aprendizado da equipe em dois importantes aspectos: não foi necessário construir uma aplicação do começo e a arquitetura de \textit{plugins} é mais simples em comparação com a arquitetura de um projeto \textit{Ruby on Rails}.
-
-  O Noosfero é um software complexo e, apesar de a estrutura de \textit{plugins} esconder alguns detalhes de sua implementação, em alguns momentos era difícil compreender seu funcionamento. Nessa fase do desenvolvimento, o projeto recebeu a consultoria tanto dos líderes de desenvolvimento da plataforma, quanto de ex-alunos do IME-USP com experiência no arcabouço.
-
-  No primeiro semestre de 2013, durante mais uma edição da disciplina de Laboratório de Programação Extrema, o desenvolvimento de novas funcionalidades novamente começou a atrasar. Porém, dessa vez não era por causa de falta de conhecimento das tecnologias. Pelo contrário, a equipe queria criar funcionalidades avançadas demais para elas. Isso porque o Noosfero segue o ritmo de atualizações do Linux Debian (na época em sua versão 5) que utilizava versões muito antigas das bibliotecas necessárias. Por exemplo, a versão do arcabouço \textit{Ruby on Rails} utilizada no Noosfero era a 2.3.5, enquanto que o a equipe responsável pelo arcabouço já se preparava para lançar a versão 4.0. Outro problema é que a estrutura de \textit{plugins} começou a limitar algumas funcionalidades do Mezuro pois não tínhamos a liberdade de implementação que gostaríamos de ter. Por fim, percebemos que o Mezuro não precisava de todas as funcionalidades de rede social disponíveis no Noosfero (comunidades, por exemplo) e que elas apenas adicionavam mais complexidade ao nosso projeto.
-
-  Em face desses novos problemas, a equipe decidiu reescrever o Mezuro como uma aplicação independente.
-
-  \subsection{Segunda interface gráfica - Prezento}\label{sec:segundo-prototipo}
-
-  Principalmente com o intuito de trazer ao projeto tudo o que as tecnologias mais recentes têm a oferecer, mas também eliminar funcionalidades não utilizadas, a equipe de desenvolvimento então tomou a decisão de abandonar o plugin para Noosfero e, novamente no arcabouço \textit{Ruby on Rails}, recriar a interface gráfica para o Kalibro.
-
-  Para isso, uma parte considerável do código do plugin foi extraída e empacotada em uma gema Ruby, denominada \textit{kalibro_gem}, a licença \textit{Affero General Public License} versão 3 (AGPLv3) foi adotada e uma interface completamente redesenhada foi desenvolvida. Nessa interface, o usuário é o responsável por definir o conjunto de métricas a ser utilizado para realizar cálculos, com a possibilidade de armazenar os resultados para comparações futuras. Seu objetivo é:
-
-  \begin{itemize}
-    \item Aproximar-se de um consenso acerca de quais métricas devem ser empregadas na análise da qualidade de um código-fonte;
-    \item Buscar os valores dessas métricas que definem a qualidade de um código-fonte.
-  \end{itemize}
-
-  Com essa nova implementação do Mezuro, que mais tarde seria renomeada com seu nome atual, Prezento, a estabilidade da interface gráfica finalmente deixou o nível de protótipo com a expectativa de finalmente ser lançada em produção. Porém, erros que acreditávamos ser relacionados ao plugin do Noosfero persistiram na nova versão, levando-nos a conclusão de que a implementação original do Kalibro em Java possuía falhas.
-
-  \subsection{Kalibro em \textit{Ruby on Rails}}
-  Com todos os esforços da equipe de desenvolvimento voltados para o lançamento do projeto e com a expectativa de que muitos projetos fossem cadastrados no sistema, identificamos a necessidade de realizar testes de escalabilidade. O módulo do sistema que mais exigia capacidade de processamento era o que calculava e analisava métricas de repositórios, o Kalibro. Por isso, decidimos concentrar nele nossos testes de escalabilidade.
-  Começamos criando um \textit{script} em Ruby que media a latência de requisições para o serviço, ou seja, medíamos o tempo total que levava para uma requisição ser respondida. Os resultados foram surpreendentes: a resposta de nenhuma requisição demorava mais de 1 segundo para chegar ao cliente. Essa surpresa aconteceu devido ao fato de que não conseguíamos verificar os resultados manualmente. Quando usávamos o Prezento, a latência era maior e o que era pior: alguns processamentos não terminavam. Essa inconsistência entre os dois resultados nos fez olhar com mais atenção para o \textit{script}. Percebemos, então, que ele era demasiado simples e que desconsiderava vários aspectos relevantes para testes de escalabilidade:
-  \begin{itemize}
-    \item Rodávamos o servidor localmente. Isso evitava atrasos de conexão.
-    \item Esperávamos uma requisição terminar para enviar a próxima. Porém, em uma situação real muitas requisições são enviadas simultaneamente ao servidor.
-  \end{itemize}
-  Portanto, dedicamos um tempo maior para avaliar corretamente a escalabilidade do Kalibro. Hospedamos o servidor em uma máquina externa e utilizamos o arcabouço Scalability Explorer (REF) para gerenciar a carga de requisições e a frequência com que elas eram enviadas. Descobrimos que, para uma carga relativamente baixa de requisições (10 requisições por minuto), as requisições de processamento não respondiam. A partir deste ponto, sucessivas tentativas de depuração tomaram conta da rotina do time. Apesar de não conseguirmos provar, o tínhamos fortes indícios de que o Kalibro entrava em estado de impasse. Isso acontecia porque o Kalibro foi implementado usando um \textit{pool de threads} estático. No momento da inicialização do servidor, a quantidade de \textit{threads} criadas era 10 vezes o número de núcleos do computador. Elas dormiam até que uma requisição as acordasse. O Kalibro paralelizava algumas partes de seu processamento e, para concluí-lo, necessitava de 4 \textit{threads}. Porém, as requisições só acordavam as \textit{threads} quando elas eram necessárias e só as liberavam quando o processamento terminava. Portanto, dependendo do número de requisições recebidas e do número de núcleos que o servidor possuía, o Kalibro entrava em estado de impasse. Por exemplo, se o servidor tivesse 3 núcleos, o Kalibro criaria um \textit{pool} de 30 \textit{threads}. Se 10 requisições chegassem simultaneamente no servidor, a probabilidade era alta de que houvesse um impasse.
-  Ao tentar resolver o problema do impasse, outro fator desmotivou o time na manutenção do Kalibro. A principal dificuldade era a arquitetura monolítica de um sistema grande e complexo como o Kalibro. Por exemplo, uma mudança em um ponto do código culminava na obrigação de mudar outros diversos pontos do código. Assim, no final de 2013, foi levantada a questão de reescrevê-la em Ruby. Por que Ruby? Os principais motivos foram a familiaridade da equipe com a linguagem e o fato de que o resto do Mezuro já estava escrito nessa linguagem.
-  Como já estávamos perdendo um bom tempo com o problema, não foi difícil optarmos pela opção ``um passo para trás, dois para frente''. Nesse ponto, já pensávamos em duas vantagens decorrentes da reescrita: maior modularidade do sistema e, por ser software livre, facilitar o entendimento do código para novos contribuidores. A reescrita também nos livraria do receio de encontrar outros problemas de tão difícil resolução quanto o que já tínhamos em mãos. Por conta de tudo isso, decidimos reescrever o Kalibro e, nos primeiros meses de 2014, adaptamos todo o projeto para receber a mudança e iniciamos efetivamente a reescrita do sistema.
-  Com dedicação total da equipe, o processo de reescrita demorou do final de maio ao final de agosto de 2014 e, melhor que isso, o problema que tínhamos com o antigo Kalibro foi resolvido. Hoje temos uma base de processamentos estável com código de fácil manutenibilidade.
-
-\section{Arquitetura}
-  Desde a sua primeira implementação até a sua reescrita completa, a arquitetura do sistema evoluiu consideravelmente. A figura X mostra a arquitetura do sistema quando ele ainda chamava Mezuro, integrado com o Noosfero. Nela, nosso sistema ficava preso às limitações tanto da tecnologia utilizada, que tinha que ser compatível com a do Noosfero, quanto da arquitetura de \textit{plugins}, que restringia nossa liberdade para expandirmos nossas funcionalidades.
-  
-  %%% Colocar figura da época do Noosfero
-  
-  Após desacoplarmos o Mezuro do Noosfero, passamos a ter completa autonomia para usar as tecnologias que julgávamos ser mais adequadas para os nossos problemas. Preocupamo-nos também em mantê-las atualizadas para termos as funcionalidades mais novas e a correção de defeitos antigos. Outra mudança importante foi a adoção do estilo arquitetural de micro serviços (REF). A figura X+1 mostra a arquitetura do sistema durante a reescrita da interface gráfica.
-  
-  %%% Colocar figura da época pós Noosfero. Dependendo da figura que vamos colocar aqui, adaptar o texto e adicionar mais coisas.
-  
-  Com o projeto inteiramente reescrito, evoluímos a arquitetura para o estado atual (Figura X+2).
-  
-  %%% Colocar figura atual. Decidir se já vamos colocar com kalibro_client e kalibro_core. Complementar o texto.
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Com o objetivo de ser agradável para o desenvolvedor, buscamos criar um sistema de simples manutenção que incorpore outras funcionalidades facilmente. Para isto, visamos:
-\begin{itemize}
-  \item Minimizar a quantidade de código a ser mantida;
-  \item Testar e garantir a qualidade do código;
-  \item Modularizar a aplicação em diversos serviços independentes.
-\end{itemize}
-
-A figura \ref{fig:architecture-1} especifica o atual estado do Mezuro:
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{images/mezuro-architecture-actual.png}
-  \caption{Arquitetura atual do sistema.}
-  \label{fig:architecture-1}
-\end{figure}
-As elipses são os diferentes \textit{softwares} envolvidos e os paralelogramos as interfaces de comunicação entre eles. Na base do Mezuro encontra-se o Kalibro, segmentado em três entidades menores, como ilustrado na figura \ref{fig:architecture-2}:
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=\textwidth]{images/mezuro-architecture-predicted.png}
-  \caption{Arquitetura futura do sistema.}
-  \label{fig:architecture-2}
-\end{figure}
-O objetivo pretendido com quebra da estrutura monolítica do Kalibro é que sua manutenção e evolução torne-se mais fácil, sem que todo o sistema seja comprometido.
-
-\section{Diferenciais} \label{subsec:motivacao}
-As principais motivações para o surgimento de uma ferramenta como o Mezuro são os seguintes problemas:
-\begin{itemize}
-    \item Não há parâmetros de comparação consolidados entre projetos;
-    \item Existem estudos, mas poucos dados empíricos;
-    \item Ainda é dada pouca importância ao monitoramento de código.
-\end{itemize}
-
-\section{Por que usar o Mezuro?} \label{sec:projeto-mezuro}
-Idealizado como uma plataforma de métricas de código, um dos diferenciais do Mezuro reside na possibilidade de gerar informação sobre o código-fonte de forma contínua: o usuário decide quando analisar novamente o projeto e acompanha detalhadamente a evolução das notas ao longo do tempo. Os resultados de cada análise são públicos, o que permite uma maior transparência entre o desenvolvedor e a comunidade que utiliza aquele \textit{software}. Assim, ela pode decidir se aquela solução atende ou não às suas necessidades e se deve depositar confiança na qualidade do \textit{software} desenvolvido.
-
-\section{Principais funcionalidades}\label{sec:princ-funcionalidades}
-No Mezuro, as funcionalidades podem ser divididas em dois grupos:
-\begin{itemize}
-  \item Projeto
-    \begin{itemize}
-    \item \textit{Download} do código-fonte a partir de repositórios (Git, Subversion, Bazaar etc) ou via arquivo compactado;
-        \item Escolha da periodicidade do processamento do código (1 dia, 2 dias, semanal, quinzenal e mensal);
-        \item Escolha de qual configuração de métricas cada repositório irá utilizar;
-        \item Nota de cada métrica da configuração para cada arquivo do repositório;
-        \item Análise gráfica de cada arquivo do repositório por meio de um gráfico de pontos com notas ao longo do tempo;
-        \item Resultados públicos e acessíveis à comunidade.
-    \end{itemize}
-    \item Configuração
-    \begin{itemize}
-    \item Criação de configuração e a possibilidade de clonagem;
-        \item Estatísticas sobre as configurações mais populares dentro da comunidade;
-        \item Criação de intervalos qualitativos associados aos valores das métricas;
-        \item Criação de grupos de leitura para a interpretação textual dos resultados das métricas;
-        \item Combinações de métricas nativas para criação de análises compostas e mais complexas.
-    \end{itemize}
-\end{itemize}
-
-\section{A rede social}\label{sec:user-potencial}
-O Mezuro tem o formato de uma rede social, no qual os participantes podem ver a produção de terceiros por meio da avaliação dos projetos ou do clone das configurações. Essa interação mútua e aberta pode ser interessante para desenvolvedores, gerentes de projeto, auditores de \textit{software} e até mesmo uma equipe de desenvolvimento inteira. O objetivo final é criar uma comunidade que veja o valor de tais metodologias e como isso pode contribuir para o sucesso do seu projeto.
-
-\section{Casos de uso}
-Apresentaremos a seguir as duas principais funcionalidades da ferramenta ilustradas por meio de capturas de telas. Em todas elas, utilizamos uma conta já cadastrada no sistema (único privilégio necessário para realizá-las).
-
-  \subsection{Criação de configuração}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/choose-metric.png}
-    \caption{Interface para escolha de ferramenta extratora de métrica e escolha de uma métrica nativa para adicionar a uma configuração.}
-    \label{fig:choose-metric}
-  \end{figure}
-
-  Criar uma configuração envolve 5 telas do sistema em 4 passos básicos:
-  \begin{enumerate}
-    \item Acessar a página de listagem de configurações;
-    \item Clicando em ``New configuration'', preencher o formulário de criação de configuração e salvá-lo;
-    \item Clicando em ``Add metric'', escolher a ferramenta de extração e qual métrica a ser usada (figura \ref{fig:choose-metric});
-    \item Preencher o formulário (detalhado a seguir) e salvá-lo.
-  \end{enumerate}
-
-  Os passos 3 e 4 devem ser repetidos para cada métrica adicionada à configuração. O formulário de métrica (passo 4) é complexo se comparado ao de configuração mas, assim como os demais, cada campo possui detalhes sobre sua utilização. Aqui, destacamos os menos evidentes:
-  \begin{itemize}
-    \item \textbf{Aggregation Form:} Maneira com a qual o resultado de uma métrica será agregado (média, mediana, máximo, etc);
-    \item \textbf{Reading Group:} Conjunto de intervalos usado para dar significado prático ao resultado calculado.
-  \end{itemize}
-
-  \subsection{Criação de projeto e avaliação de repositório}
-  Criar um projeto envolve 2 passos básicos:
-  \begin{enumerate}
-    \item Acessar a página de listagem de projetos;
-    \item Clicando em ``New project'', escolher o nome, a descrição e salvá-lo.
-  \end{enumerate}
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/new-repository.png}
-    \caption{Interface para criação de um novo repositório.}
-    \label{fig:new-repository}
-  \end{figure}
-
-  Ao clicar em ``New repository'' entramos na criação do repositório a ser avaliado (figura \ref{fig:new-repository}). Alguns campos merecem destaque:
-  \begin{itemize}
-    \item\textbf{Type:} Tipo do repositório (também pode ser um zip ou tarball) onde o código está hospedado;
-    \item\textbf{Address:} Endereço do repositório remoto ou o caminho absoluto no sistema de arquivos;
-    \item\textbf{Process Period:} Periodicidade com a qual o código deve ser analizado pela ferramenta (diariamente, semanalmente etc);
-    \item\textbf{Configuration:} Configuração de métricas que o usuário deseja utilizar para medir o código (pode ser escolhida dentre todas as configurações criadas pelos usuários).
-  \end{itemize}
-  Após preencher todos os campos e salvar o repositório, seu primeiro processamento será automaticamente ativado e o usuário será redirecionado para a página que exibe os resultados. Nela, ele poderá conferir dados do processamento (tempo gasto para o término de cada uma de suas fases) e navegar na árvore de módulos gerada, para que possa visualizar a nota, os resultados das métricas e suas interpretações para cada um deles (figura \ref{fig:results}). Além disso, ao clicar no nome de uma métrica calculada, um gráfico que representa a evolução dos seus valores ao longo do tempo será exibido.
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/new-repository-results.png}
-    \caption{Tela de visualização dos resultados do processamento do repositório.}
-    \label{fig:results}
-  \end{figure}
-
-\section{Conclusão}
-O Mezuro surge como uma potencial resposta para a falta de monitoramento e padronização de código-fonte e a necessidade de avaliação do mesmo, considerando que é um \textit{software} livre, altamente customizável, com suporte para muitas linguagens computacionais, interface amigável, que fornece histórico de processamentos e também com uma arquitetura planejada para incorporar novas funcionalidades.
-
+%------------------------------------------------------------------------------
 \bibliographystyle{splncs03}
 \bibliography{mezuro}
 \end{document}
