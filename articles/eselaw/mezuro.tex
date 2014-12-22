@@ -17,10 +17,10 @@
 \sloppy
 \title{Abordagem e plataforma para o monitoramento de métricas estáticas de código-fonte}
 
-\author{Diego Camarinha\inst{1},Rafael Manzo\inst{1},Paulo Meirelles\inst{1}}
+\author{Paulo Meirelles\inst{1}, Diego Camarinha\inst{1}, Rafael Manzo\inst{1}}
 
-\institute{Instituto de Matemática e Estatística -- Universidade de São Paulo (USP)
-  \email{\{diegoamc,manzo,paulormm\}@ime.usp.br}}
+\institute{Instituto de Matemática e Estatística (IME) -- Universidade de São Paulo (USP)
+  \email{\{paulormm,diegoamc,manzo\}@ime.usp.br}}
 
 \maketitle
 
@@ -43,7 +43,7 @@ colaborativa de código-fonte, chamada Mezuro. Essa abordagem, apoiada pelo
 Mezuro, fornece um meio para comparar projetos e compartilhar conhecimento
 sobre métricas, ensinando a configurá-las e interpretá-las.
 
-\textbf{Palavras-chave:} análise estática, métricas de código-fonte, software
+\textbf{Palavras-chave:} análise estática, código-fonte, métricas, software
 livre.
 
 \end{abstract}
@@ -660,7 +660,7 @@ incorporar novas funcionalidades.
 Métricas de código-fonte permitem a análise de dados relacionados aos erros,
 flexibilidade, complexidade, legibilidade, manutenibilidade, segurança e
 portabilidade do código, que são fatores para a aceitação de um produto de
-software ~\cite{Henderson-Sellers96,Sato07}.
+software.
 %
 No entanto, obter esses dados e extrair deles informações úteis é uma tarefa
 não trivial que requer a ajuda de ferramentas automatizadas.
@@ -703,7 +703,7 @@ das métricas de um determinado código-fonte.
 %
 É nesse cenário teórico e prático que este trabalho evoluiu.
 
-Cconstatamos uma contradição nos trabalhos relacionados quanto à abordagem para
+Constatamos uma contradição nos trabalhos relacionados quanto à abordagem para
 se estudar e observar as métricas de código-fonte.
 %
 Dessa forma, discutimos de maneira objetiva sobre o comportamento de métricas
@@ -740,8 +740,26 @@ Por isso, apresentamos em detalhes a plataforma Mezuro, que permite colocar em
 prática as abordagens de monitoramento e avaliação das métricas apresentadas em
 nossos estudos.
 
+\begin{comment}
+Como uma das limitações, e espaço para trabalhos futuros, temos o fato da
+interpretação dos valores frequentes que encontramos estar em aberto para que
+possa ser definida por cada ``usuário'' da abordagen proposta.  Também, não se
+associou, diretamente, uma interpretação aos valores frequentes encontrados.
+%
+Isto é, identificamos o comportamento e uma forma de se observar as métricas de
+código-fonte, que pode variar de acordo com o paradigma de programação,
+linguagem de programação, domínio de aplicação, maturidade do projeto ou mesmo
+por características particulares do sistema que está sendo avaliado e
+monitorado.
+%
+Dessa forma, expomos os passos para se estudar as métricas em diferentes
+projetos, para que essa abordagem possa ser reprodutível em qualquer outro
+sistema de software que se tenha acesso ao código-fonte afim de realizar uma
+análise estática do mesmo, atráves das métricas selecionadas neste trabalho ou
+outras que sejam coletadas automática.
+\end{comment}
 
-%\scalefont{0.9}
 \bibliographystyle{splncs03}
+\scalefont{.9}
 \bibliography{mezuro}
 \end{document}
