@@ -9,7 +9,13 @@ TODO: Paulo
 \subsection{Related projects}
 \label{subsec:related-projects}
 
-TODO: Manzo
+In order to evaluate what is available, were gathered informations about similar tools already consolidated among software developers, with regard to the following criteria: interface that joins several tools available for metric collection; allow selection and composition of metrics in a flexible way; keeping record of the evolution history; friendly results view.
+
+The first tool, and the one that is the closest to Mezuro, is SonarQube\footnote{\url{http://www.sonarqube.org/}}. Licensed under the LGLv3, it's a free software which offers a platform for code quality management through its plugins available from a library\footnote{\url{http://docs.sonarqube.org/display/SONAR/Plugin+Library}}. In its basic version, it classifies problems found in the code written on several languages and calculates simple test coverage metrics and technical debt. However, its best plugins are closed source programs which demands payment as well, like the C/C++ plugin\footnote{\url{http://www.sonarsource.com/products/plugins/languages/cpp/}}.
+
+Following, Code Climate \footnote{\url{https://codeclimate.com/}} is a online platform that provides source code quality analysis and code coverage monitoring for free for open source Ruby, JavaScript and PHP\footnote{at the time of publishing this article PHP support was under beta} available through public Git repositories. Basically the software searches through the user program for ``code smells'' and classifies the ones found accordingly to their method size and block duplication. As it finds the code issues, it assigns values to the code so in the end it can account grades, from A to F, using these values. Notice that this kind of analysis will catch portions of the code that were conscientious architecture decisions made by the developers and here is the importance of flexible metric selection from one project to another. Recently it published a preliminary statistical analysis of all the projects\footnote{\url{http://blog.codeclimate.com/blog/2014/05/21/does-team-size-impact-code-quality/?utm_source=Code+Climate&utm_campaign=69c024549d-newsletter-NI-2014-05-22&utm_medium=email&utm_term=0_672a7f5529-69c024549d-317410425}} but it is still far from a good historical visualization.
+
+A final remark on this analysis of similar projects is to mention projects analyzed by Jenkins. It is a free software mainly used for continuous integration which has a rich environment of plugins where some of them provide metrics like test coverage and basic complexity metrics. But none of them providing interpretation of the results, any kind of flexibility on metric definition and laking the historical visualization of code metrics results.
 
 \subsection{Related works}
 \label{sec:related-works}
