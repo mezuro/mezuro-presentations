@@ -1,0 +1,47 @@
+OSS 2015' tracks
+
+FOSS platforms and toolkits
+FOSS environments for cloud computing
+FOSS business intelligence toolkits
+
+===
+
+*** Evolving FLOSS Source Code Metrics Tracking to the Cloud
+(A FLOSS environment for Tracking Source Code Metrics on the Cloud)
+(A Cloud environment for Tracking Open Source Code Metrics)
+
+
+Abstract (1 página, junto com o título)
+
+Introduction (1 página)
+
+métricas de código fonte são importantes e úteis para X (apesar de que é uma
+coisa limitado)
+já existem ferramentas que fazer K e L e são boas
+Não existem atualmente ferramentas apropriadas para Y (as ferramentas atuais
+para métricas apresentam limitações Z e W)
+Neste artigo, apresentamos o processo de evolução da ferramenta Mezuro para o
+ambiente de computação em nuvem que resolve o problema de uma forma inovadora.
+    
+Related Work (1,5 página)
+
+ferramentas mais básicas e pioneiras de métricas de código-fonte
+ferramentas (Sonar, Jenkins e CodeClimate)
+a descrição tem que abordar a questão da nuvem
+
+The Mezuro Project (5 páginas)
+
+early design (funcionalidades e a forma como foi implementada inicialmente)
+- limitations
+Services-based implementation
+- limitations (Scalability evaluation)
+Cloud-based (explicando que usou micro-services)
+- experimental results (mostrar o máximo possível que a coisa funciona e é
+  eficiente, ou seja, atinge os objetivos do artigo).
+
+Conclusions (½ página)
+pequeno resumo geral da contribuição
+trabalhos futuros e problemas em aberto para o futuro
+
+Bibliografia (1 página)
+
