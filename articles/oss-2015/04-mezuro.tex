@@ -1,21 +1,25 @@
 \newpage
 \section{The Mezuro Project}
 \label{sec:mezuro}
-
 %TODO: The Mezuro Project (5 páginas)
+
+The Mezuro\footnote{\url{http://mezuro.org}} project aims to be an interface which allows, in a flexible way, the extraction, analysis and interpretation of static source code metrics. Licensed under the Affero General Public License version 3 (AGPLv3), it makes the user responsible for defining the metrics she wants to employ on the analysis, keeping track and providing graphical visualization of the evolution of the selected set of metrics. Its main academical goals are: to get close to a consensus on which set of metrics should be employed on the analysis of different kinds of source code written in different programming languages and to search which interpretation should be given to each value obtained for the set of selected metrics.
+
+\subsection{Early design}
+\label{subsec:early-design}
 %% early design (funcionalidades e a forma como foi implementada inicialmente)
 %%%% limitations
+
+Initially, we developed a desktop application called Kalibro, written in Java. It had many of the features we wanted for source code analysis. At that time, Kalibro already supported the selection and composition of metrics to be employed on the analysis. It also allowed users to define their own interpretation for the results of each metric calculation. With a created set of metrics and their interpretations, Kalibro only needed an URL for the source code to start the analysis. The URL could be the path for the source code, compressed in a ZIP or TARBALL file, on the user's computer or the link for the repository where the source code was stored. The source code managers supported included GIT, Subversion, CVS, Mercurial and Bazaar. Finally, the source code could be written in Java, C or C++.
+
+Despite Kalibro being capable to successfully analyze source codes, we could not get close to the consensus we aimed for. The main obstacle was that, with a desktop application, we could not incite the discussion on the set of metrics employed and their interpretation among developers nor the comparison of results between projects. That was the main reason that motivated us to move from a desktop application to service-based implementation.
+
+\subsection{Service-based implementation}
+\label{subsec:service-based-implementation}
 %% Services-based implementation
 %%%% limitations (Scalability evaluation)
+
+\subsection{Cloud-based implementation}
+\label{subsec:cloud-based-implementation}
 %% Cloud-based (explicando que usou micro-services)
 %%%% experimental results (mostrar o máximo possível que a coisa funciona e é eficiente, ou seja, atinge os objetivos do artigo).
-
-The Mezuro\footnote{\url{http://mezuro.org}} project aims to be an interface which allows, in a flexible way, the extraction, analysis and interpretation of static source code metrics. Licensed under the Affero General Public License version 3 (AGPLv3), it makes the user responsible for defining the metrics she wants to employ on the analysis, keeping track and providing graphical visualization of the evolution of the selected set of metrics. Its main academical goals are: to get close to a consensus on which set of metrics should be employed on the analysis of different kinds of source code written in different programming languages; to search which interpretation should be given to each value obtained for the set of selected metrics.
-
-TODO: evolucao da arquitetura até chegar em um servico escalavel
-
-TODO: comparar dados de escalabilidade entra as versoes do Kalibro
-
-TODO: exemplo de uso: funcionalidade, demonstrando os resultados 2 projetos de
-certo impacto rodando 2 semanas no Mezuro, por exemplo, firefox vs.  chromium
-ou gimp vs. inkscape (preferencialmente, não java)
