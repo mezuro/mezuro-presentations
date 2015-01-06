@@ -1,5 +1,5 @@
-\section{Background}
-\label{sec:background}
+\section{Related Works}
+\label{sec:related_works}
 
 \subsection{Source code analysis tools}
 \label{subsec:related-tools}
@@ -16,18 +16,3 @@ The first tool, and the one that is the closest to Mezuro, is SonarQube\footnote
 Following, Code Climate \footnote{\url{https://codeclimate.com/}} is a online platform that provides source code quality analysis and code coverage monitoring for free for open source Ruby, JavaScript and PHP\footnote{at the time of publishing this article PHP support was under beta} available through public Git repositories. Basically the software searches through the user program for ``code smells'' and classifies the ones found accordingly to their method size and block duplication. As it finds the code issues, it assigns values to the code so in the end it can account grades, from A to F, using these values. Notice that this kind of analysis will catch portions of the code that were conscientious architecture decisions made by the developers and here is the importance of flexible metric selection from one project to another. Recently it published a preliminary statistical analysis of all the projects\footnote{\url{http://blog.codeclimate.com/blog/2014/05/21/does-team-size-impact-code-quality/?utm_source=Code+Climate&utm_campaign=69c024549d-newsletter-NI-2014-05-22&utm_medium=email&utm_term=0_672a7f5529-69c024549d-317410425}} but it is still far from a good historical visualization.
 
 A final remark on this analysis of similar projects is to mention projects analyzed by Jenkins. It is a free software mainly used for continuous integration which has a rich environment of plugins where some of them provide metrics like test coverage and basic complexity metrics. But none of them providing interpretation of the results, any kind of flexibility on metric definition and laking the historical visualization of code metrics results.
-
-\subsection{Conceptualization}
-\label{sec:conceptualization}
-
-Here, we would like to briefly explain the key concepts needed to better understand the contents of this article.
-
-A system is \textbf{scalable} if it satisfies quality goals acceptable to its stakeholders when characteristics of the domain and design vary over operational ranges \cite{duboc2010death}. Notice that we also have to consider the infrastructure where the system runs on \cite{law1998scalable}.
-
-According to the World Wide Web Consortium (W3C), \textbf{web services} are software systems designed to support interoperable machine-to-machine interaction over a network. Taking advantage of the interoperability, web services can be composed to create systems that provide more complex functionalities. There are two ways of composing web services: as orchestrations or as choreoghapies. 
-
-\textbf{Orchestrations} are a centralized approach in which web services are composed to create a executable business process \cite{peltz2003web}. On that approach, the process is represented from the perspective of a central node that coordinates the flow of information among the other services. The main advantage of orchestrations is the ease of adapting it to the requirements of a system \cite{decker2008introduction}. However, they have critical scalability and fault tolerance issues.
-
-\textbf{Choreographies} are a distributed approch for composing web services. On that approach, the interactions among services are represented from a global point of view and not from any one services perspective \cite{ross2005orchestration}. The main advantages of choreographies are that they are scalable and provide better fault tolerance \cite{pontes2012performance}. However, they can be more complex to implement.
-
-Finally, \textbf{microservice} is an architectural style for the development of applications as a set of small independent services. Those services run its own processes, are deployed independently and usually communicate via RESTful APIs. It is an alternative for the monolithic architecture which presents scalability, deployment and maintenance issues for systems that are getting too big \cite{namiot2014micro}.
