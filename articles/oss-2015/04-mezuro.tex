@@ -12,12 +12,18 @@ The Mezuro\footnote{\url{http://mezuro.org}} project aims to be an interface whi
 
 Initially, we developed a desktop application called Kalibro, written in Java. It had many of the features we wanted for source code analysis. At that time, Kalibro already supported the selection and composition of metrics to be employed on the analysis. It also allowed users to define their own interpretation for the results of each metric calculation. With a created set of metrics and their interpretations, Kalibro only needed an URL for the source code to start the analysis. The URL could be the path for the source code, compressed in a ZIP or TARBALL file, on the user's computer or the link for the repository where the source code was stored. The source code managers supported included GIT, Subversion, CVS, Mercurial and Bazaar. Finally, the source code could be written in Java, C or C++.
 
-Despite Kalibro being capable to successfully analyze source codes, we could not get close to the consensus we aimed for. The main obstacle was that, with a desktop application, we could not incite the discussion on the set of metrics employed and their interpretation among developers nor the comparison of results between projects. That was the main reason that motivated us to move from a desktop application to service-based implementation.
+Despite Kalibro being capable to successfully analyze source codes, we could not get close to the consensus we aimed for. The main obstacle was that, with a desktop application, we could not incite the discussion on the set of metrics employed and their interpretation among developers nor the comparison of results between projects. That was the main reason that motivated us to move from a desktop application to a service-based implementation.
 
 \subsection{Service-based implementation}
 \label{subsec:service-based-implementation}
 %% Services-based implementation
 %%%% limitations (Scalability evaluation)
+
+The service-based implementation of the Mezuro project was designed to have a back end, that was a monolithic web service that performed all the database and analysis operations, and a front end, that was a plugin of the Noosfero\footnote{\url{http://noosfero.org/Site}} social network. The first one was described in WSDL and communicated with the front end using SOAP messages. It was still written in Java for it was an extension of Kalibro. As for the back end, we wanted that our users were able to discuss and compare their set of metrics and results, so a social network seemed a good way to achieve that. We did not want to implement a social network from scratch, though. Noosfero was a good choice for its robust plugin support and for being open source. Our plugin was written in Ruby, using the Ruby on Rails framework.
+
+The main advantages of this implementation were that we had...
+
+Before deploying it and divulging it to the community, we figured it was prudent to perform scalability tests on the web service....
 
 \subsection{Cloud-based implementation}
 \label{subsec:cloud-based-implementation}
