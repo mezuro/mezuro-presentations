@@ -9,7 +9,84 @@
 \subsection{Source code analysis tools}
 \label{subsec:related-tools}
 
-TODO: Paulo
+We have studied about 11 FLOSS source code analysis tools:
+%
+Analizo,
+CCCC,
+Checkstyle,
+CMetrics,
+CPPX,
+Cscope,
+CTAGX,
+LDX,
+JaBUTi,
+MacXim,
+and Metrics (Eclipse plug-in).
+%
+Also, we have defined the following requirements to work on source
+code metrics:
+
+\begin{itemize}
+
+  \item The tool should support source code metrics \textbf{thresholds} to
+provide different interpretations about metric values.
+
+  \item The tool should support the analysis of different programming languages
+(\textbf{multi-language}).
+
+  \item The tool should provide clear interfaces for adding new metrics and supporting
+different programming language (\textbf{extensibility}).
+
+  \item The tool should be \textbf{free software}, available without
+restrictions to allow other researchers to replicate our studies and results
+fully.
+
+  \item The tool should be supported by active developers who know the tool
+architecture (\textbf{maintained}).
+ 
+\end{itemize}
+
+
+\begin{table}[htb]
+  \centering
+%  \scalefont{0.95}
+  \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \textbf{Tools} &
+    \textbf{Languages} & %Multi-language
+    \textbf{Extensible} & %Extensibility
+    \textbf{Thresholds} & % To Support Thresholds
+    \textbf{Maintained} \\\hline\hline %Actively maintained 
+				    
+    Analizo 	& C, C++, Java & Yes & No  & Yes    \\\hline
+    CCCC 	& C++, Java    & No  & No  & Yes    \\\hline
+    Checkstyle	& Java         & Yes  & Yes & Yes    \\\hline
+    CMetrics	& C            & Yes & No  & Yes    \\\hline
+    CPPX	& C, C++       & No  & No  & No     \\\hline
+    Cscope	& C            & No  & No  & Yes    \\\hline
+    CTAGX	& C            & No  & No  & No     \\\hline
+    LDX		& C, C++       & No  & No  & No     \\\hline
+    JaBUTi	& Java         & No  & No  & Yes    \\\hline
+    MacXim	& Java         & No  & No  & Yes    \\\hline
+    Metrics 	& Java         & No  & Yes & Yes    \\\hline
+    
+  \end{tabular}
+
+
+  \caption{Existing tools versus our defined requirements}
+  \label{tab:tools}
+%  \scalefont{1}
+\end{table}
+\vspace{-1em}
+
+Finally, according to the Table \ref{tab:tools}, we compare all of these tools
+to our requirements. So, the Analizo and Checkstyle are indicated as able to
+analyze source code from our initial. Both have documented extension
+interfaces: Analizo focused on C e C++ project and Checkstyle as a better
+option for Java projects. In short,  at the first moment, Analizo and
+Checkstyle act as Mezuro project default source code analysis tool since it
+supports different source code collector tools.
+
 
 \subsection{Related projects}
 \label{subsec:related-projects}
