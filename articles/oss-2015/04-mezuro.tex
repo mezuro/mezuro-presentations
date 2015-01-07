@@ -21,9 +21,13 @@ Despite Kalibro being capable to successfully analyze source codes, we could not
 
 The service-based implementation of the Mezuro project was designed to have a back end, that was a monolithic web service that performed all the database and analysis operations, and a front end, that was a plugin of the Noosfero\footnote{\url{http://noosfero.org/Site}} social network. The first one was described in WSDL and communicated with the front end using SOAP messages. It was still written in Java for it was an extension of Kalibro. As for the back end, we wanted that our users were able to discuss and compare their set of metrics and results, so a social network seemed a good way to achieve that. We did not want to implement a social network from scratch, though. Noosfero was a good choice for its robust plugin support and for being open source. Our plugin was written in Ruby, using the Ruby on Rails framework.
 
-The main advantage of this implementation was to bring the code analysis tools to the web in a way that multiple user could produce their own configurations, view and share historical results. In the other hand the monolithic web service was too big and the technologies used outdated making it difficult for both maintenance and development. So mainly with the objective of, splitting the monolith and updating the technologies, all the code were rewritten using the latest version of the Ruby on Rails framework.
+The main advantage of this implementation was to bring the code analysis tools to the web in a way that multiple user could produce their own configurations, view and share historical results. In the other hand the monolithic web service was too big and the technologies used outdated making it difficult for maintenance, development and scalability. So mainly with the objective of splitting the monolith and updating the technologies, all the code were rewritten using the latest version of the Ruby on Rails framework.
 
 \subsection{Cloud-based implementation}
 \label{subsec:cloud-based-implementation}
 %% Cloud-based (explicando que usou micro-services)
 %%%% experimental results (mostrar o máximo possível que a coisa funciona e é eficiente, ou seja, atinge os objetivos do artigo).
+
+The rewritten code was splitted into three different services: Prezento; Kalibro Processor; and Kalibro Configurations. The user interface, code analyzer and configuration manager respectively. Those services communicates through HTTP requests encapsulated onto a fourth piece of software called KalibroClient.
+
+All this work is based on the microservice architecture described by Martin Fowler on his blog. With this new distributed architecture the platform has more flexibility to scale into the cloud. And, as well, demands less knowledge from developers about the existing code, since they should not know all the services but just the one which relates to the feature getting implemented and its API.
