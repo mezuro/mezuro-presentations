@@ -45,3 +45,29 @@ trabalhos futuros e problemas em aberto para o futuro
 
 Bibliografia (1 página)
 
+====
+Tarefas
+
+1- melhor introduzir a seção
+2- remover as ferramentas proprietárias
+3- evidenciar que no Mezuro não pretende escrever métricas, mas usar as que estão disponível em coletores estabelecidos
+4- fazer um gancho com a próxima seção, em especial citando a falta de interface amigável
+
+5- em projetos relacionados, fazer uma tabela comparativa
+https://scitools.com/
+https://code.google.com/p/hackystat/
+
+6- ler trabalhos relacionados
+migrating service-oriented system to cloud computing an experience report
+http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6008736&tag=1
+
+7- diagrama de estado de comunicação na arquitetura
+http://en.wikipedia.org/wiki/State_diagram_%28UML%29
+
+8- features e diferencial do Mezuro
+
+Divisao
+1 a 5 - Paulo
+5 - Manzo e Diego revisam
+6 a 8 - Manzo e Diego
+
