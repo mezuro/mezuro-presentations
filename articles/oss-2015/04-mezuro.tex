@@ -1,25 +1,78 @@
 \newpage
 \section{The Mezuro Project}
 \label{sec:mezuro}
-%TODO: The Mezuro Project (5 páginas)
 
-The Mezuro\footnote{\url{http://mezuro.org}} project aims to be an interface which allows, in a flexible way, the extraction, analysis and interpretation of static source code metrics. Licensed under the Affero General Public License version 3 (AGPLv3), it makes the user responsible for defining the metrics she wants to employ on the analysis, keeping track and providing graphical visualization of the evolution of the selected set of metrics. From here the set of selected metrics together with the interpretations for each value  will be referenced just as ``configuration''. Its main academical goals are: to get close to a consensus on which configurations should be employed on the analysis of different kinds of source code written in different programming languages and to search which interpretation should be given to each value obtained for the configuration.
+The Mezuro\footnote{\url{mezuro.org}} project aims to be an interface
+which allows, in a flexible way, the extraction, analysis and interpretation of
+static source code metrics. Licensed under the Affero General Public License
+version 3 (AGPLv3), it allows users define the metrics they want to employ on
+the analysis, keeping track and providing graphical visualization of the
+evolution of the selected set of metrics. From here the set of selected metrics
+together with the interpretations for each value  will be referenced just as
+``configuration''. Its main academical goals are: to get close to a consensus
+on which configurations should be employed on the analysis of different kinds
+of source code written in different programming languages and to search which
+interpretation should be given to each value obtained for the configuration.
 
 \subsection{Early design}
 \label{subsec:early-design}
-%% early design (funcionalidades e a forma como foi implementada inicialmente)
-%%%% limitations
 
-Initially, we developed a desktop application called Kalibro \cite{de2013kalibro}, written in Java which had many of the features we wanted for source code analysis. At that time, Kalibro already supported the selection and composition of metrics to be employed on the analysis and allowed users to define their own interpretation for the results of each metric calculation. With a created configuration, Kalibro only needed an URL for the source code to start the analysis. The URL could be the path for the source code, compressed in a ZIP or TARBALL file, on the user's computer or the link for the repository where the source code was stored. The source code managers supported included GIT, Subversion, CVS, Mercurial and Bazaar. Finally, the source code could be written in Java, C or C++.
+Initially, we developed a desktop prototype for the QualiPSo project called
+Kalibro \cite{de2013kalibro}, written in Java which had many of the features we
+wanted for source code analysis. At that time, Kalibro already supported the
+selection and composition of metrics to be employed on the analysis and allowed
+users to define their own interpretation for the results of each metric
+calculation.  With a created configuration, Kalibro only needed an URL for the
+source code to start the analysis. The URL could be the path for the source
+code, compressed in a ZIP or TARBALL file, on the user's computer or the link
+for the repository where the source code was stored. The source code managers
+supported included GIT, Subversion, CVS, Mercurial and Bazaar. Finally, the
+source code could be written in either Java, C, or C++, according to Analizo
+supported programming languages.
 
-Despite Kalibro being capable to successfully analyze source codes, we could not get close to the consensus we aimed for. The main obstacle was that, with a desktop application, it was not possible to incite the discussion on the configurations employed among developers nor the comparison of results between projects. That was the main reason that motivated the move from a desktop application to a service-based implementation.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\textwidth]{images/kalibro-initial-arch.png}
+  \caption{Architecture of the initial implementation.}
+  \label{fig:kalibro-initial-arch}
+\end{figure}
+
+\textbf{Figure \ref{fig:kalibro-initial-arch}} represents the initial
+implementation with Kalibro components well defined. In short, it was
+integrated to its first basetool, working as a front-end to Analizo. Despite
+Kalibro being capable to successfully analyze source codes, we could not get
+close to the consensus we aimed for. The main obstacle was that, with a desktop
+application, it was not possible to incite the discussion on the configurations
+employed among developers nor the comparison of results between projects. That
+was the main reason that motivated the move from a desktop application to a
+service-based implementation.
 
 \subsection{Service-based implementation}
 \label{subsec:service-based-implementation}
-%% Services-based implementation
-%%%% limitations (Scalability evaluation)
 
-The service-based implementation of the Mezuro project was designed to have a back end, that was a monolithic web service that performed all the database and analysis operations, and a front end, that was a plugin of the Noosfero\footnote{\url{http://noosfero.org/Site}} social network. The first one was described in WSDL and communicated with the front end using SOAP messages. It was still written in Java for it was an extension of Kalibro. As for the front end, we wanted that our users were able to discuss and compare their configuration and results, so a social network seemed a good way to achieve that. We did not want to implement a social network from scratch, though. Noosfero was a good choice for its robust plugin support and for being open source. Our plugin was written in Ruby, using the Ruby on Rails framework. \textbf{Figure \ref{fig:mezuro-noosfero-arch}} represents the state diagram for the service-based implementation. This is a simplified diagram for it omits some entities of our system as the reading groups, which abstract the interpretations given for the metrics and are part of the configurations.
+The first service-based implementation was designed to working on a BI
+environment called Spago4Q~\footnote{\url{spago4q.org}} in the QualiSPo project
+context. Kalibro just provides a set of metric results to be extracted and
+reported by Spago4Q.
+%
+After that, Kalibro evolved to a monolithic web service that performed all the
+database and analysis operations. It was integrated to a plugin of the
+Noosfero\footnote{\url{noosfero.org}} social networking platform. At that time,
+the plugin and all project was named Mezuro.
+
+
+The back-end was described in WSDL and communicated with the front-end using
+SOAP messages.  It was still written in Java for it was an extension of
+Kalibro. As for the front-end, we wanted that our users were able to discuss
+and compare their configuration and results. Thus, a social network seemed a
+good way to achieve that. We did not want to implement a social network from
+scratch, though.  Noosfero was a good choice for its robust plugin support and
+for being open source. Mezuro plugin was written in Ruby, using the Ruby on
+Rails framework. \textbf{Figure \ref{fig:mezuro-noosfero-arch}} represents the
+state diagram for the service-based implementation. This is a simplified
+diagram for it omits some entities of our system as the reading groups, which
+abstract the interpretations given for the metrics and are part of the
+configurations.
 
 \begin{figure}[htb]
   \centering
@@ -28,13 +81,48 @@ The service-based implementation of the Mezuro project was designed to have a ba
   \label{fig:mezuro-noosfero-arch}
 \end{figure}
 
-With this new implementation, Mezuro allowed users to create their own configurations of metrics and respective interpretations. They could register the URL for their repositories on GIT or Subversion. Most importantly, they could view and compare their results with the repositories of other users. That data could be used in order to extend the research on source code metrics and software quality within free software projects. Mezuro supports source codes written on Java, C and C++.
+With this new implementation, Mezuro allowed users to create their own
+configurations of metrics and respective interpretations. They could register
+the URL for their repositories on GIT or Subversion. Most importantly, they
+could view and compare their results with the repositories of other users. That
+data could be used in order to extend the research on source code metrics and
+software quality within free software projects. Mezuro supports source codes
+written on Java, C, and C++, also with CheckStyle as Java metric collector.
 
-The main advantage of this implementation was to bring the code analysis tools to the web in a way that multiple users could produce their own configurations, view and share historical results. Unfortunately, we had inconvenient problems. On the front end, the major issue was that the technologies used were outdated making it difficult for maintenance and development. Also, Noosfero had features that we did not need for our social network as the support for communities and events. For the web service being monolithic, minor changes on the source code implied a full deploy of the system and it was hard to understand and modify it. That slowed down our productivity. Still, the main disadvantage was the scalability.
+The main advantage of this implementation was to bring the code analysis tools
+to the web in a way that multiple users could produce their own configurations
+as well as view and share historical results from their analysed projects.
+However, on the front-end, the major issue was that the technologies used were
+outdated making it difficult for maintenance and development. Also, Noosfero
+had features that we did not need for our social network such as the support
+for communities and events. For the web service being monolithic, minor changes
+on the source code implied a full deploy of the system. In short, it was hard to
+understand and modify it. That slowed down our productivity. Still, the main
+disadvantage was the scalability.
 
-We started worrying about scalability when we were about to release Mezuro to the community. We wanted to assess if Kalibro could keep its performance when changes on the workload occurred. For the tests, we used the Scalability Explorer\cite{moura2013automated} framework. We calculated three metrics available on the framework: speed-up, degradation and aggregate performance comparison\cite{li2012catalogue}. Sadly, we found that our most important feature, the process repository operation, was not scalable. Worse, for big workloads Kalibro simply stopped working without errors. Further investigation showed us that this sudden interruption happened due to a deadlock. The problem was on the static thread pool created by Kalibro. By default, Kalibro created a static thread pool with a variable number of threads, depending on the machine it was running on. The threads were kept idle, waiting for some operation to awake them. Each source code analysis required four threads to complete because parts of that operation were made in parallel. The operation awoke the threads on demand, that it, only when it was going to use them. Therefore, if a great number of requests for the process repository operation reached the service simultaneously, those operations would start but would not be able to finish because of a lack of threads available.
+We started worrying about scalability when we were about to release Mezuro to
+the community. We wanted to assess if Kalibro web service could keep its
+performance when changes on the workload occurred. For the tests, we used the
+Scalability Explorer\cite{moura2013automated} framework. We calculated three
+metrics available on the framework: speed-up, degradation, and aggregate
+performance comparison\cite{li2012catalogue}. We found that our most important
+feature, the process repository operation, was not scalable. Worse, for big
+workloads Kalibro simply stopped working without errors. Further investigation
+showed us that this sudden interruption happened due to a deadlock.
 
-With difficulties for modifying the code to support a dynamic thread pool, our solution was to rewrite the service so we could solve the deadlock issue and improve the service architecture.
+The problem was on the static thread pool created by Kalibro web service. By
+default, Kalibro created a static thread pool with a variable number of
+threads, depending on the machine it was running on. The threads were kept
+idle, waiting for some operation to awake them. Each source code analysis
+required four threads to complete because parts of that operation were made in
+parallel. The operation awoke the threads on demand, that it, only when it was
+going to use them. Therefore, if a great number of requests for the process
+repository operation reached the service simultaneously, those operations would
+start but would not be able to finish because of a lack of threads available.
+
+With difficulties for modifying the code to support a dynamic thread pool, our
+solution was to rewrite the service. Thus, we could solve the deadlock issue
+and improve the service architecture.
 
 \subsection{Cloud-based implementation}
 \label{subsec:cloud-based-implementation}
