@@ -60,6 +60,13 @@ database and analysis operations. It was integrated to a plugin of the
 Noosfero\footnote{\url{noosfero.org}} social networking platform. At that time,
 the plugin and all project was named Mezuro.
 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\textwidth]{images/mezuro-noosfero-arch.png}
+  \caption{Architecture of the service-based implementation.}
+  \label{fig:mezuro-noosfero-arch}
+\end{figure}
+
 
 The back-end was described in WSDL and communicated with the front-end using
 SOAP messages.  It was still written in Java for it was an extension of
@@ -73,13 +80,6 @@ state diagram for the service-based implementation. This is a simplified
 diagram for it omits some entities of our system as the reading groups, which
 abstract the interpretations given for the metrics and are part of the
 configurations.
-
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=\textwidth]{images/mezuro-noosfero-arch.png}
-  \caption{Architecture of the service-based implementation.}
-  \label{fig:mezuro-noosfero-arch}
-\end{figure}
 
 With this new implementation, Mezuro allowed users to create their own
 configurations of metrics and respective interpretations. They could register
@@ -149,6 +149,13 @@ its API. Other advantages are that each service can be written in different
 programming languages and, for each service runs its own processes, they can be
 deployed independently. That also enhances fault tolerance.
 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\textwidth]{images/mezuro-cloud-arch.png}
+  \caption{Architecture of the cloud-based implementation.}
+  \label{fig:mezuro-cloud-arch}
+\end{figure}
+
 Furthermore, better scalability was achieved with the help of the ActiveJob
 gem\footnote{\url{github.com/rails/rails/tree/master/activejob}}.  ActiveJob
 creates a queue of operations to be executed some time in the future by a
@@ -158,47 +165,8 @@ keep Prezento running while all source code analysis required runs on
 background. However, the main disadvantages of the micro-services architecture
 are that it is more complex and, if the API of one of the services change, the
 others that use it must adapt to keep the communication working.
-
 \textbf{Figure \ref{fig:mezuro-cloud-arch}} refers to the state diagram for the
 cloud-based implementation. Again, there are implicit details we omitted to
 keep the simplicity as the Kalibro Client gem that encapsulates the exchanged
 HTTP messages among the services.
 
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=\textwidth]{images/mezuro-cloud-arch.png}
-  \caption{Architecture of the cloud-based implementation.}
-  \label{fig:mezuro-cloud-arch}
-\end{figure}
-
-This final step on the evolution of the Mezuro project brings it to the new era
-of cloud computing with scalability, distributed processing, and fault
-tolerance through the described division into smaller services. That
-modularization enables the system to scale each of its components on demand. As
-well it provides to developers the flexibility necessary for expansions such as
-adding support for collecting source code metrics from other programming
-languages, which is the current effort of our team.
-
-As result of the described evolution through time here are summarized the main
-features of Mezuro:
-
-\begin{itemize}
-
-  \item Latest standards on web development (through Boilerplate and
-	TwitterBootstrap frameworks) brings a clean interface, easy to use, and familiar
-	to others found by users on the web;
-
-  \item Multi-user environment with permission management which allows the
-	collaboration and spreading of standards;
-
-  \item Historical data about the evolution of metric values through time;
-
-  \item Multi-language support for analysis;
-
-  \item Configurable set of metrics and interpretations which enables it to
-	suit better to the variety of projects in the world;
-
-  \item Distributed services with specific responsibilities which makes them
-	easier to extend and install on cloud infrastructures.
-
-\end{itemize}

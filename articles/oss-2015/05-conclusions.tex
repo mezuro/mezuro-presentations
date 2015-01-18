@@ -1,25 +1,53 @@
 \section{Conclusions}
 \label{sec:conclusions}
 
-%TODO: Conclusions (½ página)
-%% pequeno resumo geral da contribuição
-%% trabalhos futuros e problemas em aberto para o futuro
-
 This paper presented the evolution of Mezuro -- a free software platform that
 is part of a new generation of source code metrics analysis tools.  It has
 useful features for both software engineer and researcher working with source
 code analysis. Mezuro is fully flexible allowing easy integration with distinct
-source code collector. Also, it provides an environment where software
-engineers can define their own threshold configurations, according to software
+source code collectors. Also, it provides an environment where software
+engineers can define their own threshold configurations, according to a software
 implementation context and their experiences. These thresholds are shared among
 other software engineers on the Mezuro plaform.  In short, each metric loaded
 can support as many thresholds as possible to provide a full interpretation
 about what a metric value means.
 
-Future works include the support of other metric collector tools, especially
-to provide Python and Ruby source code analysis.
+To support its requirements and work on real-world projects, Mezuro architecture
+migrated from a service-based implemention to a micro-service cloud-based
+implementation. The final step on the evolution of the Mezuro project brings
+it to the new era of cloud computing with scalability, distributed processing,
+and fault tolerance through the described division into smaller services. That
+modularization enables the system to scale each of its components on demand.
+As result of the described evolution through time here are summarized the main
+features of Mezuro:
 
-TODO: ... evolution and cloud computing context
+\begin{itemize}
+
+  \item Latest standards on web development (through Boilerplate and
+        TwitterBootstrap frameworks) brings a clean interface, easy to use, and familiar
+        to others found by users on the web;
+
+  \item Multi-user environment with permission management which allows the
+        collaboration and spreading of standards;
+
+  \item Historical data about the evolution of metric values through time;
+
+  \item Multi-language support for analysis;
+
+  \item Configurable set of metrics and interpretations which enables it to
+        suit better to the variety of projects in the world;
+
+  \item Distributed services with specific responsibilities which makes them
+        easier to extend and install on cloud infrastructures.
+
+\end{itemize}
+
+As well it provides to developers the flexibility necessary for expansions such as
+adding support for collecting source code metrics from other programming
+languages (such as Ruby, Python, and PHP), which is the current effort of our team.
+
+%%%%%%%%%%%%%%%
+\begin{comment}
 
 \section*{Acknowledgment}
 
@@ -42,3 +70,6 @@ Guilherme Rojas,
 Heitor Reis,
 João da Silva, and
 Renan Fichberg.
+
+\end{comment}
+%%%%%%%%%%%%%
