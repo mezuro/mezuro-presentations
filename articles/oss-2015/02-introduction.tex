@@ -8,13 +8,44 @@
 %% Não existem atualmente ferramentas apropriadas para Y (as ferramentas atuais para métricas apresentam limitações Z e W)
 %% Neste artigo, apresentamos o processo de evolução da ferramenta Mezuro para o ambiente de computação em nuvem que resolve o problema de uma forma inovadora.
 
-TODO: ... \cite{meirelles2013monitoramento}.
+Whatever the methodology, from a practical point of view, software development
+should be guided by an aspects to control the software quality in the long
+term: source code quality~\cite{martin2008}. Metrics can help software
+engineers to observe the source code quality~\cite{SEI88}. Software Engineering
+requires the understanding of software, which is the result from the writing of
+source code~\cite{martin2008}. Also, we argue that software engineers and
+researchers need to analyze source codes to understand software projects.
 
-The remainder of this paper is organized as follows:
-%
-Section \ref{sec:related_works} describes related work.
-%
-Section \ref{sec:mezuro} presents the Mezuro project and how its implementation evolved from a desktop application to a distributed system that runs on the cloud.
-%
-At last, on section \ref{sec:conclusions} we conclude the paper and discuss future work.
+For free software communities~\footnote{\url{gnu.org/philosophy/free-sw.html}}
+\footnote{We consider the terms ``free software'' and ``open source software''
+equivalent.}, source code is the main artefact of software development
+activities since features should be constantly released to users. In fact,
+free software source code is written gradually and different developers make
+updates as well as improvements on an ongoing basis~\cite{martin2008}. Thus,
+new features are inserted and bugs are resolved during software development and
+maintenance iterations.
+
+Software engineers make decisions when are programming at the method and class
+level, influencing the source code quality~\cite{beck2007}. To make the best
+decisions, we argue they should track attributes of their source codes from an
+automated and objective way to interpret metric values. Even with the fact that
+source code metrics have been proposed since the 1970s~\cite{SEI88}, there is
+not a set of standard measures established for them.  Moreover, we have
+observed there is not a systematic approach to use, interpret, and understand
+source code metrics. We have identified limitations from several FLOSS
+tools to monitor this kind of metrics, such as for collecting automatically
+source code metrics values independent of the programming language, for
+interpreting measurement results associating them with source code quality, and
+an avaliable and dependable service on the cloud.
+
+In this paper, we present Mezuro, a free software platform
+designed to incorporate any source code metric tool, extending it to provide
+easy to understand evaluation of the analyzed software quality. 
+TODO: evolving and cloud context...
+
+The remainder of this paper is organized as follows: Section
+\ref{sec:related_works} describes related work.  Section \ref{sec:mezuro}
+presents the Mezuro project and how its implementation evolved from a desktop
+application to a distributed system that runs on the cloud.  At last, on
+section \ref{sec:conclusions} we conclude the paper and discuss future work.
 
