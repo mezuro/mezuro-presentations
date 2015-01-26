@@ -2,12 +2,12 @@
 \label{introduction}
 
 Whatever the methodology, from a practical point of view, software development
-should be guided by an aspects to control the software quality in the long
-term: source code quality~\cite{martin2008}. Metrics can help software
-engineers to observe the source code quality~\cite{SEI88}. Software Engineering
+should be guided by aspects of source code quality to control the software evolution in the long
+term~\cite{martin2008}. Software Engineering
 requires the understanding of software, which is the result from the writing of
-source code~\cite{martin2008}. Also, we argue that software engineers and
-researchers need to analyze source codes to understand software projects.
+source code~\cite{martin2008}. Furthermore, we argue that software engineers and
+researchers need to analyze source codes to understand software projects. Finally, metrics can help software
+engineers to assess the source code quality~\cite{SEI88}.
 
 For free software~\footnote{We consider the terms ``free software'', ``open
 source software'' (OSS), and  ``free/libre/open source software'' (FLOSS)
@@ -20,22 +20,20 @@ during software development and maintenance iterations.
 
 Software engineers make decisions when are programming at the method and class
 level, influencing the source code quality~\cite{beck2007}. To make the best
-decisions, we argue they should track attributes of their source codes from an
-automated and objective way to interpret metric values. Even with the fact that
-source code metrics have been proposed since the 1970s~\cite{SEI88}, there is
+decisions, we argue they should employ metrics to track aspects of their source codes using a tool that automates and provides interpretation to them. Even with the fact that source code metrics have been proposed since the 1970s~\cite{SEI88}, there is
 not a set of standard measures established for them.  Moreover, we have
 observed there is not a systematic approach to use, interpret, and understand
 source code metrics. We have also identified limitations from several FLOSS
 tools to monitor this kind of metrics, such as for collecting automatically
 source code metrics values independent of the programming language, for
 interpreting measurement results associating them with source code quality, and
-an avaliable and dependable service on the Cloud computing.
+an available and dependable service on the cloud computing.
 
 This paper presents the evolution of Mezuro~\cite{mezuro2012}, a free software
 platform designed to incorporate any source code metric tool as well as provide
 an approach to explore source code metrics on the Web. Mezuro has been
-developed since 2009. From 2014, we are refactoring it to work on according to
-the Cloud computing concepts and infrastructure~\cite{louridas2010}.
+developed since 2009. From 2014, we are refactoring it to work accordingly to
+the cloud computing concepts and infrastructure~\cite{louridas2010}.
 
 Mezuro was designed to collect, analyze, and store metric values from source
 code of large free software projects, sharing the results on the a
@@ -43,8 +41,8 @@ social-technical networking environment~\cite{mezuro2012}. In particular, to
 support its scalability requirements, Mezuro architecture needed to migrate
 from a web service implementation based on SOAP communication to a
 micro-service architecture~\cite{namiot2014micro} based on RESTful
-communication. In this paper, we describe how to we have built this new
-distributed architecture to bring Mezuro to the new era of Cloud computing with
+communication. In this paper, we describe how we have built this new
+distributed architecture to bring Mezuro to the new era of cloud computing with
 scalability, distributed processing, and fault tolerance through smaller
 services. Ultimately, we are releasing on the Web a free software platform to
 track source code metrics from real-world projects.
@@ -52,6 +50,6 @@ track source code metrics from real-world projects.
 The remainder of this paper is organized as follows. Section
 \ref{sec:related_works} describes the related projects and works. Section
 \ref{sec:mezuro} presents the Mezuro project and how its implementation evolved
-from a desktop application to a distributed system that runs on the Cloud. At
+from a desktop application to a distributed system that runs on the cloud. At
 last, on Section \ref{sec:conclusions}, we conclude the paper and discuss
 future work.
