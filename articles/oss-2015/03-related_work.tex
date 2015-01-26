@@ -1,8 +1,8 @@
 \section{Related Works}
 \label{sec:related_works}
 
-Initially, at the first step for designing Mezuro, we studied several source
-code analysis tools, sush as
+Initially, as the first step for designing Mezuro, we studied several source
+code analysis tools, such as
 %
 Analizo~\cite{analizo}, CCCC~\footnote{\url{cccc.heckstyle.sourceforge.net}},
 Checkstyle~\footnote{\url{checkstyle.sourceforge.net}},
@@ -11,15 +11,15 @@ Cscope~\footnote{\url{cscope.sourceforge.net}}, CTAGX~\cite{hassan2005},
 LDX~\cite{hassan2005} JaBUTi~\cite{jabuti}, and Metrics (Eclipse
 plug-in)~\footnote{\url{metrics.sourceforge.net}}.
 %
-So, we have defined the following requirements to select them: (i) should
+So, we have defined the following requirements to select them: should
 support source code metrics thresholds to provide different interpretations
-about metric values (\textbf{thresholds}); (ii) should support the analysis of different programming
-languages (\textbf{multi-language}); (iii) should provide clear interfaces for adding new metrics and
-supporting different programming language (\textbf{extensible}); (iv) should be free software,
+about metric values (\textbf{thresholds}); should support the analysis of different programming
+languages (\textbf{multi-language}); should provide clear interfaces for adding new metrics and
+supporting different programming language (\textbf{extensible}); should be free software,
 available without restrictions to allow other researchers to replicate our
-studies and results fully (\textbf{FLOSS}); and (v) should be supported by active developers who
-know the tool architecture (\textbf{mainteined}).
- 
+studies and results fully (\textbf{FLOSS}); and should be supported by active developers who
+know the tool architecture (\textbf{maintained}).
+
 \begin{table}[htb]
   \centering
 \scalefont{0.9}
@@ -29,8 +29,8 @@ know the tool architecture (\textbf{mainteined}).
     \textbf{Languages} & %Multi-language
     \textbf{Extensible} & %Extensibility
     \textbf{Thresholds} & % To Support Thresholds
-    \textbf{Maintained} \\\hline\hline %Actively maintained 
-				    
+    \textbf{Maintained} \\\hline\hline %Actively maintained
+
     Analizo 	& C, C++, Java & Yes & No  & Yes    \\\hline
     CCCC 	& C++, Java    & No  & No  & Yes    \\\hline
     Checkstyle	& Java         & Yes  & Yes & Yes    \\\hline
@@ -42,26 +42,23 @@ know the tool architecture (\textbf{mainteined}).
     JaBUTi	& Java         & No  & No  & Yes    \\\hline
     MacXim	& Java         & No  & No  & Yes    \\\hline
     Metrics 	& Java         & No  & Yes & Yes    \\\hline
-    
+
   \end{tabular}
   \caption{Existing tools versus our defined requirements}
   \label{tab:tools}
 \scalefont{1}
 \end{table}
 
-According to the Table~\ref{tab:tools}, we compare all of these FLOSS tools to
-our requirements. In short, the Analizo and Checkstyle are indicated as able to
-analyze source code from our initial requirements. Both have documented
+As shown by Table~\ref{tab:tools}, we compare all of those FLOSS tools according to the above requirements. In short, the Analizo and Checkstyle are indicated as able to
+analyze source code meeting our initial requirements. Both have documented
 extension interfaces: Analizo focused on C e C++ project and Checkstyle as a
 better option for Java projects. At the first moment, Analizo and Checkstyle
-act as Mezuro project default source code analysis tool (named by us as ``base
-tools'') since Mezuro supports different source code collector tools.
+act as Mezuro project default source code analysis tool.
 
-
-After, when we were evolving the Mezuro project, to evaluate what is available,
-we were gathered informations about similar Mezuro platforms already
-consolidated among software developers, with regard to more the following
-criteria: interface that joins several tools available for metric collection
+Secondly, during the development of the Mezuro project,
+we have gathered information about platforms similar to Mezuro already
+consolidated among software developers with regard to the following
+criteria: interface that joins several tools available for calculating metrics
 (\textbf{collectors}); allow selection and composition of metrics in a flexible
 way (\textbf{composition}); keeping record of the evolution history
 (\textbf{history}); friendly results view (\textbf{graphics}); available as
@@ -73,7 +70,7 @@ service on the web (\textbf{on-line}).
 \scalefont{0.9}
   \begin{tabular}{|l|c|c|c|c|}
     \hline
-    Criteria                   & SonarQube & CodeClimate & HackyStat & Mezuro \\\hline\hline 
+    Criteria                   & SonarQube & CodeClimate & HackyStat & Mezuro \\\hline\hline
 
     \textbf{Multi-Language}    & Yes       & Yes         & No        & Yes   \\\hline
     \textbf{Collectors}        & Yes       & --          & No        & Yes   \\\hline
@@ -83,7 +80,7 @@ service on the web (\textbf{on-line}).
     \textbf{History}           & Yes       & Yes         & Yes       & Yes   \\\hline
     \textbf{On-line}           & No        & Yes         & No        & Yes   \\\hline
     \textbf{FLOSS}             & Yes/No    & No          & Yes       & Yes   \\\hline
-    \textbf{Mainteined}        & Yes       & Yes         & No        & Yes   \\\hline
+    \textbf{Maintained}        & Yes       & Yes         & No        & Yes   \\\hline
 
   \end{tabular}
   \caption{Our criteria versus Existing platforms}
@@ -91,15 +88,15 @@ service on the web (\textbf{on-line}).
 \scalefont{1}
 \end{table}
 
-First, the closest to Mezuro as showed in Table~\ref{tab:platforms},
+The closest platform to Mezuro in terms of characteristics showed in Table~\ref{tab:platforms},
 SonarQube~\footnote{\url{sonarqube.org}} is a free software which offers a
 platform for code quality management through its plugins available from a
 library. In its basic version, it classifies problems found in the code written
 on several languages and calculates simple test coverage metrics and technical
 debt. However, its best plugins are proprietary programs which demands payment
-as well, such as the C/C++plugin.
+as well, such as the C/C++ plugin.
 
-Second, Code Climate~\footnote{\url{codeclimate.com}} is an online
+Code Climate~\footnote{\url{codeclimate.com}} is an online
 platform that provides source code quality analysis and code coverage
 monitoring for FLOSS Ruby, JavaScript and PHP~\footnote{At the
 time of publishing this article PHP support was under beta.} available through
@@ -114,7 +111,7 @@ Recently it published a preliminary statistical analysis of all the
 projects~\footnote{\url{bit.ly/1zpcdlR}}
 but it is still far from a good historical visualization.
 
-Third, Hackystat~\footnote{\url{hackystat.org}} is a FLOSS framework for
+Hackystat~\footnote{\url{hackystat.org}} is a FLOSS framework for
 automated collection, analysis, and visualization of process and product data.
 It was developed from 2001 until 2010, according to its repository activities.
 Similar to Mezuro, its architecture was evolved from a client-server web
@@ -126,23 +123,22 @@ called SensorShell, which can also send information to Hackystat server.
 In general, Mezuro have more features than other similar platforms, as showed
 in Table~\ref{tab:platforms}. For example, Code Climate is an excellent
 platform with a good approach but it is not a free software. HackyStat is
-deprecated and has several limitations, such as only analyzes Java code. Code
+deprecated and has several limitations, such as only analysing Java code. Code
 Climate collects metrics from Ruby, JavaScript, and PHP, while the vast
 majority of free software applications is written in C~\cite{robles2006},
 followed by C++ and Java as we observed on the OpenHub
-website~\footnote{\url{openhub.net}}. Mezuro collects and analyzes metric from
+website~\footnote{\url{openhub.net}}. Mezuro collects and analyses metrics from
 C, C++, and Java source code. Finally, despite SonarQube has a lot of features,
 it is not a platform available on the Web. Its users must install it in their
-own server. Anyway, the worst problem from SonarQube are its proprietary plugin
+own server. Anyway, the worst problem from SonarQube is its proprietary plugin
 to a better use of it.
 
 A final remark on this analysis of similar projects is to mention projects
-analyzed by Jenkins~\footnote{\url{jenkins-ci.org}} and
-Travis~\footnote{\url{jenkins-ci.org}}. There are free software solutions
+analysed by Jenkins~\footnote{\url{jenkins-ci.org}} and
+Travis~\footnote{\url{jenkins-ci.org}}. They are free software solutions
 mainly used for continuous integration which have a rich environment of plugins
 where some of them provide metrics like test coverage and basic complexity
-metrics. But none of them providing interpretation of the results, any kind of
-flexibility on metric definition and laking the historical visualization of
+metrics. But none of them provide interpretation of the results, any kind of
+flexibility on metric definition and lack the historical visualization of
 code metrics results. In other words, continuous integration tools work on
-another scope. They are not comparable to Mezuro, SonarQube, and CodeClimate as
-well.
+another scope. They are not comparable to Mezuro, SonarQube and CodeClimate.
