@@ -32,7 +32,7 @@ supported programming languages.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\textwidth]{images/kalibro-initial-arch.png}
+  \includegraphics[width=.85\textwidth]{images/kalibro-initial-arch.png}
   \caption{Architecture of the initial implementation.}
   \label{fig:kalibro-initial-arch}
 \end{figure}
@@ -53,20 +53,19 @@ service-based implementation.
 The first service-based implementation was designed to working on a BI
 environment called Spago4Q~\footnote{\url{spago4q.org}} in the QualiSPo project
 context. Kalibro just provides a set of metric results to be extracted and
-reported by Spago4Q.
-%
-After that, Kalibro evolved to a monolithic web service that performed all the
+reported by Spago4Q. After that, Kalibro evolved to a monolithic web service that performed all the
 database and analysis operations. It was integrated to a plugin of the
 Noosfero\footnote{\url{noosfero.org}} social networking platform. At that time,
 the plugin and all project was named Mezuro.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\textwidth]{images/mezuro-noosfero-arch.png}
+  \includegraphics[width=.85\textwidth]{images/mezuro-noosfero-arch.png}
   \caption{Architecture of the service-based implementation.}
   \label{fig:mezuro-noosfero-arch}
 \end{figure}
 
+\vspace{-0.5cm}
 
 The back-end was described in WSDL and communicated with the front-end using
 SOAP messages.  It was still written in Java for it was an extension of
@@ -151,10 +150,12 @@ deployed independently. That also enhances fault tolerance.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\textwidth]{images/mezuro-cloud-arch.png}
+  \includegraphics[width=.85\textwidth]{images/mezuro-cloud-arch.png}
   \caption{Architecture of the cloud-based implementation.}
   \label{fig:mezuro-cloud-arch}
 \end{figure}
+
+\vspace{-0.75cm}
 
 Furthermore, better scalability was achieved with the help of the ActiveJob
 gem\footnote{\url{github.com/rails/rails/tree/master/activejob}}.  ActiveJob
