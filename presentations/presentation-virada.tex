@@ -14,7 +14,7 @@
 
 \setbeamertemplate{frametitle}[default][center]
 \title{
-       \textbf{Seu Programa É Saudável?} \\
+       \textbf{Seu Programa é Saudável?} \\
       }
 \subtitle{
 		\textbf{Virada Científica - CCSL}
@@ -30,14 +30,34 @@
 \section{Introdução}
 
 \begin{frame}
+  \frametitle{Aviso!}
+
+  Essa palestra não é sobre:
+  \vspace{.75cm}
+  \begin{itemize}
+    \item Seu programa de fim de semana
+    \vspace{.5cm}
+    \item Aplicativos fitness
+  \end{itemize}
+
+  \vspace{.75cm}
+  \center
+  \textbf{Essa palestra é sobre software!}
+
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Programas}
   \framesubtitle{}
 
   \begin{itemize}
     \item Todo programa possui um código fonte
+    \vspace{.25cm}
     \begin{itemize}
       \item Código fonte é um conjunto de comandos que definem o que o progama faz
     \end{itemize}
+    \vspace{.5cm}
     \item Escrever código \textbf{não} é uma ciência exata
   \end{itemize}
 
@@ -89,15 +109,29 @@
   \end{block}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Relação Programador/Usuário}
+
+  Programas bons para o usuário costumam ser bons para o programador também.
+  \vspace{.75cm}
+  \begin{itemize}
+    \item É mais fácil evitar falhas se o código está bem escrito
+    \vspace{.5cm}
+    \item Códigos mal escritos normalmente geram programas mais lentos
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
   \frametitle{Importância das métricas}
 
   Para o programador, métricas são importantes pois:
+  \vspace{.75cm}
   \begin{itemize}
     \item Auxiliam no controle da qualidade
-    \item Indicam trechos que podem ter problemas
-    \item São rápidas de serem calculadas
+    \vspace{.5cm}
+    \item Indicam cedo trechos que podem ter problemas
+    \vspace{.5cm}
+    \item Deixam evidentes dívidas assumidas
   \end{itemize}
 \end{frame}
 
@@ -107,8 +141,11 @@
   Avaliar a qualidade de um programa é análogo a fazer um \textit{checkup}.
   \begin{itemize}
     \item Fazemos um exame que nos dê indicadores relevantes sobre nossa saúde
+    \vspace{.5cm}
     \item O médico interpreta os resultados e nos dá o diagnóstico
+    \vspace{.5cm}
     \item Damos mais atenção ao que pode estar errado
+    \vspace{.5cm}
     \item Se houver necessidade, fazemos mais exames para descobrir a natureza do problema
   \end{itemize}
 \end{frame}
@@ -116,19 +153,28 @@
 \begin{frame}
   \frametitle{O que normalmente medimos?}
 
-  No nosso corpo, medimos:
-  \begin{itemize}
-    \item Quantidade de glicose no sangue
-    \item Pressão
-    \item Batimentos cardíacos
-  \end{itemize}
-
-  Em um programa, medimos:
-  \begin{itemize}
-    \item Linhas de código
-    \item Nível de responsabilidade (coesão)
-    \item Acoplamento
-  \end{itemize}
+  \begin{columns}[c]
+    \column{.45\textwidth}
+      No nosso corpo, medimos:
+      \vspace{.5cm}
+      \begin{itemize}
+        \item Quantidade de glicose no sangue
+        \vspace{.35cm}
+        \item Pressão
+        \vspace{.35cm}
+        \item Batimentos cardíacos
+      \end{itemize}
+    \column{.45\textwidth}
+      Em um programa, medimos:
+      \vspace{.5cm}
+      \begin{itemize}
+        \item Linhas de código
+        \vspace{.35cm}
+        \item Nível de responsabilidade (coesão)
+        \vspace{.35cm}
+        \item Acoplamento
+      \end{itemize}
+  \end{columns}
 \end{frame}
 
 \section{Mezuro}
@@ -144,17 +190,12 @@
     \end{flushleft}
   \end{figure}
 
-  Sistema que faz \textit{checkups} periódicos no código fonte de um programa.
+  Sistema que faz automaticamente \textit{checkups} periódicos no código fonte de um programa.
   \begin{itemize}
     \item Faz um exame e procura por indicadores de qualidade
     \item Interpreta os resultados e apresenta um diagnóstico
     \item Aponta os trechos que podem ter problemas
   \end{itemize}
-
-  \begin{block}{Observação}
-    Se mais exames forem necessários para investigar mais a fundo um possível problema,
-    o próprio programador terá que olhar o código que escreveu.
-  \end{block}
 \end{frame}
 
 \begin{frame}
@@ -162,10 +203,10 @@
   \begin{figure}
     \begin{flushleft}
     \begin{center}
-    \includegraphics[width=10.5cm, height=6cm]{images/metric_results.png}
+    \includegraphics[width=\textwidth]{images/metric_results.png}
     \end{center}
 
-      \label{fig:logo-mezuro}
+      \label{fig:metric_results}
     \end{flushleft}
   \end{figure}
 \end{frame}
@@ -186,10 +227,10 @@
   \begin{figure}
     \begin{flushleft}
     \begin{center}
-    \includegraphics[width=10.5cm, height=6cm]{images/questions.jpg}
+    \includegraphics[height=.8\textheight]{images/questions.jpg}
     \end{center}
 
-      \label{fig:logo-mezuro}
+      \label{fig:questions}
     \end{flushleft}
   \end{figure}
 \end{frame}
