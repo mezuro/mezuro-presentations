@@ -1,0 +1,69 @@
+%!TEX program = xelatex
+%========================================================================================================
+% Workshop de Design Sprint e Material Design
+%
+% - Based on 'MaterialCv' (https://github.com/amng/MaterialCv)
+% - To generate the poster, use xelatex.
+% - It depends on the 'Roboto' fonts being installed, and on the
+%   latex package 'euenc'
+%
+%========================================================================================================
+
+\documentclass{article}
+\usepackage[top=0cm, bottom=2cm, outer=0cm, inner=0cm]{geometry}
+\usepackage[pages=some]{background}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{multicol}
+
+
+%Color definition based on Material Design
+\definecolor{materialGreen} 	{RGB}{068,225,130}
+\definecolor{materialGreenDark} {RGB}{029,184,090}
+\definecolor{materialRed}   	{RGB}{218,068,049}
+\definecolor{materialRedDark}   {RGB}{173,045,031}
+\definecolor{materialPurple}   	{RGB}{153,039,176}
+\definecolor{materialPurpleDark}{RGB}{088,022,099}
+\definecolor{materialBlue}  	{RGB}{044,116,246}
+\definecolor{materialBlueDark}  {RGB}{010,082,216}
+\definecolor{materialYellow}	{RGB}{254,193,005}
+\definecolor{materialYellowDark}{RGB}{194,147,001}
+\definecolor{textGray}			{RGB}{070,070,070}
+\definecolor{textLightGray}		{RGB}{140,140,140}
+
+%Using font Roboto as main font for the document
+\setmainfont{Roboto}
+
+\backgroundsetup{
+scale=1,
+color=black,
+opacity=0.6,
+placement=top,
+angle=0,
+contents={%
+  \includegraphics[width=\paperwidth,height=165pt]{"images/pic.jpg"}
+  }%
+}
+\begin{document}
+	\color{textGray}
+	\pagenumbering{gobble}
+	\vspace*{70pt} %spacing used to move the first and last name down
+	\Huge
+	\BgThispage
+		\textcolor{black}{\textbf{Workshop de Design Sprint}}
+
+		\textcolor{black}{\textbf{e Material Design}}
+	\BgThispage
+	\vspace*{20pt}
+
+	% Inclui separadamente as seções do poster
+	\input{chamada}
+
+	\input{design_sprint}
+
+	\input{material_design}
+
+	\input{evento}
+
+	\input{contato}
+\end{document}
